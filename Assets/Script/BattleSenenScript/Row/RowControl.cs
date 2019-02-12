@@ -31,7 +31,7 @@ namespace Control
                 foreach (var item in ThisCardList)
                 {
 
-                    if (GlobeCardInfo.PlayerFocusCard != null && item == GlobeCardInfo.PlayerFocusCard)
+                    if (GlobeBattleInfo.PlayerFocusCard != null && item == GlobeBattleInfo.PlayerFocusCard&&item.IsLimit==false)
                     {
                         item.IsPrePrepareToPlay = true;
                     }
@@ -59,7 +59,7 @@ namespace Control
                 }
                 else
                 {
-                    ThisCardList[i].SetMoveTarget(GlobeCardInfo.DragToPoint, Quaternion.Euler(0, 0, 0));
+                    ThisCardList[i].SetMoveTarget(GlobeBattleInfo.DragToPoint, Quaternion.Euler(0, 0, 0));
                 }
                 ThisCardList[i].RefreshState();
             }

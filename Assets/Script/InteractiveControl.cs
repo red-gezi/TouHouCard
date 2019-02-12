@@ -26,19 +26,19 @@ public class InteractiveControl : MonoBehaviour
             {
                 if (Infos[i].transform.GetComponent<Card>() != null)
                 {
-                    GlobeCardInfo.PlayerFocusCard = Infos[i].transform.GetComponent<Card>();
+                    GlobeBattleInfo.PlayerFocusCard = Infos[i].transform.GetComponent<Card>();
                     break;
                 }
-                GlobeCardInfo.PlayerFocusCard = null;
+                GlobeBattleInfo.PlayerFocusCard = null;
             }
             for (int i = 0; i < Infos.Length; i++)
             {
                 if (Infos[i].transform.GetComponent<SingleRowInfo>() != null)
                 {
-                    GlobeCardInfo.PlayerFocusRegion = Infos[i].transform.GetComponent<SingleRowInfo>();
+                    GlobeBattleInfo.PlayerFocusRegion = Infos[i].transform.GetComponent<SingleRowInfo>();
                     break;
                 }
-                GlobeCardInfo.PlayerFocusRegion = null;
+                GlobeBattleInfo.PlayerFocusRegion = null;
             }
         }
     }
@@ -47,9 +47,15 @@ public class InteractiveControl : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (GlobeCardInfo.PlayerFocusCard != null && GlobeCardInfo.PlayerFocusCard.IsPrePrepareToPlay)
+            //print("按下鼠标");
+            if (GlobeBattleInfo.PlayerFocusCard != null && GlobeBattleInfo.PlayerFocusCard.IsPrePrepareToPlay)
             {
-                GlobeCardInfo.PlayerPlayCard = GlobeCardInfo.PlayerFocusCard;
+                GlobeBattleInfo.PlayerPlayCard = GlobeBattleInfo.PlayerFocusCard;
+            }
+            if ( GlobeBattleInfo.IsWaitForSelectRegion)
+            {
+                //print("选择区域");
+                GlobeBattleInfo.SelectRegion = GlobeBattleInfo.PlayerFocusRegion;
             }
         }
         if (Input.GetMouseButton(0))
@@ -57,38 +63,38 @@ public class InteractiveControl : MonoBehaviour
             LayerMask mask = 1 << LayerMask.NameToLayer("Default");
             if (Physics.Raycast(ray, out RaycastHit HitInfo, 100, mask))
             {
-                GlobeCardInfo.DragToPoint = HitInfo.point;
+                GlobeBattleInfo.DragToPoint = HitInfo.point;
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (GlobeCardInfo.PlayerPlayCard != null)
+            if (GlobeBattleInfo.PlayerPlayCard != null)
             {
-                if (GlobeCardInfo.PlayerFocusRegion != null)
+                if (GlobeBattleInfo.PlayerFocusRegion != null)
                 {
-                    print(GlobeCardInfo.PlayerFocusRegion.name);
-                    if (GlobeCardInfo.PlayerFocusRegion.name == "我方_墓地")
+                   // print(GlobeBattleInfo.PlayerFocusRegion.name);
+                    if (GlobeBattleInfo.PlayerFocusRegion.name == "我方_墓地")
                     {
-                        await CardCommand.DisCard();
+                         CardCommand.DisCard();
                     }
-                    else if (GlobeCardInfo.PlayerFocusRegion.name == "我方_手牌")
+                    else if (GlobeBattleInfo.PlayerFocusRegion.name == "我方_手牌")
                     {
 
                     }
                     else
                     {
-                        await CardCommand.PlayCard();
+                         CardCommand.PlayCard();
                     }
                 }
                 else
                 {
-                    await CardCommand.PlayCard();
+                     CardCommand.PlayCard();
                 }
 
                 //Command.GameCommand.PlayCardToRegion();
             }
-            print("执行了");
-            GlobeCardInfo.PlayerPlayCard = null;
+            //print("执行了");
+            //GlobeBattleInfo.PlayerPlayCard = null;
         }
     }
 }

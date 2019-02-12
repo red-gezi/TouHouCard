@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Threading.Tasks;
+using Info;
+
 namespace Command
 {
     public class StateCommand : MonoBehaviour
@@ -12,10 +14,10 @@ namespace Command
         {
             await Task.Run(async () =>
             {
+                NoticeControl.BoardNotice("回合开始");
                 Info.GlobeBattleInfo.IsCardEffectCompleted = false;
-                
-
-                print("回合" + "开始");
+               // print("回合" + "开始");
+                GameCommand.PlayCardLimit(false);
                 await Task.Delay(500);
             });
         }
@@ -23,8 +25,11 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                print("回合" + "结束");
-                await Task.Delay(500);
+                NoticeControl.BoardNotice("回合结束");
+
+                GameCommand.PlayCardLimit(true);
+
+                await Task.Delay(2000);
             });
         }
         public static async Task RoundStart(int num)
@@ -33,7 +38,21 @@ namespace Command
             {
                 Info.GlobeBattleInfo.IsPlayer1Pass = false;
                 Info.GlobeBattleInfo.IsPlayer2Pass = false;
-                print("小局" + "开始");
+                NoticeControl.BoardNotice("小局开始");
+
+                switch (num)
+                {
+                    case (0):
+                        {
+                            for (int i = 0; i < 10; i++)
+                            {
+                                await CardCommand.DrawCard();
+                            }
+                            break;
+                        }
+                    default:
+                        break;
+                }
                 await Task.Delay(500);
             });
         }
@@ -41,7 +60,8 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                print("小局" + "结束");
+                NoticeControl.BoardNotice("小局结束");
+
                 await Task.Delay(500);
             });
         }
@@ -49,7 +69,9 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                print("对战" + "开始");
+                await Task.Delay(500);
+                //print("对战" + "开始");
+                TaskTrigger.StartCreat();
                 await Task.Delay(500);
             });
         }
@@ -57,7 +79,7 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                print("对战" + "结束");
+                //print("对战" + "结束");
                 await Task.Delay(500);
             });
         }
@@ -66,11 +88,11 @@ namespace Command
             await Task.Run(async () =>
             {
                 //当出牌,弃牌,pass时结束
-                print("出牌");
+                //print("出牌");
                 while (true)
                 {
                     if (Info.GlobeBattleInfo.IsCardEffectCompleted)
-                    {                  
+                    {
                         break;
                     }
                     if (Info.GlobeBattleInfo.IsCurrectPass)
@@ -84,7 +106,7 @@ namespace Command
                         break;
                     }
                 }
-                print("结束效果");
+                //print("结束效果");
 
             });
         }
@@ -92,7 +114,7 @@ namespace Command
         {
             if (num < 3)
             {
-                print("第" + num + "小局");
+                //print("第" + num + "小局");
                 num++;
                 return false;
             }

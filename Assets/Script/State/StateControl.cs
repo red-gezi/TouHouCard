@@ -9,7 +9,8 @@ namespace Control
     {
         void Start()
         {
-            //_ = BattleProcess();
+            CardCommand.CreatCard(0);
+            _ = BattleProcess();
             _ = PlayerSurrender();
         }
         public async Task BattleProcess()

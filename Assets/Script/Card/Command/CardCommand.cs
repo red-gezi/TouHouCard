@@ -8,25 +8,58 @@ namespace Command
 
     public class CardCommand : MonoBehaviour
     {
+        public static  Card CreatCard(int id)
+        {
+            //print("开始创建");
+            //print(CardLibrary.Instance);
+            GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
+            //print(NewCard.name);
+            NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
+            return NewCard.GetComponent<Card>();
+
+
+
+        }
+        public static async Task DrawCard()
+        {
+            SoundControl.Play();
+            Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Remove(TargetCard);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Add(TargetCard);
+            await Task.Delay(50);
+        }
         public static async Task PlayCard()
         {
-            Card TargetCard = GlobeCardInfo.PlayerPlayCard;
+            SoundControl.Play();
+            GameCommand.PlayCardLimit(true);
+            Card TargetCard = GlobeBattleInfo.PlayerPlayCard;
             TargetCard.IsPrePrepareToPlay = false;
-            RowsInfo.GetRegion(RegionName_Other.My_Hand).Remove(TargetCard);
-            RowsInfo.GetRegion(RegionName_Other.My_Uesd).Add(TargetCard);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Remove(TargetCard);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).Add(TargetCard);
             //await CardEffectStack.TriggerEffect<TriggerType.Playcard>(TargetCard);
-            GlobeCardInfo.PlayerPlayCard = null;
+            GlobeBattleInfo.PlayerPlayCard = null;
             await CardEffectStack.TriggerEffect<TriggerType.Deploy>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }
         public static async Task DisCard()
         {
-            Card TargetCard = GlobeCardInfo.PlayerPlayCard;
+            Card TargetCard = GlobeBattleInfo.PlayerPlayCard;
             TargetCard.IsPrePrepareToPlay = false;
-            RowsInfo.GetRegion(RegionName_Other.My_Hand).Remove(TargetCard);
-            GlobeCardInfo.PlayerFocusRegion.ThisRowCard.Add(TargetCard);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Remove(TargetCard);
+            GlobeBattleInfo.PlayerFocusRegion.ThisRowCard.Add(TargetCard);
             await CardEffectStack.TriggerEffect<TriggerType.Discard>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
+        }
+        public static async Task Deploy()
+        {
+            Card card = RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd)[0];
+
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).Remove(card);
+            GlobeBattleInfo.SelectRegion.ThisRowCard.Add(card);
+            GlobeBattleInfo.SelectRegion = null;
+            //部署特效
+            //print("duang");
+            await Task.Delay(1000);
         }
     }
 }

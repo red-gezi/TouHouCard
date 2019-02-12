@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using Command;
+using Info;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    public SingleRowInfo a;
-    public GameObject b;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +18,16 @@ public class TestScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(4))
         {
-            GameObject c = Instantiate(b);
-            a.ThisRowCard.Add(c.GetComponent<CardTest>());
+            Card NewCard = CardCommand.CreatCard(0);
+            RowsInfo.GetRegionCardList(RegionName_Battle.My_Water).Add(NewCard);
+            //GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
+            //print(NewCard.name);
         }
         if (Input.GetMouseButtonDown(3))
         {
-            Card b = a.ThisRowCard[0];
-            a.ThisRowCard.Remove(b);
-            Destroy(b.gameObject);
+            //Card b = a.ThisRowCard[0];
+            //a.ThisRowCard.Remove(b);
+            //Destroy(b.gameObject);
         }
     }
 }

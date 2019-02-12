@@ -11,7 +11,7 @@ public class Infos_New : MonoBehaviour
     //public static BattleInfo BattlesInfos;
     //public static PlayerInfo PlayerInfos;
     //public static SelectInfo SelectInfos;
-    //public static GlobeCardInfo GlobeCardInfos;
+    //public static GlobeBattleInfo GlobeBattleInfos;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +31,7 @@ public class Infos_New : MonoBehaviour
     {
         //BattlesInfos = BattleInfo.Instance;
         //CardInfos = CardInfo.Instance;
-        //GlobeCardInfos = GlobeCardInfo.Instance;
+        //GlobeBattleInfos = GlobeBattleInfo.Instance;
         //SceneInfos = SceneInfo.Instance;
         //PlayerInfos = PlayerInfo.Instance;
     }

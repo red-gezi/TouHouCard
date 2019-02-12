@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public enum RegionName_Battle
 {
@@ -39,14 +40,45 @@ namespace Info
         {
             Instance = this;
         }
-        public static List<Card> GetRegion(RegionName_Battle region)
+        public static List<Card> GetRegionCardList(RegionName_Battle region)
         {
             return Instance.SingleBattleInfos[region].ThisRowCard;
         }
-        public static List<Card> GetRegion(RegionName_Other region)
+        public static List<Card> GetRegionCardList(RegionName_Other region)
         {
             return Instance.SingleOtherInfos[region].ThisRowCard;
 
+        }
+        public static Vector2 GetLocation(Card TargetCard)
+        {
+            List<Card> TargetCardList=null;
+            int RankX=-1;
+            int RankY=-1;
+            for (int i = 0; i < Instance.SingleBattleInfos.Count; i++)
+            {
+                if (Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard.Contains(TargetCard))
+                {
+                    TargetCardList = Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard;
+                    RankX = i;
+                }
+            }
+            if (TargetCardList != null)
+            {
+                RankY = TargetCardList.IndexOf(TargetCard);
+            }
+            for (int i = 0; i < Instance.SingleOtherInfos.Count; i++)
+            {
+                if (Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard.Contains(TargetCard))
+                {
+                    TargetCardList = Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard;
+                    RankX = i;
+                }
+            }
+            if (TargetCardList!=null)
+            {
+                RankY = TargetCardList.IndexOf(TargetCard);
+            }
+            return new Vector2(RankX, RankY);
         }
     }
 }
