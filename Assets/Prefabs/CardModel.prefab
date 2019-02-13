@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4826834787014937559}
   - component: {fileID: 4826834787014937131}
   m_Layer: 9
-  m_Name: Cube
+  m_Name: CardModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ VideoPlayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4826834787014937553}
-  m_Enabled: 1
+  m_Enabled: 0
   m_VideoClip: {fileID: 32900000, guid: 31cefc8109ee43e4d8f33cb3d9268d24, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0

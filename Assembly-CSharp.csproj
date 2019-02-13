@@ -74,7 +74,6 @@
     <Compile Include="Assets\Script\EffectStack\TriggerType.cs" />
     <Compile Include="Assets\Script\GameCommand.cs" />
     <Compile Include="Assets\Script\Globe\GlobeBattleInfo.cs" />
-    <Compile Include="Assets\Script\Globe\GlobeCardInfo.cs" />
     <Compile Include="Assets\Script\Info\Infos_New.cs" />
     <Compile Include="Assets\Script\InteractiveControl.cs" />
     <Compile Include="Assets\Script\PlayInfo.cs" />

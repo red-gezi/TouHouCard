@@ -9,7 +9,6 @@ namespace Control
     {
         void Start()
         {
-            CardCommand.CreatCard(0);
             _ = BattleProcess();
             _ = PlayerSurrender();
         }

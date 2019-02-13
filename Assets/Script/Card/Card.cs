@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public int CardId;
     public bool IsMove;
+    public bool IsTemp;
     public Card yaya;
     public bool IsPrePrepareToPlay;
     /// <summary>
@@ -24,19 +26,24 @@ public class Card : MonoBehaviour
     }
     public void RefreshState()
     {
+        Material material = GetComponent<Renderer>().material;
         if (GlobeBattleInfo.PlayerFocusCard == this)
         {
-            GetComponent<Renderer>().material.SetFloat("_IsFocus", 1);
-            GetComponent<Renderer>().material.SetFloat("_IsRed", 0);
+            material.SetFloat("_IsFocus", 1);
+            material.SetFloat("_IsRed", 0);
         }
         else if (GlobeBattleInfo.OpponentFocusCard == this)
         {
-            GetComponent<Renderer>().material.SetFloat("_IsFocus", 1);
-            GetComponent<Renderer>().material.SetFloat("_IsRed", 1);
+            material.SetFloat("_IsFocus", 1);
+            material.SetFloat("_IsRed", 1);
         }
         else
         {
-            GetComponent<Renderer>().material.SetFloat("_IsFocus", 0);
+            material.SetFloat("_IsFocus", 0);
+        }
+        if (IsTemp)
+        {
+            material.SetFloat("_IsTemp", 0);
         }
         transform.position = new Vector3(transform.position.x, TargetPos.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * 5);

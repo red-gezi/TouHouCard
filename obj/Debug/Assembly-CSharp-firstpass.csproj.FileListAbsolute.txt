@@ -314,3 +314,7 @@ G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-firstpass.csproj.CoreCompileInputs
 G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-firstpass.csproj.CopyComplete
 G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-firstpass.dll
 G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-firstpass.pdb
+G:\Unity\TouHouCard\Temp\bin\Debug\UnityEditor.UI.dll
+G:\Unity\TouHouCard\Temp\bin\Debug\UnityEditor.Graphs.dll
+G:\Unity\TouHouCard\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+G:\Unity\TouHouCard\Temp\bin\Debug\UnityEditor.UI.xml

@@ -14,10 +14,11 @@ public class CardTest : Card
     [TriggerType.Deploy]
     public Func<Task> Step2 = (async () =>
     {
-        await GameCommand.WaitForSelectRegion();
+        print("等待选择位置");
+        await GameCommand.WaitForSelectLocation();
         await CardCommand.Deploy();
 
-        await Task.Delay(1000);
+        await Task.Delay(100);
     });
 
 

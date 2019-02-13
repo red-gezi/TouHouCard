@@ -1,45 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Infos_New : MonoBehaviour
+namespace Info
 {
-    //public static
-    //public static UIInfo UIInfos;
-    //public static CardInfo CardInfos;
-    //public static SceneInfo SceneInfos;
-    //public static BattleInfo BattlesInfos;
-    //public static PlayerInfo PlayerInfos;
-    //public static SelectInfo SelectInfos;
-    //public static GlobeBattleInfo GlobeBattleInfos;
-    // Start is called before the first frame update
-    void Start()
+    public class Infos_New : MonoBehaviour
     {
-        InitUserInfo();
-    }
-    //delegate void GeziAction(Card_N text1 = , string text2 = "is ", string text3 = "baka");
+        //public static
+        //public static UIInfo UIInfos;
+        //public static CardInfo CardInfos;
+        //public static SceneInfo SceneInfos;
+        //public static BattleInfo BattlesInfos;
+        //public static PlayerInfo PlayerInfos;
+        //public static SelectInfo SelectInfos;
+        //public static GlobeBattleInfo GlobeBattleInfos;
+        // Start is called before the first frame update
+        void Start()
+        {
+            InitUserInfo();
+        }
+        //delegate void GeziAction(Card_N text1 = , string text2 = "is ", string text3 = "baka");
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
-    }
-    /// <summary>
-    /// 初始化用户相关信息引用
-    /// </summary>
-    public void InitUserInfo()
-    {
-        //BattlesInfos = BattleInfo.Instance;
-        //CardInfos = CardInfo.Instance;
-        //GlobeBattleInfos = GlobeBattleInfo.Instance;
-        //SceneInfos = SceneInfo.Instance;
-        //PlayerInfos = PlayerInfo.Instance;
-    }
-    /// <summary>
-    /// 初始化对局相关信息引用
-    /// </summary>
-    public void InitBattleInfo()
-    {
+        }
+        /// <summary>
+        /// 初始化用户相关信息引用
+        /// </summary>
+        public void InitUserInfo()
+        {
+            //BattlesInfos = BattleInfo.Instance;
+            //CardInfos = CardInfo.Instance;
+            //GlobeBattleInfos = GlobeBattleInfo.Instance;
+            //SceneInfos = SceneInfo.Instance;
+            //PlayerInfos = PlayerInfo.Instance;
+        }
+        /// <summary>
+        /// 初始化对局相关信息引用
+        /// </summary>
+        public void InitBattleInfo()
+        {
 
+        }
     }
+
 }

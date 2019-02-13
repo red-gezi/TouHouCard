@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System.Threading.Tasks;
 using Info;
-
+using Control;
 namespace Command
 {
     public class StateCommand : MonoBehaviour

@@ -51,7 +51,7 @@ namespace Command
             GlobeBattleInfo.IsWaitForSelectLocation = true;
             await Task.Run(() =>
             {
-                while (Info.GlobeBattleInfo.SelectLocation == null) { }
+                while (Info.GlobeBattleInfo.SelectLocation <0) { }
             });
             GlobeBattleInfo.IsWaitForSelectLocation = false;
            // print("选择完毕");

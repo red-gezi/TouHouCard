@@ -1,6 +1,8 @@
-﻿using Info;
+﻿using Command;
+using Info;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 namespace Control
 {
@@ -11,11 +13,15 @@ namespace Control
         public float Range;
         //public float Detal = 1.6f;
         //public float Bias;
+        public bool CanBeSelected;
         public bool IsMyHandRegion;
         public bool IsSingle;
-        void Start()
+        
+
+        void Awake()
         {
             SingleInfo = GetComponent<SingleRowInfo>();
+
         }
 
         // Update is called once per frame
@@ -23,6 +29,45 @@ namespace Control
         {
             ControlCardPosition(SingleInfo.ThisRowCard);
             RefreshHandCard(SingleInfo.ThisRowCard);
+            TempCardControk();
+            //if (Input.GetMouseButtonDown(0)&& CanBeSelected)
+            //{
+            //    print("打出位置为2:" + SingleInfo.JudgeRank(GlobeBattleInfo.FocusPoint, out float x));
+            //    print("相对坐标为"+x);
+            //}
+        }
+        public void TempCardControk()
+        {
+            if (SingleInfo.TempCard==null&& CanBeSelected&&GlobeBattleInfo.PlayerFocusRegion== SingleInfo)
+            {
+                CreatTempCard();
+            }
+            if (SingleInfo.TempCard != null && SingleInfo.Rank != SingleInfo.ThisRowCard.IndexOf(SingleInfo.TempCard))
+            {
+                ChangeTempCard();
+            }
+            if (SingleInfo.TempCard != null && GlobeBattleInfo.PlayerFocusRegion != SingleInfo)
+            {
+                DestoryTempCard();
+            }
+           
+        }
+        public void CreatTempCard()
+        {
+            SingleInfo.TempCard = CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd)[0].CardId,GlobeBattleInfo.FocusPoint);
+            SingleInfo.TempCard.IsTemp = true;
+            SingleInfo.ThisRowCard.Insert(SingleInfo.Rank, SingleInfo.TempCard);
+        }
+        public void DestoryTempCard()
+        {
+            SingleInfo.ThisRowCard.Remove(SingleInfo.TempCard);
+            Destroy(SingleInfo.TempCard.gameObject);
+            SingleInfo.TempCard = null;
+        }
+        public void ChangeTempCard()
+        {
+            SingleInfo.ThisRowCard.Remove(SingleInfo.TempCard);
+            SingleInfo.ThisRowCard.Insert(SingleInfo.Rank, SingleInfo.TempCard);
         }
         void RefreshHandCard(List<Card> ThisCardList)
         {
@@ -31,7 +76,7 @@ namespace Control
                 foreach (var item in ThisCardList)
                 {
 
-                    if (GlobeBattleInfo.PlayerFocusCard != null && item == GlobeBattleInfo.PlayerFocusCard&&item.IsLimit==false)
+                    if (GlobeBattleInfo.PlayerFocusCard != null && item == GlobeBattleInfo.PlayerFocusCard && item.IsLimit == false)
                     {
                         item.IsPrePrepareToPlay = true;
                     }
@@ -49,9 +94,10 @@ namespace Control
             {
 
                 float Actual_Interval = Mathf.Min(Range / Num, 1.6f);
-                float Actual_Bias = IsSingle? 0 : (Mathf.Min(ThisCardList.Count, 8) - 1) * 0.8f;
+                float Actual_Bias = IsSingle ? 0 : (Mathf.Min(ThisCardList.Count, 8) - 1) * 0.8f;
                 //Bias = Actual_Bias;
-                Vector3 Actual_Offset_Up = transform.up * (0.2f - i * 0.01f); //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
+                Vector3 Actual_Offset_Up = transform.up * (0.2f - i * 0.01f)*( ThisCardList[i].IsPrePrepareToPlay ?1.1f:1) ; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
+               // Vector3 Actual_Offset_Up = transform.up * i; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
                 Vector3 Actual_Offset_Forward = ThisCardList[i].IsPrePrepareToPlay ? -transform.forward * 0.5f : Vector3.zero;
                 if (ThisCardList[i].IsAutoMove)
                 {
@@ -64,6 +110,7 @@ namespace Control
                 ThisCardList[i].RefreshState();
             }
         }
+       
     }
 }
 

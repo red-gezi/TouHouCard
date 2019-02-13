@@ -21,7 +21,7 @@ public class TaskTrigger : MonoBehaviour
             for (int i = 0; i < Deck.CardID.Count; i++)
             {
                 //print("生成一张牌");
-                Card NewCard = CardCommand.CreatCard(Deck.CardID[i]);
+                Card NewCard = CardCommand.CreatCard(Deck.CardID[i], Vector3.zero);
                 RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Add(NewCard);
             }
             IsCreatCard = false;

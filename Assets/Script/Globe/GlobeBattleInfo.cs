@@ -10,11 +10,14 @@ namespace Info
         public static Card PlayerFocusCard;
         public static Card OpponentFocusCard;
         public static Card PlayerPlayCard;
+
         public static SingleRowInfo PlayerFocusRegion;
         public static bool IsWaitForSelectRegion;
         public static SingleRowInfo SelectRegion;
+
+        public static Vector3 FocusPoint;
         public static bool IsWaitForSelectLocation;
-        public static SingleRowInfo SelectLocation;
+        public static int SelectLocation=-1;
 
         public static bool IsPlayer1;
         public static bool IsPlayer1Pass;

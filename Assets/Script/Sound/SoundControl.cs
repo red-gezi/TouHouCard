@@ -1,38 +1,38 @@
-﻿using System.Collections;
+﻿using Info;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-
-public class SoundControl : MonoBehaviour
+namespace Control
 {
-    public static SoundControl Instance;
-    static bool IsPlay;
-    public static void Play()
+    public class SoundControl : MonoBehaviour
     {
-        IsPlay = true;
-    }
-    public void PlayAudioEffect()
-    {
-        AudioSource Source = gameObject.AddComponent<AudioSource>();
-        Source.clip = SoundInfo.Instance.Clips;
-        Source.Play();
-
-        Destroy(Source, Source.clip.length);
-
-    }
-    void Awake()
-    {
-        Instance = this;
-    }
-
-    void Update()
-    {
-        if (IsPlay)
+        public static SoundControl Instance;
+        static bool IsPlay;
+        public static void Play()
         {
-            PlayAudioEffect();
-            IsPlay = false;
+            IsPlay = true;
+        }
+        public void PlayAudioEffect()
+        {
+            AudioSource Source = gameObject.AddComponent<AudioSource>();
+            Source.clip = SoundInfo.Instance.Clips;
+            Source.Play();
+            Destroy(Source, Source.clip.length);
+        }
+        void Awake()
+        {
+            Instance = this;
+        }
+
+        void Update()
+        {
+            if (IsPlay)
+            {
+                PlayAudioEffect();
+                IsPlay = false;
+            }
         }
     }
 }
-
