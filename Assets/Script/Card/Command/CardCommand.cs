@@ -8,20 +8,26 @@ namespace Command
 {
     public class CardCommand : MonoBehaviour
     {
-        public static Card CreatCard(int id, Vector3 Position)
+        public static Card CreatCard(int id)
         {
-            //print("开始创建");
-            //print(CardLibrary.Instance);
             GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
-            NewCard.transform.position = Position;
-            //print(NewCard.name);
             NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
             return NewCard.GetComponent<Card>();
+        }
+        public static async Task<Card> CreatCardAsync(int id)
+        {
+            CardInstanceControl.IsCreatCard = true;
+            CardInstanceControl.CreatID = id;
+            await Task.Run(() =>{while (CardInstanceControl.CreatCard == null){} });
+            Card NewCard = CardInstanceControl.CreatCard;
+            CardInstanceControl.CreatCard = null;
+            return NewCard;
         }
         public static async Task DrawCard()
         {
             SoundControl.Play();
             Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
+            TargetCard.IsCanSee = true;
             RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Remove(TargetCard);
             RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Add(TargetCard);
             await Task.Delay(100);

@@ -1,6 +1,7 @@
 ﻿using Info;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -8,6 +9,9 @@ public class Card : MonoBehaviour
     public int CardId;
     public bool IsMove;
     public bool IsTemp;
+    public bool IsCanSee;
+    bool IsInit;
+
     public Card yaya;
     public bool IsPrePrepareToPlay;
     /// <summary>
@@ -17,12 +21,23 @@ public class Card : MonoBehaviour
     public bool IsAutoMove => this != GlobeBattleInfo.PlayerPlayCard;
     public Vector2 Location => RowsInfo.GetLocation(this);
     public Vector3 TargetPos;
-    public Quaternion TargetEuler;
+    public Quaternion TargetRot;
+    public void Init()
+    {
+        IsInit = true;
+    }
 
-    public void SetMoveTarget(Vector3 TargetPosition, Quaternion TargetEulers)
+    public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)
     {
         TargetPos = TargetPosition;
-        TargetEuler = TargetEulers;
+        TargetRot = Quaternion.Euler(TargetEulers + new Vector3(0, 0, IsCanSee ? 0 : 180));
+        if (IsInit)
+        {
+            transform.position = TargetPos;
+            transform.rotation = TargetRot;
+            IsInit = false;
+        }
+      
     }
     public void RefreshState()
     {
@@ -47,6 +62,6 @@ public class Card : MonoBehaviour
         }
         transform.position = new Vector3(transform.position.x, TargetPos.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * 5);
-        transform.rotation = Quaternion.Lerp(transform.rotation, TargetEuler, Time.deltaTime * 10);
+        transform.rotation = Quaternion.Lerp(transform.rotation, TargetRot, Time.deltaTime * 10);
     }
 }

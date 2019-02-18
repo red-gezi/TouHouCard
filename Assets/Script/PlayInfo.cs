@@ -8,7 +8,8 @@ namespace Info
     {
         public static PlayInfo Instance;
         string Name = "gezi";
-        public CardDeck Deck;
+        public CardDeck MyDeck;
+        public CardDeck OpDeck;
         private void Awake()
         {
             Instance = this;

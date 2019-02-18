@@ -54,9 +54,11 @@ namespace Control
         }
         public void CreatTempCard()
         {
-            SingleInfo.TempCard = CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd)[0].CardId,GlobeBattleInfo.FocusPoint);
+            SingleInfo.TempCard = CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd)[0].CardId);
             SingleInfo.TempCard.IsTemp = true;
+            SingleInfo.TempCard.IsCanSee = true;
             SingleInfo.ThisRowCard.Insert(SingleInfo.Rank, SingleInfo.TempCard);
+            SingleInfo.TempCard.Init();
         }
         public void DestoryTempCard()
         {
@@ -94,18 +96,18 @@ namespace Control
             {
 
                 float Actual_Interval = Mathf.Min(Range / Num, 1.6f);
-                float Actual_Bias = IsSingle ? 0 : (Mathf.Min(ThisCardList.Count, 8) - 1) * 0.8f;
+                float Actual_Bias = IsSingle ? 0 : (Mathf.Min(ThisCardList.Count, 6)-1) * 0.8f;
                 //Bias = Actual_Bias;
-                Vector3 Actual_Offset_Up = transform.up * (0.2f - i * 0.01f)*( ThisCardList[i].IsPrePrepareToPlay ?1.1f:1) ; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
+                Vector3 Actual_Offset_Up = transform.up * (0.2f + i * 0.01f)*( ThisCardList[i].IsPrePrepareToPlay ?1.1f:1) ; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
                // Vector3 Actual_Offset_Up = transform.up * i; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
                 Vector3 Actual_Offset_Forward = ThisCardList[i].IsPrePrepareToPlay ? -transform.forward * 0.5f : Vector3.zero;
                 if (ThisCardList[i].IsAutoMove)
                 {
-                    ThisCardList[i].SetMoveTarget(transform.position + Vector3.right * (Actual_Interval * i - Actual_Bias) + Actual_Offset_Up + Actual_Offset_Forward, transform.rotation);
+                    ThisCardList[i].SetMoveTarget(transform.position + Vector3.left * (Actual_Interval * i - Actual_Bias) + Actual_Offset_Up + Actual_Offset_Forward, transform.eulerAngles);
                 }
                 else
                 {
-                    ThisCardList[i].SetMoveTarget(GlobeBattleInfo.DragToPoint, Quaternion.Euler(0, 0, 0));
+                    ThisCardList[i].SetMoveTarget(GlobeBattleInfo.DragToPoint, Vector3.zero);
                 }
                 ThisCardList[i].RefreshState();
             }

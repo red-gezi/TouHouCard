@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\BattleSenenScript\EffectStack\CardEffectStack.cs" />
+    <Compile Include="Assets\Script\BattleSenenScript\EffectStack\TriggerType.cs" />
     <Compile Include="Assets\Script\BattleSenenScript\Row\Row_Command.cs" />
     <Compile Include="Assets\Script\BattleSenenScript\Row\RowControl.cs" />
     <Compile Include="Assets\Script\BattleSenenScript\Row\RowsInfo.cs" />
@@ -70,8 +72,7 @@
     <Compile Include="Assets\Script\Card\CardLibrary.cs" />
     <Compile Include="Assets\Script\Card\CardTest.cs" />
     <Compile Include="Assets\Script\Card\Command\CardCommand.cs" />
-    <Compile Include="Assets\Script\EffectStack\CardEffectStack.cs" />
-    <Compile Include="Assets\Script\EffectStack\TriggerType.cs" />
+    <Compile Include="Assets\Script\Card\Control\CardInstanceControl.cs" />
     <Compile Include="Assets\Script\GameCommand.cs" />
     <Compile Include="Assets\Script\Globe\GlobeBattleInfo.cs" />
     <Compile Include="Assets\Script\Info\Infos_New.cs" />
@@ -81,8 +82,7 @@
     <Compile Include="Assets\Script\Sound\SoundInfo.cs" />
     <Compile Include="Assets\Script\State\StateCommand.cs" />
     <Compile Include="Assets\Script\State\StateControl.cs" />
-    <Compile Include="Assets\Script\TaskTrigger.cs" />
-    <Compile Include="Assets\Script\TestScript.cs" />
+    <Compile Include="Assets\Script\Test\TestScript.cs" />
     <Compile Include="Assets\Script\UI\Notice\NoticeControl.cs" />
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>G:/Unity/TouHouCard/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>

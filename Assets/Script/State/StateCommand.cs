@@ -69,10 +69,25 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                await Task.Delay(500);
-                //print("对战" + "开始");
-                TaskTrigger.StartCreat();
-                await Task.Delay(500);
+                //await Task.Delay(500);
+                NoticeControl.BoardNotice("对战开始");
+                CardDeck Deck = PlayInfo.Instance.MyDeck;
+                for (int i = 0; i < Deck.CardID.Count; i++)
+                {
+                    //print("生成一张牌");
+                    Card NewCard =await CardCommand.CreatCardAsync(Deck.CardID[i]);
+                    RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Add(NewCard);
+                    NewCard.Init();
+                }
+                Deck = PlayInfo.Instance.OpDeck;
+                for (int i = 0; i < Deck.CardID.Count; i++)
+                {
+                    //print("生成一张牌");
+                    Card NewCard = await CardCommand.CreatCardAsync(Deck.CardID[i]);
+                    RowsInfo.GetRegionCardList(RegionName_Other.Op_Deck).Add(NewCard);
+                    NewCard.Init();
+                }
+                await Task.Delay(2000);
             });
         }
         public static async Task BattleEnd()

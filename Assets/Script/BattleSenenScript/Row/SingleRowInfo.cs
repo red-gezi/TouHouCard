@@ -16,7 +16,7 @@ namespace Info
         public static int JudgeRank(this SingleRowInfo SingleInfo, Vector3 point)
         {
             int Rank = 0;
-            float posx = (point.x - SingleInfo.transform.position.x);
+            float posx = -(point.x - SingleInfo.transform.position.x);
             //x = posx;
             int UniteNum = SingleInfo.ThisRowCard.Where(card => !card.IsTemp).Count();
             for (int i = 0; i < UniteNum; i++)

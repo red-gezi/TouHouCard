@@ -43,9 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e77783a163563540a0c0d812479092f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardId: 0
   IsMove: 0
+  IsTemp: 0
+  IsCanSee: 0
   yaya: {fileID: 0}
   IsPrePrepareToPlay: 0
   IsLimit: 1
   TargetPos: {x: 0, y: 0, z: 0}
-  TargetEuler: {x: 0, y: 0, z: 0, w: 0}
+  Targetrotation: {x: 0, y: 0, z: 0, w: 0}

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Card
-  m_Shader: {fileID: 4800000, guid: 233fd435ad079894298bc580b3d8bcbf, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0fd7bd8b7cbba6f4197acfa69a607822, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -21,22 +21,30 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_B118209F:
+    - Texture2D_46F81921:
         m_Texture: {fileID: 2800000, guid: 390ae3f27f8cdc84ebb98b9bd8b2f414, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_7FE9C69F_Texture:
+    - Texture2D_7B8835DC:
+        m_Texture: {fileID: 2800000, guid: a78bffbeb81b48ae9ec71ad7969613e5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_1F9E2874_Texture:
         m_Texture: {fileID: 2800000, guid: b17c68c5dbf3c2a4d8d68a0a76ab353c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_81C44A4D_Texture:
+    - _Texture2DAsset_392D72F2_Out:
+        m_Texture: {fileID: 2800000, guid: a78bffbeb81b48ae9ec71ad7969613e5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_42C3C9F1_Out:
         m_Texture: {fileID: 2800000, guid: 70925a290bec8e9448065a3dc520b8bd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Boolean_6F1C78C: 0
-    - Boolean_AF802E8B: 0
+    - Boolean_4F26843C: 0
     - _IsFocus: 0
+    - _IsFource: 0
     - _IsTemp: 1
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
