@@ -71,6 +71,11 @@ namespace Control
             SingleInfo.ThisRowCard.Remove(SingleInfo.TempCard);
             SingleInfo.ThisRowCard.Insert(SingleInfo.Rank, SingleInfo.TempCard);
         }
+        public void SetSelectable(bool Seleceable)
+        {
+            CanBeSelected = Seleceable;
+            transform.GetComponent<Renderer>().material.color= CanBeSelected?Color.white:Color.black;
+        }
         void RefreshHandCard(List<Card> ThisCardList)
         {
             if (IsMyHandRegion)

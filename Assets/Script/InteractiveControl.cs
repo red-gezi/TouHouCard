@@ -89,7 +89,7 @@ namespace Control
                         }
                         else if (GlobeBattleInfo.PlayerFocusRegion.name == "我方_手牌")
                         {
-
+                            GlobeBattleInfo.PlayerPlayCard = null;
                         }
                         else
                         {

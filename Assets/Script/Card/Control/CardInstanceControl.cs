@@ -29,6 +29,7 @@ namespace Control
                  }
              });
             Card NewCard = CreatCard;
+            NewCard.transform.parent = GameObject.Find("Card").transform;
             CreatCard = null;
             return NewCard;
         }

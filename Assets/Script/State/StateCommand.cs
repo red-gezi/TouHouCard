@@ -10,12 +10,45 @@ namespace Command
     public class StateCommand : MonoBehaviour
     {
         static int num = 0;
+        public static async Task BattleStart()
+        {
+            await Task.Run(async () =>
+            {
+                //await Task.Delay(500);
+                NoticeControl.BoardNotice("对战开始");
+                CardDeck Deck = PlayInfo.Instance.MyDeck;
+                for (int i = 0; i < Deck.CardID.Count; i++)
+                {
+                    //print("生成一张牌");
+                    Card NewCard = await CardCommand.CreatCardAsync(Deck.CardID[i]);
+                    GlobeBattleInfo.MyDeck.Add(NewCard);
+                    NewCard.Init();
+                }
+                Deck = PlayInfo.Instance.OpDeck;
+                for (int i = 0; i < Deck.CardID.Count; i++)
+                {
+                    //print("生成一张牌");
+                    Card NewCard = await CardCommand.CreatCardAsync(Deck.CardID[i]);
+                    GlobeBattleInfo.OpDeck.Add(NewCard);
+                    NewCard.Init();
+                }
+                await Task.Delay(2000);
+            });
+        }
+        public static async Task BattleEnd()
+        {
+            await Task.Run(async () =>
+            {
+                //print("对战" + "结束");
+                await Task.Delay(500);
+            });
+        }
         public static async Task TurnStart()
         {
             await Task.Run(async () =>
             {
                 NoticeControl.BoardNotice("回合开始");
-                Info.GlobeBattleInfo.IsCardEffectCompleted = false;
+                GlobeBattleInfo.IsCardEffectCompleted = false;
                // print("回合" + "开始");
                 GameCommand.PlayCardLimit(false);
                 await Task.Delay(500);
@@ -36,8 +69,8 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                Info.GlobeBattleInfo.IsPlayer1Pass = false;
-                Info.GlobeBattleInfo.IsPlayer2Pass = false;
+                GlobeBattleInfo.IsPlayer1Pass = false;
+                GlobeBattleInfo.IsPlayer2Pass = false;
                 NoticeControl.BoardNotice("小局开始");
 
                 switch (num)
@@ -47,6 +80,7 @@ namespace Command
                             for (int i = 0; i < 10; i++)
                             {
                                 await CardCommand.DrawCard();
+                                await CardCommand.DrawCard(false);
                             }
                             break;
                         }
@@ -65,39 +99,7 @@ namespace Command
                 await Task.Delay(500);
             });
         }
-        public static async Task BattleStart()
-        {
-            await Task.Run(async () =>
-            {
-                //await Task.Delay(500);
-                NoticeControl.BoardNotice("对战开始");
-                CardDeck Deck = PlayInfo.Instance.MyDeck;
-                for (int i = 0; i < Deck.CardID.Count; i++)
-                {
-                    //print("生成一张牌");
-                    Card NewCard =await CardCommand.CreatCardAsync(Deck.CardID[i]);
-                    RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Add(NewCard);
-                    NewCard.Init();
-                }
-                Deck = PlayInfo.Instance.OpDeck;
-                for (int i = 0; i < Deck.CardID.Count; i++)
-                {
-                    //print("生成一张牌");
-                    Card NewCard = await CardCommand.CreatCardAsync(Deck.CardID[i]);
-                    RowsInfo.GetRegionCardList(RegionName_Other.Op_Deck).Add(NewCard);
-                    NewCard.Init();
-                }
-                await Task.Delay(2000);
-            });
-        }
-        public static async Task BattleEnd()
-        {
-            await Task.Run(async () =>
-            {
-                //print("对战" + "结束");
-                await Task.Delay(500);
-            });
-        }
+       
         public static async Task WaitForPlayerOperation()
         {
             await Task.Run(async () =>

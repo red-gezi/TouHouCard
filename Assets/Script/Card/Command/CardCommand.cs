@@ -23,14 +23,28 @@ namespace Command
             CardInstanceControl.CreatCard = null;
             return NewCard;
         }
-        public static async Task DrawCard()
+        public static async Task DrawCard(bool IsPlayerDraw=true)
         {
             SoundControl.Play();
-            Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
-            TargetCard.IsCanSee = true;
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Remove(TargetCard);
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Add(TargetCard);
-            await Task.Delay(100);
+            //Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
+            Card TargetCard= IsPlayerDraw? GlobeBattleInfo.MyDeck[0]: GlobeBattleInfo.OpDeck[0];
+            TargetCard.IsCanSee = GlobeBattleInfo.IsMyTurn? IsPlayerDraw : !IsPlayerDraw;
+            if (IsPlayerDraw)
+            {
+                GlobeBattleInfo.MyDeck.Remove(TargetCard);
+                GlobeBattleInfo.MyHand.Add(TargetCard);
+            }
+            else
+            {
+                GlobeBattleInfo.OpDeck.Remove(TargetCard);
+                GlobeBattleInfo.OpHand.Add(TargetCard);
+            }
+            
+
+            // GlobeBattleInfo.MyDeck.Add(TargetCard);
+            // RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Remove(TargetCard);
+            //RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Add(TargetCard);
+            await Task.Delay(50);
         }
         public static async Task PlayCard()
         {

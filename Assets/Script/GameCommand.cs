@@ -49,10 +49,12 @@ namespace Command
         {
            // print("请选择");
             GlobeBattleInfo.IsWaitForSelectLocation = true;
+            //根据卡牌属性触发可选择的区域
             await Task.Run(() =>
             {
                 while (Info.GlobeBattleInfo.SelectLocation <0) { }
             });
+            //关闭所有可选择的区域
             GlobeBattleInfo.IsWaitForSelectLocation = false;
            // print("选择完毕");
         }

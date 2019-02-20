@@ -19,7 +19,7 @@ public class TestScript : MonoBehaviour
         if (Input.GetMouseButtonDown(4))
         {
             Card NewCard = CardCommand.CreatCard(0);
-            RowsInfo.GetRegionCardList(RegionName_Battle.My_Water).Add(NewCard);
+            //RowsInfo.GetRegionCardList(RegionName_Battle.My_Water).Add(NewCard);
             //GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
             //print(NewCard.name);
         }
