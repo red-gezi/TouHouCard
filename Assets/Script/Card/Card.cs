@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-
+public enum Property { Water, Fire, Wind, Soil, None }
+public enum Territory { My,Op }
 public class Card : MonoBehaviour
 {
     public int CardId;
@@ -11,7 +12,8 @@ public class Card : MonoBehaviour
     public bool IsTemp;
     public bool IsCanSee;
     bool IsInit;
-
+    public Property CardProperty;
+    public Territory CardTerritory;
     public Card yaya;
     public bool IsPrePrepareToPlay;
     /// <summary>
@@ -37,7 +39,7 @@ public class Card : MonoBehaviour
             transform.rotation = TargetRot;
             IsInit = false;
         }
-      
+
     }
     public void RefreshState()
     {

@@ -61,9 +61,13 @@ namespace Control
                 }
                 if (GlobeBattleInfo.IsWaitForSelectLocation)
                 {
-                    print("选择位置" + GlobeBattleInfo.PlayerFocusRegion.Rank);
-                    GlobeBattleInfo.SelectRegion = GlobeBattleInfo.PlayerFocusRegion;
-                    GlobeBattleInfo.SelectLocation = GlobeBattleInfo.PlayerFocusRegion.Rank;
+                    if (GlobeBattleInfo.PlayerFocusRegion!=null&&GlobeBattleInfo.PlayerFocusRegion.CanBeSelected)
+                    {
+                        print("选择位置" + GlobeBattleInfo.PlayerFocusRegion.Rank);
+                        GlobeBattleInfo.SelectRegion = GlobeBattleInfo.PlayerFocusRegion;
+                        GlobeBattleInfo.SelectLocation = GlobeBattleInfo.PlayerFocusRegion.Rank;
+                    }
+                    
                 }
             }
             if (Input.GetMouseButton(0))

@@ -13,10 +13,9 @@ namespace Control
         public float Range;
         //public float Detal = 1.6f;
         //public float Bias;
-        public bool CanBeSelected;
         public bool IsMyHandRegion;
         public bool IsSingle;
-        
+
 
         void Awake()
         {
@@ -38,7 +37,7 @@ namespace Control
         }
         public void TempCardControk()
         {
-            if (SingleInfo.TempCard==null&& CanBeSelected&&GlobeBattleInfo.PlayerFocusRegion== SingleInfo)
+            if (SingleInfo.TempCard == null && SingleInfo.CanBeSelected && GlobeBattleInfo.PlayerFocusRegion == SingleInfo)
             {
                 CreatTempCard();
             }
@@ -46,15 +45,15 @@ namespace Control
             {
                 ChangeTempCard();
             }
-            if (SingleInfo.TempCard != null && GlobeBattleInfo.PlayerFocusRegion != SingleInfo)
+            if (SingleInfo.TempCard != null  && (!SingleInfo.CanBeSelected||GlobeBattleInfo.PlayerFocusRegion != SingleInfo))
             {
                 DestoryTempCard();
             }
-           
+
         }
         public void CreatTempCard()
         {
-            SingleInfo.TempCard = CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd)[0].CardId);
+            SingleInfo.TempCard = CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0].CardId);
             SingleInfo.TempCard.IsTemp = true;
             SingleInfo.TempCard.IsCanSee = true;
             SingleInfo.ThisRowCard.Insert(SingleInfo.Rank, SingleInfo.TempCard);
@@ -73,8 +72,8 @@ namespace Control
         }
         public void SetSelectable(bool Seleceable)
         {
-            CanBeSelected = Seleceable;
-            transform.GetComponent<Renderer>().material.color= CanBeSelected?Color.white:Color.black;
+            SingleInfo.CanBeSelected = Seleceable;
+            transform.GetComponent<Renderer>().material.SetColor("_Color", SingleInfo.CanBeSelected ? SingleInfo.color : Color.black);
         }
         void RefreshHandCard(List<Card> ThisCardList)
         {
@@ -101,10 +100,10 @@ namespace Control
             {
 
                 float Actual_Interval = Mathf.Min(Range / Num, 1.6f);
-                float Actual_Bias = IsSingle ? 0 : (Mathf.Min(ThisCardList.Count, 6)-1) * 0.8f;
+                float Actual_Bias = IsSingle ? 0 : (Mathf.Min(ThisCardList.Count, 6) - 1) * 0.8f;
                 //Bias = Actual_Bias;
-                Vector3 Actual_Offset_Up = transform.up * (0.2f + i * 0.01f)*( ThisCardList[i].IsPrePrepareToPlay ?1.1f:1) ; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
-               // Vector3 Actual_Offset_Up = transform.up * i; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
+                Vector3 Actual_Offset_Up = transform.up * (0.2f + i * 0.01f) * (ThisCardList[i].IsPrePrepareToPlay ? 1.1f : 1); //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
+                                                                                                                                // Vector3 Actual_Offset_Up = transform.up * i; //transform.up * (1 + i * 0.1f);//Vector3.up * (1 + i * 0.1f);
                 Vector3 Actual_Offset_Forward = ThisCardList[i].IsPrePrepareToPlay ? -transform.forward * 0.5f : Vector3.zero;
                 if (ThisCardList[i].IsAutoMove)
                 {
@@ -117,7 +116,7 @@ namespace Control
                 ThisCardList[i].RefreshState();
             }
         }
-       
+
     }
 }
 

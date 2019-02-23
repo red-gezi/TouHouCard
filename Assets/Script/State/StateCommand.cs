@@ -21,7 +21,7 @@ namespace Command
                 {
                     //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardID[i]);
-                    GlobeBattleInfo.MyDeck.Add(NewCard);
+                    GlobeBattleInfo.MyDeck.ThisRowCard.Add(NewCard);
                     NewCard.Init();
                 }
                 Deck = PlayInfo.Instance.OpDeck;
@@ -29,7 +29,7 @@ namespace Command
                 {
                     //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardID[i]);
-                    GlobeBattleInfo.OpDeck.Add(NewCard);
+                    GlobeBattleInfo.OpDeck.ThisRowCard.Add(NewCard);
                     NewCard.Init();
                 }
                 await Task.Delay(2000);

@@ -18,28 +18,28 @@ namespace Command
         {
             CardInstanceControl.IsCreatCard = true;
             CardInstanceControl.CreatID = id;
-            await Task.Run(() =>{while (CardInstanceControl.CreatCard == null){} });
+            await Task.Run(() => { while (CardInstanceControl.CreatCard == null) { } });
             Card NewCard = CardInstanceControl.CreatCard;
             CardInstanceControl.CreatCard = null;
             return NewCard;
         }
-        public static async Task DrawCard(bool IsPlayerDraw=true)
+        public static async Task DrawCard(bool IsPlayerDraw = true)
         {
             SoundControl.Play();
             //Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
-            Card TargetCard= IsPlayerDraw? GlobeBattleInfo.MyDeck[0]: GlobeBattleInfo.OpDeck[0];
-            TargetCard.IsCanSee = GlobeBattleInfo.IsMyTurn? IsPlayerDraw : !IsPlayerDraw;
+            Card TargetCard = IsPlayerDraw ? GlobeBattleInfo.MyDeck.ThisRowCard[0] : GlobeBattleInfo.OpDeck.ThisRowCard[0];
+            TargetCard.IsCanSee = GlobeBattleInfo.IsMyTurn ? IsPlayerDraw : !IsPlayerDraw;
             if (IsPlayerDraw)
             {
-                GlobeBattleInfo.MyDeck.Remove(TargetCard);
-                GlobeBattleInfo.MyHand.Add(TargetCard);
+                GlobeBattleInfo.MyDeck.ThisRowCard.Remove(TargetCard);
+                GlobeBattleInfo.MyHand.ThisRowCard.Add(TargetCard);
             }
             else
             {
-                GlobeBattleInfo.OpDeck.Remove(TargetCard);
-                GlobeBattleInfo.OpHand.Add(TargetCard);
+                GlobeBattleInfo.OpDeck.ThisRowCard.Remove(TargetCard);
+                GlobeBattleInfo.OpHand.ThisRowCard.Add(TargetCard);
             }
-            
+
 
             // GlobeBattleInfo.MyDeck.Add(TargetCard);
             // RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Remove(TargetCard);
@@ -52,8 +52,8 @@ namespace Command
             GameCommand.PlayCardLimit(true);
             Card TargetCard = GlobeBattleInfo.PlayerPlayCard;
             TargetCard.IsPrePrepareToPlay = false;
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Remove(TargetCard);
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).Add(TargetCard);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.Remove(TargetCard);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard.Add(TargetCard);
             //await CardEffectStack.TriggerEffect<TriggerType.Playcard>(TargetCard);
             GlobeBattleInfo.PlayerPlayCard = null;
             await CardEffectStackControl.TriggerEffect<TriggerType.Deploy>(TargetCard);
@@ -63,17 +63,17 @@ namespace Command
         {
             Card TargetCard = GlobeBattleInfo.PlayerPlayCard;
             TargetCard.IsPrePrepareToPlay = false;
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).Remove(TargetCard);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.Remove(TargetCard);
             GlobeBattleInfo.PlayerFocusRegion.ThisRowCard.Add(TargetCard);
             await CardEffectStackControl.TriggerEffect<TriggerType.Discard>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }
         public static async Task Deploy()
         {
-            Card card = RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd)[0];
+            Card card = RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0];
 
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).Remove(card);
-            GlobeBattleInfo.SelectRegion.ThisRowCard.Insert(GlobeBattleInfo.SelectLocation,card);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard.Remove(card);
+            GlobeBattleInfo.SelectRegion.ThisRowCard.Insert(GlobeBattleInfo.SelectLocation, card);
             GlobeBattleInfo.SelectRegion = null;
             GlobeBattleInfo.SelectLocation = -1;
             //部署特效

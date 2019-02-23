@@ -1,6 +1,7 @@
 ﻿using Info;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 namespace Command
@@ -32,7 +33,7 @@ namespace Command
         /// <param name="IsOpen"></param>
         public static void PlayCardLimit(bool IsLimit)
         {
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ForEach(card => card.IsLimit = IsLimit);
+            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.ForEach(card => card.IsLimit = IsLimit);
         }
         public static async Task WaitForSelectRegion()
         {
@@ -49,14 +50,61 @@ namespace Command
         {
            // print("请选择");
             GlobeBattleInfo.IsWaitForSelectLocation = true;
+            SetRegionSelectable(true);
             //根据卡牌属性触发可选择的区域
             await Task.Run(() =>
             {
                 while (Info.GlobeBattleInfo.SelectLocation <0) { }
             });
             //关闭所有可选择的区域
+            SetRegionSelectable(false);
+
             GlobeBattleInfo.IsWaitForSelectLocation = false;
            // print("选择完毕");
+        }
+        public static void SetRegionSelectable(bool CanBeSelected)
+        {
+            if (CanBeSelected)
+            {
+                bool IsMyTerritory = GlobeBattleInfo.MyUse.ThisRowCard[0].CardTerritory == Territory.My;
+                switch (GlobeBattleInfo.MyUse.ThisRowCard[0].CardProperty)
+                {
+                    case Property.Water:
+                        {
+                            if (IsMyTerritory)
+                            {
+                                GlobeBattleInfo.MyWater.Control.SetSelectable(true);
+                            }
+                            else
+                            {
+                                GlobeBattleInfo.OpWater.Control.SetSelectable(true);
+                            }
+                        }
+                        break;
+                    case Property.Fire:
+                        break;
+                    case Property.Wind:
+                        if (IsMyTerritory)
+                        {
+                            GlobeBattleInfo.MyWind.Control.SetSelectable(true);
+                        }
+                        else
+                        {
+                            GlobeBattleInfo.OpWind.Control.SetSelectable(true);
+                        }
+                        break;
+                    case Property.Soil:
+                        break;
+                    case Property.None:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                RowsInfo.Instance.SingleBattleInfos.Values.ToList().ForEach(row => row.Control.SetSelectable(false));
+            }
         }
     }
 }

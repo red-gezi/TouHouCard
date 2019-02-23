@@ -52,7 +52,7 @@ namespace Control
                 {
                     //print("生成一张牌");
                     Card NewCard = CardCommand.CreatCard(Deck.CardID[i]);
-                    RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).Add(NewCard);
+                    RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).ThisRowCard.Add(NewCard);
                 }
                 IsCreatCard = false;
             }

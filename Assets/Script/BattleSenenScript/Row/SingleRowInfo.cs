@@ -1,4 +1,5 @@
-﻿using Info;
+﻿using Control;
+using Info;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,12 @@ namespace Info
     public class SingleRowInfo : MonoBehaviour
     {
         public List<Card> ThisRowCard = new List<Card>();
+        public bool CanBeSelected;
         public int Rank => this.JudgeRank(GlobeBattleInfo.FocusPoint);
         public Card TempCard;
+        public RowControl Control=>GetComponent<RowControl>();
+        public Color color;
+
     }
     static class RowInfoExtend
     {

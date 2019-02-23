@@ -40,13 +40,13 @@ namespace Info
         {
             Instance = this;
         }
-        public static List<Card> GetRegionCardList(RegionName_Battle region)
+        public static SingleRowInfo GetRegionCardList(RegionName_Battle region)
         {
-            return Instance.SingleBattleInfos[region].ThisRowCard;
+            return Instance.SingleBattleInfos[region];
         }
-        public static List<Card> GetRegionCardList(RegionName_Other region)
+        public static SingleRowInfo GetRegionCardList(RegionName_Other region)
         {
-            return Instance.SingleOtherInfos[region].ThisRowCard;
+            return Instance.SingleOtherInfos[region];
 
         }
         public static Vector2 GetLocation(Card TargetCard)
