@@ -315,3 +315,7 @@ G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.dll
 G:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.pdb
+D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.dll
+D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.pdb
