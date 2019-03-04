@@ -14,13 +14,13 @@ namespace Command
         }
         public static void PlayCardToRegion()
         {
-            if (GlobeBattleInfo.PlayerFocusRegion.ThisRowCard.Count < 5)
+            if (GlobalBattleInfo.PlayerFocusRegion.ThisRowCard.Count < 5)
             {
-                Card TargetCard = GlobeBattleInfo.PlayerPlayCard;
+                Card TargetCard = GlobalBattleInfo.PlayerPlayCard;
                 TargetCard.IsPrePrepareToPlay = false;
                 //RowsInfo.Instance.SingleOtherInfos[RegionName_Other.My_Hand].ThisRowCard.Remove(TargetCard);
-                GlobeBattleInfo.PlayerFocusRegion.ThisRowCard.Add(TargetCard);
-                GlobeBattleInfo.IsCardEffectCompleted = true;
+                GlobalBattleInfo.PlayerFocusRegion.ThisRowCard.Add(TargetCard);
+                GlobalBattleInfo.IsCardEffectCompleted = true;
             }
         }
         public static void PlayCardToGraveyard()
@@ -38,46 +38,46 @@ namespace Command
         public static async Task WaitForSelectRegion()
         {
             //print("请选择");
-            GlobeBattleInfo.IsWaitForSelectRegion = true;
+            GlobalBattleInfo.IsWaitForSelectRegion = true;
             await Task.Run(() =>
             {
-                while (Info.GlobeBattleInfo.SelectRegion == null) { }
+                while (Info.GlobalBattleInfo.SelectRegion == null) { }
             });
-            GlobeBattleInfo.IsWaitForSelectRegion = false;
+            GlobalBattleInfo.IsWaitForSelectRegion = false;
             //print("选择完毕");
         }
         public static async Task WaitForSelectLocation()
         {
            // print("请选择");
-            GlobeBattleInfo.IsWaitForSelectLocation = true;
+            GlobalBattleInfo.IsWaitForSelectLocation = true;
             SetRegionSelectable(true);
             //根据卡牌属性触发可选择的区域
             await Task.Run(() =>
             {
-                while (Info.GlobeBattleInfo.SelectLocation <0) { }
+                while (Info.GlobalBattleInfo.SelectLocation <0) { }
             });
             //关闭所有可选择的区域
             SetRegionSelectable(false);
 
-            GlobeBattleInfo.IsWaitForSelectLocation = false;
+            GlobalBattleInfo.IsWaitForSelectLocation = false;
            // print("选择完毕");
         }
         public static void SetRegionSelectable(bool CanBeSelected)
         {
             if (CanBeSelected)
             {
-                bool IsMyTerritory = GlobeBattleInfo.MyUse.ThisRowCard[0].CardTerritory == Territory.My;
-                switch (GlobeBattleInfo.MyUse.ThisRowCard[0].CardProperty)
+                bool IsMyTerritory = GlobalBattleInfo.MyUse.ThisRowCard[0].CardTerritory == Territory.My;
+                switch (GlobalBattleInfo.MyUse.ThisRowCard[0].CardProperty)
                 {
                     case Property.Water:
                         {
                             if (IsMyTerritory)
                             {
-                                GlobeBattleInfo.MyWater.Control.SetSelectable(true);
+                                GlobalBattleInfo.MyWater.Control.SetSelectable(true);
                             }
                             else
                             {
-                                GlobeBattleInfo.OpWater.Control.SetSelectable(true);
+                                GlobalBattleInfo.OpWater.Control.SetSelectable(true);
                             }
                         }
                         break;
@@ -86,11 +86,11 @@ namespace Command
                     case Property.Wind:
                         if (IsMyTerritory)
                         {
-                            GlobeBattleInfo.MyWind.Control.SetSelectable(true);
+                            GlobalBattleInfo.MyWind.Control.SetSelectable(true);
                         }
                         else
                         {
-                            GlobeBattleInfo.OpWind.Control.SetSelectable(true);
+                            GlobalBattleInfo.OpWind.Control.SetSelectable(true);
                         }
                         break;
                     case Property.Soil:

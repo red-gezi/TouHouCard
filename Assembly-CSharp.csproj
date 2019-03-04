@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\0_LoginSceen\UserLoginControl.cs" />
     <Compile Include="Assets\Script\1_MenuScene\UserModeControl.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\Ai\AiCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\EffectStack\CardEffectStack.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\EffectStack\TriggerType.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Globe\GlobeBattleInfo.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="Assets\Script\9_GloableScene\Card\CardTest.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Command\CardCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Control\CardInstanceControl.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Dialogue\Dialogue.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Dialogue\DialogueCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Network\NetClient.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Network\NetCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Network\NetExtern.cs" />

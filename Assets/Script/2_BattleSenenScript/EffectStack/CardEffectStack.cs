@@ -26,7 +26,7 @@ namespace Control
             {
                 await TaskStack.Pop()();
             }
-            GlobeBattleInfo.IsCardEffectCompleted = true;
+            GlobalBattleInfo.IsCardEffectCompleted = true;
         }
         public static async Task TriggerEffect<T>(List<Card> Targets) where T : Attribute
         {
@@ -50,7 +50,7 @@ namespace Control
                     await TaskStack.Pop()();
                 }
             }
-            GlobeBattleInfo.IsCardEffectCompleted = true;
+            GlobalBattleInfo.IsCardEffectCompleted = true;
         }
     }
 }

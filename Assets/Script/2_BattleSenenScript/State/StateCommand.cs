@@ -23,7 +23,7 @@ namespace Command
                 {
                     //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    GlobeBattleInfo.MyDeck.ThisRowCard.Add(NewCard);
+                    GlobalBattleInfo.MyDeck.ThisRowCard.Add(NewCard);
                     NewCard.Init();
                 }
                 Deck = PlayInfo.OpInfo.UseDeck;
@@ -31,7 +31,7 @@ namespace Command
                 {
                     //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    GlobeBattleInfo.OpDeck.ThisRowCard.Add(NewCard);
+                    GlobalBattleInfo.OpDeck.ThisRowCard.Add(NewCard);
                     NewCard.Init();
                 }
                 await Task.Delay(2000);
@@ -49,10 +49,10 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                NoticeControl.BoardNotice("回合开始");
-                GlobeBattleInfo.IsCardEffectCompleted = false;
+                NoticeControl.BoardNotice((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合开始");
+                GlobalBattleInfo.IsCardEffectCompleted = false;
                 // print("回合" + "开始");
-                GameCommand.PlayCardLimit(false);
+                GameCommand.PlayCardLimit(!GlobalBattleInfo.IsMyTurn);
                 await Task.Delay(500);
             });
         }
@@ -60,19 +60,19 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                NoticeControl.BoardNotice("回合结束");
-
+                NoticeControl.BoardNotice((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合结束");
                 GameCommand.PlayCardLimit(true);
-
                 await Task.Delay(2000);
+                GlobalBattleInfo.IsMyTurn = !GlobalBattleInfo.IsMyTurn;
+
             });
         }
         public static async Task RoundStart(int num)
         {
             await Task.Run(async () =>
             {
-                GlobeBattleInfo.IsPlayer1Pass = false;
-                GlobeBattleInfo.IsPlayer2Pass = false;
+                GlobalBattleInfo.IsPlayer1Pass = false;
+                GlobalBattleInfo.IsPlayer2Pass = false;
                 NoticeControl.BoardNotice("小局开始");
 
                 switch (num)
@@ -82,7 +82,7 @@ namespace Command
                             for (int i = 0; i < 10; i++)
                             {
                                 await CardCommand.DrawCard();
-                                await CardCommand.DrawCard(false);
+                                //await CardCommand.DrawCard(false);
                             }
                             break;
                         }
@@ -106,24 +106,29 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                //当出牌,弃牌,pass时结束
                 //print("出牌");
+                if (Info.GlobalBattleInfo.IsPVE && !Info.GlobalBattleInfo.IsMyTurn)
+                {
+                    await AiCommand.TempOperationAsync();
+                }
+                //当出牌,弃牌,pass时结束
                 while (true)
                 {
-                    if (Info.GlobeBattleInfo.IsCardEffectCompleted)
+                    if (Info.GlobalBattleInfo.IsCardEffectCompleted)
                     {
                         break;
                     }
-                    if (Info.GlobeBattleInfo.IsCurrectPass)
+                    if (Info.GlobalBattleInfo.IsCurrectPass)
                     {
-                        Info.GlobeBattleInfo.IsCardEffectCompleted = false;
+                        Info.GlobalBattleInfo.IsCardEffectCompleted = false;
                         break;
                     }
-                    if (Info.GlobeBattleInfo.IsCardEffectCompleted)
+                    if (Info.GlobalBattleInfo.IsCardEffectCompleted)
                     {
-                        Info.GlobeBattleInfo.IsCardEffectCompleted = false;
+                        Info.GlobalBattleInfo.IsCardEffectCompleted = false;
                         break;
                     }
+
                 }
                 //print("结束效果");
 

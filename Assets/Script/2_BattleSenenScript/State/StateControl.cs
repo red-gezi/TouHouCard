@@ -14,6 +14,8 @@ namespace Control
         }
         public async Task BattleProcess()
         {
+            Info.PlayInfo.MyInfo=new NetInfoModel.PlayerInfo("gezi", "yaya",new List<CardDeck> { new CardDeck("gezi", 0, new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }) }); 
+            Info.PlayInfo.OpInfo=new NetInfoModel.PlayerInfo("gezi", "yaya",new List<CardDeck> { new CardDeck("gezi", 0, new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }) });
             await StateCommand.BattleStart();
             for (int i = 0; i < 3; i++)
             {

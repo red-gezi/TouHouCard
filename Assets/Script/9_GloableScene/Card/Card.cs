@@ -20,7 +20,8 @@ public class Card : MonoBehaviour
     /// 限制卡牌被打出
     /// </summary>
     public bool IsLimit = true;
-    public bool IsAutoMove => this != GlobeBattleInfo.PlayerPlayCard;
+    public bool IsAutoMove => this != GlobalBattleInfo.PlayerPlayCard;
+    public List<Card> Row => RowsInfo.GetRow(this);
     public Vector2 Location => RowsInfo.GetLocation(this);
     public Vector3 TargetPos;
     public Quaternion TargetRot;
@@ -44,12 +45,12 @@ public class Card : MonoBehaviour
     public void RefreshState()
     {
         Material material = GetComponent<Renderer>().material;
-        if (GlobeBattleInfo.PlayerFocusCard == this)
+        if (GlobalBattleInfo.PlayerFocusCard == this)
         {
             material.SetFloat("_IsFocus", 1);
             material.SetFloat("_IsRed", 0);
         }
-        else if (GlobeBattleInfo.OpponentFocusCard == this)
+        else if (GlobalBattleInfo.OpponentFocusCard == this)
         {
             material.SetFloat("_IsFocus", 1);
             material.SetFloat("_IsRed", 1);

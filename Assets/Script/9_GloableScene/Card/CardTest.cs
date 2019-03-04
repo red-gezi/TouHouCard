@@ -33,6 +33,8 @@ public class CardTest : Card
     void Update()
     {
         IsMove = IsAutoMove;
-        yaya = GlobeBattleInfo.PlayerPlayCard;
+        yaya = GlobalBattleInfo.PlayerPlayCard;
+        
     }
+    
 }

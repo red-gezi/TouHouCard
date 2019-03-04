@@ -51,9 +51,9 @@ namespace Info
         }
         public static Vector2 GetLocation(Card TargetCard)
         {
-            List<Card> TargetCardList=null;
-            int RankX=-1;
-            int RankY=-1;
+            List<Card> TargetCardList = null;
+            int RankX = -1;
+            int RankY = -1;
             for (int i = 0; i < Instance.SingleBattleInfos.Count; i++)
             {
                 if (Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard.Contains(TargetCard))
@@ -74,11 +74,30 @@ namespace Info
                     RankX = i;
                 }
             }
-            if (TargetCardList!=null)
+            if (TargetCardList != null)
             {
                 RankY = TargetCardList.IndexOf(TargetCard);
             }
             return new Vector2(RankX, RankY);
+        }
+        public static List<Card> GetRow(Card TargetCard)
+        {
+            List<Card> TargetCardList = null;
+            for (int i = 0; i < Instance.SingleBattleInfos.Count; i++)
+            {
+                if (Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard.Contains(TargetCard))
+                {
+                    TargetCardList = Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard;
+                }
+            }
+            for (int i = 0; i < Instance.SingleOtherInfos.Count; i++)
+            {
+                if (Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard.Contains(TargetCard))
+                {
+                    TargetCardList = Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard;
+                }
+            }
+            return TargetCardList;
         }
     }
 }

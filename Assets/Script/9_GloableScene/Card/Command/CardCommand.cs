@@ -27,17 +27,18 @@ namespace Command
         {
             SoundControl.Play();
             //Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
-            Card TargetCard = IsPlayerDraw ? GlobeBattleInfo.MyDeck.ThisRowCard[0] : GlobeBattleInfo.OpDeck.ThisRowCard[0];
-            TargetCard.IsCanSee = GlobeBattleInfo.IsMyTurn ? IsPlayerDraw : !IsPlayerDraw;
+            Card TargetCard = IsPlayerDraw ? GlobalBattleInfo.MyDeck.ThisRowCard[0] : GlobalBattleInfo.OpDeck.ThisRowCard[0];
+            //TargetCard.IsCanSee = GlobalBattleInfo.IsMyTurn ? IsPlayerDraw : !IsPlayerDraw;
+            TargetCard.IsCanSee =IsPlayerDraw;
             if (IsPlayerDraw)
             {
-                GlobeBattleInfo.MyDeck.ThisRowCard.Remove(TargetCard);
-                GlobeBattleInfo.MyHand.ThisRowCard.Add(TargetCard);
+                GlobalBattleInfo.MyDeck.ThisRowCard.Remove(TargetCard);
+                GlobalBattleInfo.MyHand.ThisRowCard.Add(TargetCard);
             }
             else
             {
-                GlobeBattleInfo.OpDeck.ThisRowCard.Remove(TargetCard);
-                GlobeBattleInfo.OpHand.ThisRowCard.Add(TargetCard);
+                GlobalBattleInfo.OpDeck.ThisRowCard.Remove(TargetCard);
+                GlobalBattleInfo.OpHand.ThisRowCard.Add(TargetCard);
             }
 
 
@@ -50,21 +51,22 @@ namespace Command
         {
             SoundControl.Play();
             GameCommand.PlayCardLimit(true);
-            Card TargetCard = GlobeBattleInfo.PlayerPlayCard;
+            Card TargetCard = GlobalBattleInfo.PlayerPlayCard;
             TargetCard.IsPrePrepareToPlay = false;
             RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.Remove(TargetCard);
             RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard.Add(TargetCard);
             //await CardEffectStack.TriggerEffect<TriggerType.Playcard>(TargetCard);
-            GlobeBattleInfo.PlayerPlayCard = null;
+            GlobalBattleInfo.PlayerPlayCard = null;
             await CardEffectStackControl.TriggerEffect<TriggerType.Deploy>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }
-        public static async Task DisCard()
+        public static async Task DisCard(Card card = null)
         {
-            Card TargetCard = GlobeBattleInfo.PlayerPlayCard;
+            Card TargetCard = card == null ? GlobalBattleInfo.PlayerPlayCard : card;
             TargetCard.IsPrePrepareToPlay = false;
-            RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.Remove(TargetCard);
-            GlobeBattleInfo.PlayerFocusRegion.ThisRowCard.Add(TargetCard);
+            //RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.Remove(TargetCard);
+            TargetCard.Row.Remove(TargetCard);
+            GlobalBattleInfo.MyGrave.ThisRowCard.Add(TargetCard);
             await CardEffectStackControl.TriggerEffect<TriggerType.Discard>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }
@@ -73,9 +75,9 @@ namespace Command
             Card card = RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0];
 
             RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard.Remove(card);
-            GlobeBattleInfo.SelectRegion.ThisRowCard.Insert(GlobeBattleInfo.SelectLocation, card);
-            GlobeBattleInfo.SelectRegion = null;
-            GlobeBattleInfo.SelectLocation = -1;
+            GlobalBattleInfo.SelectRegion.ThisRowCard.Insert(GlobalBattleInfo.SelectLocation, card);
+            GlobalBattleInfo.SelectRegion = null;
+            GlobalBattleInfo.SelectLocation = -1;
             //部署特效
             //print("duang");
             await Task.Delay(2000);

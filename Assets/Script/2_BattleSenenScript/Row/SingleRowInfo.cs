@@ -10,7 +10,7 @@ namespace Info
     {
         public List<Card> ThisRowCard = new List<Card>();
         public bool CanBeSelected;
-        public int Rank => this.JudgeRank(GlobeBattleInfo.FocusPoint);
+        public int Rank => this.JudgeRank(GlobalBattleInfo.FocusPoint);
         public Card TempCard;
         public RowControl Control=>GetComponent<RowControl>();
         public Color color;

@@ -37,7 +37,7 @@ namespace Control
         }
         public void TempCardControk()
         {
-            if (SingleInfo.TempCard == null && SingleInfo.CanBeSelected && GlobeBattleInfo.PlayerFocusRegion == SingleInfo)
+            if (SingleInfo.TempCard == null && SingleInfo.CanBeSelected && GlobalBattleInfo.PlayerFocusRegion == SingleInfo)
             {
                 CreatTempCard();
             }
@@ -45,7 +45,7 @@ namespace Control
             {
                 ChangeTempCard();
             }
-            if (SingleInfo.TempCard != null  && (!SingleInfo.CanBeSelected||GlobeBattleInfo.PlayerFocusRegion != SingleInfo))
+            if (SingleInfo.TempCard != null  && (!SingleInfo.CanBeSelected||GlobalBattleInfo.PlayerFocusRegion != SingleInfo))
             {
                 DestoryTempCard();
             }
@@ -82,7 +82,7 @@ namespace Control
                 foreach (var item in ThisCardList)
                 {
 
-                    if (GlobeBattleInfo.PlayerFocusCard != null && item == GlobeBattleInfo.PlayerFocusCard && item.IsLimit == false)
+                    if (GlobalBattleInfo.PlayerFocusCard != null && item == GlobalBattleInfo.PlayerFocusCard && item.IsLimit == false)
                     {
                         item.IsPrePrepareToPlay = true;
                     }
@@ -111,7 +111,7 @@ namespace Control
                 }
                 else
                 {
-                    ThisCardList[i].SetMoveTarget(GlobeBattleInfo.DragToPoint, Vector3.zero);
+                    ThisCardList[i].SetMoveTarget(GlobalBattleInfo.DragToPoint, Vector3.zero);
                 }
                 ThisCardList[i].RefreshState();
             }
