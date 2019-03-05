@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\2_BattleSenenScript\Globe\GlobeBattleInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\Row_Command.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\RowControl.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\Row\RowEnum.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\RowsInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateCommand.cs" />

@@ -8,21 +8,31 @@ namespace Info
 {
     public class SingleRowInfo : MonoBehaviour
     {
-        public List<Card> ThisRowCard = new List<Card>();
+        public RegionType region;
+        public List<Card> ThisRowCard ;
+        public List<Card> ShowCardList;
         public bool CanBeSelected;
         public int Rank => this.JudgeRank(GlobalBattleInfo.FocusPoint);
         public Card TempCard;
         public RowControl Control=>GetComponent<RowControl>();
         public Color color;
+        public void Init()
+        {
+            ThisRowCard = RowsInfo.GetCardList(region.ToAmend());
+        }
+        //private void Update()
+        //{
+        //    ShowCardList = ThisRowCard;
+        //}
 
     }
+    
     static class RowInfoExtend
     {
         public static int JudgeRank(this SingleRowInfo SingleInfo, Vector3 point)
         {
             int Rank = 0;
             float posx = -(point.x - SingleInfo.transform.position.x);
-            //x = posx;
             int UniteNum = SingleInfo.ThisRowCard.Where(card => !card.IsTemp).Count();
             for (int i = 0; i < UniteNum; i++)
             {

@@ -9,7 +9,7 @@ namespace Command
     {
         public static async Task TempOperationAsync()
         {
-            await CardCommand.DisCard(Info.GlobalBattleInfo.MyHand.ThisRowCard[0]);
+            await CardCommand.DisCard(Info.GlobalBattleInfo.MyHand[0]);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Command
                 {
                     //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    GlobalBattleInfo.MyDeck.ThisRowCard.Add(NewCard);
+                    GlobalBattleInfo.MyDeck.Add(NewCard);
                     NewCard.Init();
                 }
                 Deck = PlayInfo.OpInfo.UseDeck;
@@ -31,7 +31,7 @@ namespace Command
                 {
                     //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    GlobalBattleInfo.OpDeck.ThisRowCard.Add(NewCard);
+                    GlobalBattleInfo.OpDeck.Add(NewCard);
                     NewCard.Init();
                 }
                 await Task.Delay(2000);
@@ -82,7 +82,10 @@ namespace Command
                             for (int i = 0; i < 10; i++)
                             {
                                 await CardCommand.DrawCard();
-                                //await CardCommand.DrawCard(false);
+                            }
+                            for (int i = 0; i < 5; i++)
+                            {
+                                await CardCommand.DrawCard(false);
                             }
                             break;
                         }
