@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{358340C7-9C8D-7107-9996-7E62B51B9D39}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -73,8 +74,6 @@
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateControl.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\Card\Card\00.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\Card\Card\01.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Card\Card.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Card\CardTest.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\CardDeck.cs" />

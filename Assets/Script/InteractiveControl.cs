@@ -5,6 +5,8 @@ using Info;
 using Command;
 using System.Threading.Tasks;
 using System;
+using CardSpace;
+
 namespace Control
 {
     public class InteractiveControl : MonoBehaviour
@@ -44,34 +46,28 @@ namespace Control
                 }
             }
         }
-
         private void MouseEvent()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                //print("按下鼠标");
                 if (GlobalBattleInfo.PlayerFocusCard != null && GlobalBattleInfo.PlayerFocusCard.IsPrePrepareToPlay)
                 {
                     GlobalBattleInfo.PlayerPlayCard = GlobalBattleInfo.PlayerFocusCard;
                 }
                 if (GlobalBattleInfo.IsWaitForSelectRegion)
                 {
-                    //print("选择区域");
                     GlobalBattleInfo.SelectRegion = GlobalBattleInfo.PlayerFocusRegion;
                 }
                 if (GlobalBattleInfo.IsWaitForSelectLocation)
                 {
-                    if (GlobalBattleInfo.PlayerFocusRegion!=null&&GlobalBattleInfo.PlayerFocusRegion.CanBeSelected)
+                    if (GlobalBattleInfo.PlayerFocusRegion != null && GlobalBattleInfo.PlayerFocusRegion.CanBeSelected)
                     {
                         print("选择位置" + GlobalBattleInfo.PlayerFocusRegion.Rank);
                         GlobalBattleInfo.SelectRegion = GlobalBattleInfo.PlayerFocusRegion;
                         GlobalBattleInfo.SelectLocation = GlobalBattleInfo.PlayerFocusRegion.Rank;
                     }
-                    
                 }
-                
                 print($"所在行为{GlobalBattleInfo.PlayerFocusCard.Row}，所在坐标为{GlobalBattleInfo.PlayerFocusCard.Location}");
-                
             }
             if (Input.GetMouseButton(0))
             {
@@ -83,16 +79,13 @@ namespace Control
             }
             if (Input.GetMouseButtonUp(0))
             {
-                //print("打出位置为1" + GlobeBattleInfo.FocusPoint);
-
                 if (GlobalBattleInfo.PlayerPlayCard != null)
                 {
                     if (GlobalBattleInfo.PlayerFocusRegion != null)
                     {
-                        // print(GlobeBattleInfo.PlayerFocusRegion.name);
                         if (GlobalBattleInfo.PlayerFocusRegion.name == "我方_墓地")
                         {
-                            CardCommand.DisCard();
+                            _ = CardCommand.DisCard();
                         }
                         else if (GlobalBattleInfo.PlayerFocusRegion.name == "我方_手牌")
                         {
@@ -100,13 +93,12 @@ namespace Control
                         }
                         else
                         {
-                            print("yaya");
-                            CardCommand.PlayCard();
+                            _ = CardCommand.PlayCard();
                         }
                     }
                     else
                     {
-                        CardCommand.PlayCard();
+                        _ = CardCommand.PlayCard();
                     }
 
                     //Command.GameCommand.PlayCardToRegion();

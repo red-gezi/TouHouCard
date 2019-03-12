@@ -12,7 +12,6 @@ public class CardLibrary : SerializedMonoBehaviour
     private void Awake()
     {
         Instance = this;
-        typeof(Card00);
         //AssetBundle.find
         //gameObject.AddComponent<>
     }

@@ -1,4 +1,5 @@
-﻿using Control;
+﻿using CardSpace;
+using Control;
 using Info;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,11 +21,6 @@ namespace Info
         {
             ThisRowCard = RowsInfo.GetCardList(region.ToAmend());
         }
-        //private void Update()
-        //{
-        //    ShowCardList = ThisRowCard;
-        //}
-
     }
     
     static class RowInfoExtend

@@ -634,3 +634,7 @@ D:\Unity\TouHouCard\Temp\bin\Debug\Sirenix.Serialization.Config.xml
 D:\Unity\TouHouCard\Temp\bin\Debug\Sirenix.Utilities.xml
 D:\Unity\TouHouCard\Temp\bin\Debug\Sirenix.Utilities.Editor.xml
 D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.csproj.CopyComplete
+D:\Unity\TouHouCard\Temp\bin\Debug\UnityEditor.UI.dll
+D:\Unity\TouHouCard\Temp\bin\Debug\UnityEditor.Graphs.dll
+D:\Unity\TouHouCard\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+D:\Unity\TouHouCard\Temp\bin\Debug\UnityEditor.UI.xml

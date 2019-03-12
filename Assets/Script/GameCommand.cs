@@ -1,4 +1,5 @@
-﻿using Info;
+﻿using CardSpace;
+using Info;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,14 +38,12 @@ namespace Command
         }
         public static async Task WaitForSelectRegion()
         {
-            //print("请选择");
             GlobalBattleInfo.IsWaitForSelectRegion = true;
             await Task.Run(() =>
             {
                 while (Info.GlobalBattleInfo.SelectRegion == null) { }
             });
             GlobalBattleInfo.IsWaitForSelectRegion = false;
-            //print("选择完毕");
         }
         public static async Task WaitForSelectLocation()
         {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Info;
 using Control;
 using static NetInfoModel;
+using CardSpace;
 
 namespace Command
 {
