@@ -14,8 +14,5 @@ public class NetClient : MonoBehaviour
     static ConnectionInfo connInfo = new ConnectionInfo(ip);
     public static Connection Client = TCPConnection.GetConnection(connInfo);
   
-    public static void Bind(string Tag, PacketHandlerCallBackDelegate<string> Func)
-    {
-        AppendGlobalIncomingPacketHandler(Tag, Func);
-    }
+   
 }

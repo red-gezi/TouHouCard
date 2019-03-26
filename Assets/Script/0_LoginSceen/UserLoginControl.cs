@@ -14,11 +14,11 @@ public class UserLoginControl : MonoBehaviour
     {
         Command.NetCommand.Init(NetClient.Client);
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-
+       
     }
     public void UserRegister()
     {
@@ -35,9 +35,10 @@ public class UserLoginControl : MonoBehaviour
     public void UserLogin()
     {
         GeneralCommand<string> msg = Command.NetCommand.Login("gezi", "123").ToObject<GeneralCommand<string>>();
-        //print(msg.Datas[1]);
-        Info.PlayInfo.MyInfo = msg.Datas[1].ToObject<PlayerInfo>();
-        print(msg.Datas[1] == "1" ? "登录成功" : msg.Datas[1] == "-1" ? "密码错误" : "无此账号");
+        print(msg.Datas[1]);
+        Info.AllPlayerInfo.MyInfo = msg.Datas[1].ToObject<PlayerInfo>();
+        print(msg.Datas[0] == "1" ? "登录成功" : msg.Datas[1] == "-1" ? "密码错误" : "无此账号");
+        Info.AllPlayerInfo.MyInfo = msg.Datas[1].ToObject<PlayerInfo>();
         SceneManager.LoadSceneAsync(1);
     }
 }

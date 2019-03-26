@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UserModeControl : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class UserModeControl : MonoBehaviour
     }
     public  void JoinRoom()
     {
-        Task.Run(async () =>
-        {
-            var s = await Command.NetCommand.JoinRoomAsync();
-            print("加入结果是" + s);
-        });
+        Command.NetCommand.JoinRoom();
+        //Task.Run(async () =>
+        //{
+        //    var s = await Command.NetCommand.JoinRoomAsync();
+        //    print("加入结果是" + s);
+        //    SceneManager.LoadSceneAsync(2);
+
+        //});
     }
 }

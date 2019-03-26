@@ -6,7 +6,7 @@ using static NetInfoModel;
 
 namespace Info
 {
-    public class PlayInfo : SerializedMonoBehaviour
+    public class AllPlayerInfo : SerializedMonoBehaviour
     {
         [ShowInInspector]
         public static PlayerInfo MyInfo;

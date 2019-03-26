@@ -50,7 +50,7 @@ namespace Control
         {
             if (IsCreatCard)
             {
-                CardDeck Deck = PlayInfo.MyInfo.UseDeck;
+                CardDeck Deck = AllPlayerInfo.MyInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds .Count; i++)
                 {
                     //print("生成一张牌");

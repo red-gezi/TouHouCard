@@ -19,7 +19,7 @@ namespace Command
             {
                 //await Task.Delay(500);
                 NoticeControl.BoardNotice("对战开始");
-                CardDeck Deck = PlayInfo.MyInfo.UseDeck;
+                CardDeck Deck = AllPlayerInfo.MyInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
                     //print("生成一张牌");
@@ -27,7 +27,7 @@ namespace Command
                     GlobalBattleInfo.MyDeck.Add(NewCard);
                     NewCard.Init();
                 }
-                Deck = PlayInfo.OpInfo.UseDeck;
+                Deck = AllPlayerInfo.OpInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
                     //print("生成一张牌");
