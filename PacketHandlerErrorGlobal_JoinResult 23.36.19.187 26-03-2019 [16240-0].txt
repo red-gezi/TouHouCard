@@ -1,0 +1,23 @@
+Base Exception Type: System.NullReferenceException: Object reference not set to an instance of an object
+  at NetInfoModel+PlayerInfo.get_UseDeck () [0x00000] in D:\Unity\TouHouCard\Assets\Script\9_GloableScene\Network\NetInfoModel.cs:18 
+  at (wrapper dynamic-method) NetInfoModel+PlayerInfo.GetUseDeck(object)
+  at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue (System.Object target) [0x0001e] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+Inner Exception Type: System.NullReferenceException: Object reference not set to an instance of an object
+  at NetInfoModel+PlayerInfo.get_UseDeck () [0x00000] in D:\Unity\TouHouCard\Assets\Script\9_GloableScene\Network\NetInfoModel.cs:18 
+  at (wrapper dynamic-method) NetInfoModel+PlayerInfo.GetUseDeck(object)
+  at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue (System.Object target) [0x0001e] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+
+Stack Trace:   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue (System.Object target) [0x00054] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CalculatePropertyValues (Newtonsoft.Json.JsonWriter writer, System.Object value, Newtonsoft.Json.Serialization.JsonContainerContract contract, Newtonsoft.Json.Serialization.JsonProperty member, Newtonsoft.Json.Serialization.JsonProperty property, Newtonsoft.Json.Serialization.JsonContract& memberContract, System.Object& memberValue) [0x00066] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject (Newtonsoft.Json.JsonWriter writer, System.Object value, Newtonsoft.Json.Serialization.JsonObjectContract contract, Newtonsoft.Json.Serialization.JsonProperty member, Newtonsoft.Json.Serialization.JsonContainerContract collectionContract, Newtonsoft.Json.Serialization.JsonProperty containerProperty) [0x0008c] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue (Newtonsoft.Json.JsonWriter writer, System.Object value, Newtonsoft.Json.Serialization.JsonContract valueContract, Newtonsoft.Json.Serialization.JsonProperty member, Newtonsoft.Json.Serialization.JsonContainerContract containerContract, Newtonsoft.Json.Serialization.JsonProperty containerProperty) [0x000b0] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize (Newtonsoft.Json.JsonWriter jsonWriter, System.Object value, System.Type objectType) [0x0007e] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.JsonSerializer.SerializeInternal (Newtonsoft.Json.JsonWriter jsonWriter, System.Object value, System.Type objectType) [0x00269] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.JsonSerializer.Serialize (Newtonsoft.Json.JsonWriter jsonWriter, System.Object value, System.Type objectType) [0x00000] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.JsonConvert.SerializeObjectInternal (System.Object value, System.Type type, Newtonsoft.Json.JsonSerializer jsonSerializer) [0x0002a] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.JsonConvert.SerializeObject (System.Object value, System.Type type, Newtonsoft.Json.JsonSerializerSettings settings) [0x00007] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at Newtonsoft.Json.JsonConvert.SerializeObject (System.Object value) [0x00000] in <fc761935ebfa4c36a57cbe1159897f5a>:0 
+  at NetExtern.ToJson (System.Object target) [0x00001] in D:\Unity\TouHouCard\Assets\Script\9_GloableScene\Network\NetExtern.cs:11 
+  at Command.NetCommand.JoinResult (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.String data) [0x00027] in D:\Unity\TouHouCard\Assets\Script\9_GloableScene\Network\NetCommand.cs:32 
+  at NetworkCommsDotNet.Tools.PacketTypeHandlerDelegateWrapper`1[incomingObjectType].Process (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.Object obj) [0x00001] in <048db0d4e7f74e70bc2ce38396e48955>:0 
+  at NetworkCommsDotNet.NetworkComms.TriggerGlobalPacketHandlers (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.Object returnObject, System.Boolean ignoreUnknownPacketTypeOverride) [0x0017b] in <048db0d4e7f74e70bc2ce38396e48955>:0 

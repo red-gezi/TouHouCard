@@ -21,13 +21,17 @@ namespace Command
         public static void Init(Connection NetClient)
         {
             Client = NetClient;
+            Debug.Log("绑定");
             Bind("JoinResult", JoinResult);
         }
 
         private static void JoinResult(PacketHeader packetHeader, Connection connection, string data)
         {
+            Debug.Log("触发");
             Info.AllPlayerInfo.OpInfo = data.ToObject<NetInfoModel.PlayerInfo>();
-            SceneManager.LoadSceneAsync(2);
+            Debug.Log(Info.AllPlayerInfo.MyInfo.ToJson());
+            Debug.Log(Info.AllPlayerInfo.OpInfo.ToJson());
+            UserModeControl.IsJoinRoom = true;
         }
 
         public static string Register(string name, string password)
@@ -40,7 +44,7 @@ namespace Command
         }
         public static void JoinRoom()
         {
-            Client.SendMessge("Join", new NetInfoModel.GeneralCommand(Info.AllPlayerInfo.MyInfo));
+            Client.SendMessge("Join", Info.AllPlayerInfo.MyInfo);
         }
         [Obsolete]
         public static async Task<string> JoinRoomAsync()

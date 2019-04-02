@@ -14,5 +14,6 @@ public class CardLibrary : SerializedMonoBehaviour
         Instance = this;
         //AssetBundle.find
         //gameObject.AddComponent<>
+        
     }
 }

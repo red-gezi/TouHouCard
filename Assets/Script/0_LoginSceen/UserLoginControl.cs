@@ -10,7 +10,7 @@ public class UserLoginControl : MonoBehaviour
     public Text UserName;
     public Text Password;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         Command.NetCommand.Init(NetClient.Client);
     }
@@ -18,7 +18,6 @@ public class UserLoginControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
     }
     public void UserRegister()
     {
@@ -34,7 +33,7 @@ public class UserLoginControl : MonoBehaviour
     }
     public void UserLogin()
     {
-        GeneralCommand<string> msg = Command.NetCommand.Login("gezi", "123").ToObject<GeneralCommand<string>>();
+        GeneralCommand<string> msg = Command.NetCommand.Login(UserName.text, "123").ToObject<GeneralCommand<string>>();
         print(msg.Datas[1]);
         Info.AllPlayerInfo.MyInfo = msg.Datas[1].ToObject<PlayerInfo>();
         print(msg.Datas[0] == "1" ? "登录成功" : msg.Datas[1] == "-1" ? "密码错误" : "无此账号");

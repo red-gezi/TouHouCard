@@ -1,0 +1,18 @@
+Base Exception Type: UnityEngine.UnityException: LoadSceneAsyncNameIndexInternal can only be called from the main thread.
+Constructors and field initializers will be executed from the loading thread when loading a scene.
+Don't use this function in the constructor or field initializers, instead move initialization code to the Awake or Start function.
+  at (wrapper managed-to-native) UnityEngine.SceneManagement.SceneManager.LoadSceneAsyncNameIndexInternal_Injected(string,int,UnityEngine.SceneManagement.LoadSceneParameters&,bool)
+  at UnityEngine.SceneManagement.SceneManager.LoadSceneAsyncNameIndexInternal (System.String sceneName, System.Int32 sceneBuildIndex, UnityEngine.SceneManagement.LoadSceneParameters parameters, System.Boolean mustCompleteNextFrame) <0x4642d230 + 0x0006a> in <dc10dd4ad9f34aa98e691e49a48c7111>:0 
+  at UnityEngine.SceneManagement.SceneManager.LoadSceneAsync (System.Int32 sceneBuildIndex, UnityEngine.SceneManagement.LoadSceneParameters parameters) [0x00005] in D:\unity\Runtime\Export\SceneManager\SceneManager.cs:155 
+  at UnityEngine.SceneManagement.SceneManager.LoadSceneAsync (System.Int32 sceneBuildIndex) [0x0000b] in D:\unity\Runtime\Export\SceneManager\SceneManager.cs:150 
+  at Command.NetCommand.JoinResult (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.String data) [0x0002c] in D:\Unity\TouHouCard\Assets\Script\9_GloableScene\Network\NetCommand.cs:32 
+  at NetworkCommsDotNet.Tools.PacketTypeHandlerDelegateWrapper`1[incomingObjectType].Process (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.Object obj) [0x00001] in <048db0d4e7f74e70bc2ce38396e48955>:0 
+  at NetworkCommsDotNet.NetworkComms.TriggerGlobalPacketHandlers (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.Object returnObject, System.Boolean ignoreUnknownPacketTypeOverride) [0x0017b] in <048db0d4e7f74e70bc2ce38396e48955>:0 
+
+Stack Trace:   at (wrapper managed-to-native) UnityEngine.SceneManagement.SceneManager.LoadSceneAsyncNameIndexInternal_Injected(string,int,UnityEngine.SceneManagement.LoadSceneParameters&,bool)
+  at UnityEngine.SceneManagement.SceneManager.LoadSceneAsyncNameIndexInternal (System.String sceneName, System.Int32 sceneBuildIndex, UnityEngine.SceneManagement.LoadSceneParameters parameters, System.Boolean mustCompleteNextFrame) <0x4642d230 + 0x0006a> in <dc10dd4ad9f34aa98e691e49a48c7111>:0 
+  at UnityEngine.SceneManagement.SceneManager.LoadSceneAsync (System.Int32 sceneBuildIndex, UnityEngine.SceneManagement.LoadSceneParameters parameters) [0x00005] in D:\unity\Runtime\Export\SceneManager\SceneManager.cs:155 
+  at UnityEngine.SceneManagement.SceneManager.LoadSceneAsync (System.Int32 sceneBuildIndex) [0x0000b] in D:\unity\Runtime\Export\SceneManager\SceneManager.cs:150 
+  at Command.NetCommand.JoinResult (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.String data) [0x0002c] in D:\Unity\TouHouCard\Assets\Script\9_GloableScene\Network\NetCommand.cs:32 
+  at NetworkCommsDotNet.Tools.PacketTypeHandlerDelegateWrapper`1[incomingObjectType].Process (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.Object obj) [0x00001] in <048db0d4e7f74e70bc2ce38396e48955>:0 
+  at NetworkCommsDotNet.NetworkComms.TriggerGlobalPacketHandlers (NetworkCommsDotNet.PacketHeader packetHeader, NetworkCommsDotNet.Connections.Connection connection, System.Object returnObject, System.Boolean ignoreUnknownPacketTypeOverride) [0x0017b] in <048db0d4e7f74e70bc2ce38396e48955>:0 

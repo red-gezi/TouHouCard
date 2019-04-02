@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UserModeControl : MonoBehaviour
 {
+    public static bool IsJoinRoom = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,11 @@ public class UserModeControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsJoinRoom)
+        {
+            SceneManager.LoadSceneAsync(2);
+            IsJoinRoom = false;
+        }
     }
     public  void JoinRoom()
     {
