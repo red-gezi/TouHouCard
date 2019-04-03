@@ -9,11 +9,8 @@ namespace Control
 {
     public class RowControl : MonoBehaviour
     {
-        // Start is called before the first frame update
         SingleRowInfo SingleInfo;
         public float Range;
-        //public float Detal = 1.6f;
-        //public float Bias;
         public bool IsMyHandRegion;
         public bool IsSingle;
 
@@ -21,20 +18,12 @@ namespace Control
         void Awake()
         {
             SingleInfo = GetComponent<SingleRowInfo>();
-
         }
-
-        // Update is called once per frame
         void Update()
         {
             ControlCardPosition(SingleInfo.ThisRowCard);
             RefreshHandCard(SingleInfo.ThisRowCard);
             TempCardControk();
-            //if (Input.GetMouseButtonDown(0)&& CanBeSelected)
-            //{
-            //    print("打出位置为2:" + SingleInfo.JudgeRank(GlobeBattleInfo.FocusPoint, out float x));
-            //    print("相对坐标为"+x);
-            //}
         }
         public void TempCardControk()
         {
@@ -82,7 +71,6 @@ namespace Control
             {
                 foreach (var item in ThisCardList)
                 {
-
                     if (GlobalBattleInfo.PlayerFocusCard != null && item == GlobalBattleInfo.PlayerFocusCard && item.IsLimit == false)
                     {
                         item.IsPrePrepareToPlay = true;
@@ -117,7 +105,6 @@ namespace Control
                 ThisCardList[i].RefreshState();
             }
         }
-
     }
 }
 

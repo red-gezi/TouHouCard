@@ -1,11 +1,8 @@
 ﻿using NetworkCommsDotNet;
 using NetworkCommsDotNet.Connections;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using static NetworkCommsDotNet.NetworkComms;
 
 namespace Command
@@ -13,7 +10,6 @@ namespace Command
     public class NetCommand
     {
         static Connection Client;
-        //监听
         public static void Bind(string Tag, PacketHandlerCallBackDelegate<string> Func)
         {
             AppendGlobalIncomingPacketHandler(Tag, Func);
@@ -24,7 +20,6 @@ namespace Command
             Debug.Log("绑定");
             Bind("JoinResult", JoinResult);
         }
-
         private static void JoinResult(PacketHeader packetHeader, Connection connection, string data)
         {
             Debug.Log("触发");
@@ -33,7 +28,6 @@ namespace Command
             Debug.Log(Info.AllPlayerInfo.OpInfo.ToJson());
             UserModeControl.IsJoinRoom = true;
         }
-
         public static string Register(string name, string password)
         {
             return Client.SendReceiveMessge("Regist", "RegistResult", new NetInfoModel.GeneralCommand<string>(name, password));

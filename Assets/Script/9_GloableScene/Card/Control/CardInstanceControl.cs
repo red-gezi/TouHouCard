@@ -40,7 +40,6 @@ namespace Control
         {
             if (IsCreatCard)
             {
-                //print("生成一张牌");
                 CreatCard = CardCommand.CreatCard(CreatID);
                 CreatID = -1;
                 IsCreatCard = false;
@@ -53,7 +52,6 @@ namespace Control
                 CardDeck Deck = AllPlayerInfo.MyInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds .Count; i++)
                 {
-                    //print("生成一张牌");
                     Card NewCard = CardCommand.CreatCard(Deck.CardIds[i]);
                     RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).ThisRowCard.Add(NewCard);
                 }

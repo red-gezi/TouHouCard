@@ -58,15 +58,15 @@ static class RegionTypeExtened
         int RegionNum = (int)type;
         if (Info.GlobalBattleInfo.IsRevertRows)
         {
-            if (RegionNum >= 9)
-            {
-                RegionNum -= 9;
-            }
-            else
-            {
-                RegionNum += 9;
-
-            }
+            //if (RegionNum >= 9)
+            //{
+            //    RegionNum -= 9;
+            //}
+            //else
+            //{
+            //    RegionNum += 9;
+            //}
+            RegionNum = RegionNum >= 9 ? RegionNum - 9 : RegionNum + 9;
         }
         return (RegionType)RegionNum;
     }

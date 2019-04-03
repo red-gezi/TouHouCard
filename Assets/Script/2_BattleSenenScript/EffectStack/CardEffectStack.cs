@@ -1,10 +1,8 @@
 ﻿using CardSpace;
 using Info;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEngine;
 namespace Control
 {
     public class CardEffectStackControl

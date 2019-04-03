@@ -13,6 +13,4 @@ public class NetClient : MonoBehaviour
     static IPEndPoint ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 495);
     static ConnectionInfo connInfo = new ConnectionInfo(ip);
     public static Connection Client = TCPConnection.GetConnection(connInfo);
-  
-   
 }

@@ -1,7 +1,5 @@
 ﻿using CardSpace;
 using Control;
-using Info;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,19 +8,18 @@ namespace Info
     public class SingleRowInfo : MonoBehaviour
     {
         public RegionType region;
-        public List<Card> ThisRowCard ;
+        public List<Card> ThisRowCard;
         public List<Card> ShowCardList;
         public bool CanBeSelected;
         public int Rank => this.JudgeRank(GlobalBattleInfo.FocusPoint);
         public Card TempCard;
-        public RowControl Control=>GetComponent<RowControl>();
+        public RowControl Control => GetComponent<RowControl>();
         public Color color;
         public void Init()
         {
             ThisRowCard = RowsInfo.GetCardList(region.ToAmend());
         }
     }
-    
     static class RowInfoExtend
     {
         public static int JudgeRank(this SingleRowInfo SingleInfo, Vector3 point)

@@ -12,10 +12,8 @@ namespace Control
     public class InteractiveControl : MonoBehaviour
     {
         Ray ray;
-
         void Update()
         {
-
             GetFocusTarget();
             MouseEvent();
         }
@@ -100,11 +98,7 @@ namespace Control
                     {
                         _ = CardCommand.PlayCard();
                     }
-
-                    //Command.GameCommand.PlayCardToRegion();
                 }
-                //print("执行了");
-                //GlobeBattleInfo.PlayerPlayCard = null;
             }
         }
     }

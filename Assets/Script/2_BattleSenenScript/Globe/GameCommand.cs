@@ -98,7 +98,6 @@ namespace Command
                 RowsInfo.Instance.SingleBattleInfos.Values.ToList().ForEach(row => row.Control.SetSelectable(false));
             }
         }
-
         private static void SetRowShow(RegionName_Battle row)
         {
             RowsInfo.GetRegionCardList(row).Control.SetSelectable(true);

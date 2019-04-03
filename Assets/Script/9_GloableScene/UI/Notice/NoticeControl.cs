@@ -14,13 +14,6 @@ namespace Control
             Text = text;
             IsNotify = true;
         }
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
         void Update()
         {
             if (IsNotify)
@@ -31,9 +24,6 @@ namespace Control
                 Invoke("CloseNotice", 1);
             }
         }
-        private void CloseNotice()
-        {
-            NoticeBoard.SetActive(false);
-        }
+        private void CloseNotice() => NoticeBoard.SetActive(false);
     }
 }

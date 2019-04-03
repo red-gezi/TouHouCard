@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using System.Threading.Tasks;
-using Info;
+﻿using CardSpace;
 using Control;
-using static NetInfoModel;
-using CardSpace;
+using Info;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Command
 {
@@ -22,7 +18,6 @@ namespace Command
                 CardDeck Deck = AllPlayerInfo.MyInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
-                    //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
                     GlobalBattleInfo.MyDeck.Add(NewCard);
                     NewCard.Init();
@@ -30,7 +25,6 @@ namespace Command
                 Deck = AllPlayerInfo.OpInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
-                    //print("生成一张牌");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
                     GlobalBattleInfo.OpDeck.Add(NewCard);
                     NewCard.Init();
@@ -42,7 +36,6 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                //print("对战" + "结束");
                 await Task.Delay(500);
             });
         }
@@ -52,7 +45,6 @@ namespace Command
             {
                 NoticeControl.BoardNotice((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合开始");
                 GlobalBattleInfo.IsCardEffectCompleted = false;
-                // print("回合" + "开始");
                 GameCommand.PlayCardLimit(!GlobalBattleInfo.IsMyTurn);
                 await Task.Delay(500);
             });
@@ -65,7 +57,6 @@ namespace Command
                 GameCommand.PlayCardLimit(true);
                 await Task.Delay(2000);
                 GlobalBattleInfo.IsMyTurn = !GlobalBattleInfo.IsMyTurn;
-
             });
         }
         public static async Task RoundStart(int num)
@@ -75,7 +66,6 @@ namespace Command
                 GlobalBattleInfo.IsPlayer1Pass = false;
                 GlobalBattleInfo.IsPlayer2Pass = false;
                 NoticeControl.BoardNotice("小局开始");
-
                 switch (num)
                 {
                     case (0):
@@ -101,7 +91,6 @@ namespace Command
             await Task.Run(async () =>
             {
                 NoticeControl.BoardNotice("小局结束");
-
                 await Task.Delay(500);
             });
         }
@@ -132,17 +121,13 @@ namespace Command
                         Info.GlobalBattleInfo.IsCardEffectCompleted = false;
                         break;
                     }
-
                 }
-                //print("结束效果");
-
             });
         }
         public static bool IsAllPass()
         {
             if (num < 3)
             {
-                //print("第" + num + "小局");
                 num++;
                 return false;
             }
@@ -151,7 +136,6 @@ namespace Command
                 num = 0;
                 return true;
             }
-
         }
         public static async Task Surrender()
         {

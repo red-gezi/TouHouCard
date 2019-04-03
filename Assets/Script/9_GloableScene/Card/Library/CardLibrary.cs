@@ -1,5 +1,4 @@
 ﻿using Sirenix.OdinInspector;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +11,5 @@ public class CardLibrary : SerializedMonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //AssetBundle.find
-        //gameObject.AddComponent<>
-        
     }
 }

@@ -1,6 +1,5 @@
 ﻿using CardSpace;
 using Sirenix.OdinInspector;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,18 +14,16 @@ namespace Info
 
         public Dictionary<RegionName_Battle, SingleRowInfo> SingleBattleInfos = new Dictionary<RegionName_Battle, SingleRowInfo>();
         public Dictionary<RegionName_Other, SingleRowInfo> SingleOtherInfos = new Dictionary<RegionName_Other, SingleRowInfo>();
-        // Start is called before the first frame update
         void Awake()
         {
             Instance = this;
             Init();
             for (int i = 0; i < 18; i++)
             {
-                print((RegionType)i + ":" +((RegionType)i).ToAmend());
+                print((RegionType)i + ":" + ((RegionType)i).ToAmend());
                 SingleBattleInfos.Values.ToList().ForEach(row => row.Init());
                 SingleOtherInfos.Values.ToList().ForEach(row => row.Init());
             }
-
         }
         public static void Init()
         {
@@ -40,15 +37,17 @@ namespace Info
         {
             return GlobalCardList[(int)type];
         }
+
         public static SingleRowInfo GetRegionCardList(RegionName_Battle region)
         {
             return Instance.SingleBattleInfos[region];
         }
+
         public static SingleRowInfo GetRegionCardList(RegionName_Other region)
         {
             return Instance.SingleOtherInfos[region];
-
         }
+
         public static Vector2 GetLocation(Card TargetCard)
         {
             int RankX = -1;
@@ -62,31 +61,6 @@ namespace Info
                 }
             }
             return new Vector2(RankX, RankY);
-            //for (int i = 0; i < Instance.SingleBattleInfos.Count; i++)
-            //{
-            //    if (Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard.Contains(TargetCard))
-            //    {
-            //        TargetCardList = Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard;
-            //        RankX = i;
-            //    }
-            //}
-            //if (TargetCardList != null)
-            //{
-            //    RankY = TargetCardList.IndexOf(TargetCard);
-            //}
-            //for (int i = 0; i < Instance.SingleOtherInfos.Count; i++)
-            //{
-            //    if (Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard.Contains(TargetCard))
-            //    {
-            //        TargetCardList = Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard;
-            //        RankX = i;
-            //    }
-            //}
-            //if (TargetCardList != null)
-            //{
-            //    RankY = TargetCardList.IndexOf(TargetCard);
-            //}
-            //return new Vector2(RankX, RankY);
         }
         public static List<Card> GetRow(Card TargetCard)
         {
@@ -99,22 +73,6 @@ namespace Info
                 }
             }
             return TargetCardList;
-            //List<Card> TargetCardList = null;
-            //for (int i = 0; i < Instance.SingleBattleInfos.Count; i++)
-            //{
-            //    if (Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard.Contains(TargetCard))
-            //    {
-            //        TargetCardList = Instance.SingleBattleInfos[(RegionName_Battle)i].ThisRowCard;
-            //    }
-            //}
-            //for (int i = 0; i < Instance.SingleOtherInfos.Count; i++)
-            //{
-            //    if (Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard.Contains(TargetCard))
-            //    {
-            //        TargetCardList = Instance.SingleOtherInfos[(RegionName_Other)i].ThisRowCard;
-            //    }
-            //}
-            //return TargetCardList;
         }
     }
 }
