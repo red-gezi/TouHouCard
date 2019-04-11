@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23449c37c76c84b4ab05445f817bc7a9, type: 3}
+  m_Name: SaveData
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 2800000, guid: 632eb39efee88f04393eeac312892d5b, type: 3}
+  CardNum: 2
+  SingleCardLibrarieDatas:
+  - Icon: {fileID: 2800000, guid: 5ba91949a4e0eb04f8a554cde6b48c28, type: 3}
+    CardNum: 2
+    icon: {fileID: 2800000, guid: ccc6edda60f348643a3df62b6e646144, type: 3}
+    sectarian: 0
+    CardName: "\u5929\u5B50"
+    Point: 0
+    CardModelInfos:
+    - Icon: {fileID: 2800000, guid: ccc6edda60f348643a3df62b6e646144, type: 3}
+      CardId: 1001
+      CardName: "\u5929\u5B50"
+      Point: 0
+      sectarian: 0
+  - Icon: {fileID: 2800000, guid: 0d3166278d716c342a1a957a908a2a98, type: 3}
+    CardNum: 0
+    icon: {fileID: 0}
+    sectarian: 2
+    CardName: 
+    Point: 0
+    CardModelInfos: []
