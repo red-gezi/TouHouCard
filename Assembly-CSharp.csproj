@@ -209,16 +209,17 @@
     <Compile Include="Assets\Script\9_GloableScene\Card\Card\Card.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Card\CardTest.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\CardDeck.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardLibraryCommand.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardLibrarySaveData.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardMenu.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardModel\Card0.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardModel\Card1000.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardModel\Card1001.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\Test1.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Command\CardCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Control\CardInstanceControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Library\CardInfo.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Library\CardLibrary.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\CardLibrary\CardLibraryCommand.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\CardLibrary\CardLibrarySaveData.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\CardLibrary\CardMenu.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\CardLibrary\CardModel\Card1000.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\CardLibrary\CardModel\Card1001.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\CardLibrary\Test1.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Dialogue\Dialogue.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Dialogue\DialogueCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Interactive\InteractiveControl.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Assets\Script\9_GloableScene\Player\AllPlayerInfo.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Sound\SoundControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Sound\SoundInfo.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Test\TestCreatCard.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Test\TestScript.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\Notice\NoticeControl.cs" />
     <Compile Include="Assets\Script\Extern\Extern.cs" />
@@ -251,7 +253,7 @@
     <None Include="Assets\Live2D\Cubism\Samples\OriginalWorkflow\Expression\Description.txt" />
     <None Include="Assets\Live2D\Cubism\Samples\MultipleModels\Description.txt" />
     <None Include="Assets\Live2D\Cubism\Samples\LookAt\Description.txt" />
-    <None Include="Assets\Script\9_GloableScene\CardLibrary\CardModel\Card0.txt" />
+    <None Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardModel\Card0.txt" />
     <None Include="Assets\Live2D\Cubism\Samples\OriginalWorkflow\Motion\Description.txt" />
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>D:/Unity/TouHouCard/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>

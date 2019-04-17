@@ -6,6 +6,9 @@ using static NetInfoModel;
 
 namespace Info
 {
+    /// <summary>
+    /// 双方信息
+    /// </summary>
     public class AllPlayerInfo : SerializedMonoBehaviour
     {
         [ShowInInspector]

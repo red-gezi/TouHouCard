@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Info
 {
+    /// <summary>
+    /// 全局对战信息
+    /// </summary>
     public class GlobalBattleInfo
     {
         public static Vector3 DragToPoint;

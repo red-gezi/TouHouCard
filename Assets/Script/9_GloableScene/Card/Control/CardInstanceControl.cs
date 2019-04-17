@@ -40,7 +40,9 @@ namespace Control
         {
             if (IsCreatCard)
             {
+                print("反向1");
                 CreatCard = CardCommand.CreatCard(CreatID);
+                print("反向2"+ CreatCard);
                 CreatID = -1;
                 IsCreatCard = false;
             }

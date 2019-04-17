@@ -16,7 +16,8 @@ namespace Control
                 if (item.GetCustomAttributes(typeof(T), false).Length != 0)
                 {
                     Steps.Add((Func<Task>)item.GetValue(Target));
-                    Console.WriteLine("效果队列插入" + Target.GetType().Name.Replace("Unit", "卡牌") + "的阶段:" + item.Name);
+                    //Console.WriteLine("EffecyStack" + Target.GetType().Name.Replace("Unit", "c") + "step:" + item.Name);
+
                 }
             }
             Steps.Reverse();
@@ -38,7 +39,7 @@ namespace Control
                     if (item.GetCustomAttributes(typeof(T), false).Length != 0)
                     {
                         Steps.Add((Func<Task>)item.GetValue(Target));
-                        Console.WriteLine("效果队列插入" + Target.GetType().Name.Replace("Unit", "卡牌") + "的阶段:" + item.Name);
+                        //Console.WriteLine("EffecyStack" + Target.GetType().Name.Replace("Unit", "c") + "step:" + item.Name);
                     }
                 }
                 Steps.Reverse();

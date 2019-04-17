@@ -10,6 +10,8 @@ namespace CardSpace
     public class Card : MonoBehaviour
     {
         public int CardId;
+        public int CardPoint;
+        public Texture2D icon;
         public bool IsMove;
         public bool IsTemp;
         public bool IsCanSee;
@@ -30,6 +32,7 @@ namespace CardSpace
         public void Init()
         {
             IsInit = true;
+            //GetComponent<Renderer>().material.SetTexture("_Front", icon);
         }
 
         public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)

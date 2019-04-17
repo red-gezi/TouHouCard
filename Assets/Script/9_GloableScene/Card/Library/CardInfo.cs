@@ -1,7 +1,7 @@
 ﻿using CardSpace;
 using UnityEngine;
 
-public class CardInfo
+public class CardInfo:MonoBehaviour
 {
     public int CardId;
     public Texture2D Tex;

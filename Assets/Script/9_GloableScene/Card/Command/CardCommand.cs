@@ -1,8 +1,10 @@
 ﻿using CardSpace;
 using Control;
 using Info;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 namespace Command
@@ -11,12 +13,22 @@ namespace Command
     {
         public static Card CreatCard(int id)
         {
+            print("生成卡片"+id);
             GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
-            NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
-            return NewCard.GetComponent<Card>();
+            var CardStandardInfo = CardLibrary.Instance.CardLibraryList[0].CardModelInfos.First(info=>info.CardId==id);
+            print(CardStandardInfo);
+            // NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
+            NewCard.AddComponent(Type.GetType("Card" + id));
+            Card card = NewCard.GetComponent<Card>();
+            //card.CardPoint = CardStandardInfo.Point;
+            card.icon = CardStandardInfo.Icon;
+            NewCard.GetComponent<Renderer>().material.SetTexture("_Front", card.icon);
+            card.Init();
+            return card;
         }
         public static async Task<Card> CreatCardAsync(int id)
         {
+
             CardInstanceControl.IsCreatCard = true;
             CardInstanceControl.CreatID = id;
             await Task.Run(() => { while (CardInstanceControl.CreatCard == null) { } });
@@ -30,8 +42,8 @@ namespace Command
             //Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
             Card TargetCard = IsPlayerDraw ? GlobalBattleInfo.MyDeck[0] : GlobalBattleInfo.OpDeck[0];
             print(IsPlayerDraw);
-            print(GlobalBattleInfo.IsMyTurn);
-            print(GlobalBattleInfo.IsPlayer1);
+            print("是否我的回合" + GlobalBattleInfo.IsMyTurn);
+            print("是否玩家1" + GlobalBattleInfo.IsPlayer1);
             print(@"\\\\\\\\\\\\\");
 
             //TargetCard.IsCanSee = GlobalBattleInfo.IsMyTurn ? IsPlayerDraw : !IsPlayerDraw;

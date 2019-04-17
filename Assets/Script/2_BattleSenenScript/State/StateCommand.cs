@@ -16,11 +16,14 @@ namespace Command
                 //await Task.Delay(500);
                 NoticeControl.BoardNotice("对战开始");
                 CardDeck Deck = AllPlayerInfo.MyInfo.UseDeck;
+
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
+                    print("step1");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
+                    print("step2");
                     GlobalBattleInfo.MyDeck.Add(NewCard);
-                    NewCard.Init();
+                    //NewCard.Init();
                 }
                 Deck = AllPlayerInfo.OpInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds.Count; i++)
