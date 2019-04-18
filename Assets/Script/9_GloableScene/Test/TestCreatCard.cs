@@ -8,6 +8,7 @@ public class TestCreatCard : MonoBehaviour
     void Start()
     {
         Command.CardCommand.CreatCard(1001);
+        Command.CardCommand.CreatCard(0);
     }
 
     // Update is called once per frame
