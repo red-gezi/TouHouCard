@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace CardSpace
 {
     public enum Property { Water, Fire, Wind, Soil, None }
@@ -29,9 +31,14 @@ namespace CardSpace
         public Vector2 Location => RowsInfo.GetLocation(this);
         public Vector3 TargetPos;
         public Quaternion TargetRot;
+       // public Text PointText;// = transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public void Init()
         {
             IsInit = true;
+            PointText.text = CardPoint.ToString();
+            //PointText = transform.GetChild(0).GetChild(0).GetComponent<Text>();
+            //print("yaya"+transform.GetChild(0).GetChild(0).GetComponent<Text>());
             //GetComponent<Renderer>().material.SetTexture("_Front", icon);
         }
 

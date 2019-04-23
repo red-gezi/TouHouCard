@@ -19,21 +19,21 @@ namespace Command
 
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
-                    print("step1");
+                    print("我方创造卡片");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    print("step2");
                     GlobalBattleInfo.MyDeck.Add(NewCard);
                     //NewCard.Init();
                 }
                 Deck = AllPlayerInfo.OpInfo.UseDeck;
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
+                    print("敌方创造卡片");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
                     GlobalBattleInfo.OpDeck.Add(NewCard);
-                    NewCard.Init();
                 }
                 await Task.Delay(2000);
             });
+            print("结束对战准备");
         }
         public static async Task BattleEnd()
         {

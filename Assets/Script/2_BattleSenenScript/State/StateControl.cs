@@ -8,13 +8,13 @@ namespace Control
     {
         void Start()
         {
-            _ = BattleProcess();
-            _ = PlayerSurrender();
+            BattleProcess();
+            //PlayerSurrender().Catch();
         }
         public async Task BattleProcess()
         {
-            Info.AllPlayerInfo.MyInfo = new NetInfoModel.PlayerInfo("gezi", "yaya", new List<CardDeck> { new CardDeck("gezi", 0, new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }) });
-            Info.AllPlayerInfo.OpInfo = new NetInfoModel.PlayerInfo("gezi", "yaya", new List<CardDeck> { new CardDeck("gezi", 0, new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }) });
+            Info.AllPlayerInfo.MyInfo = new NetInfoModel.PlayerInfo("gezi", "yaya", new List<CardDeck> { new CardDeck("gezi", 0, new List<int> { 1000, 1001, 1000, 1001, 1000, 1001, 1000, 1001, 1000, 1001 }) });
+            Info.AllPlayerInfo.OpInfo = new NetInfoModel.PlayerInfo("gezi", "yaya", new List<CardDeck> { new CardDeck("gezi", 0, new List<int> { 1001, 1000, 1001, 1000, 1001, 1000, 1001, 1000, 1001, 1000 }) });
             await StateCommand.BattleStart();
             for (int i = 0; i < 3; i++)
             {

@@ -20,7 +20,8 @@ namespace Command
             // NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
             NewCard.AddComponent(Type.GetType("Card" + id));
             Card card = NewCard.GetComponent<Card>();
-            //card.CardPoint = CardStandardInfo.Point;
+            card.CardId = CardStandardInfo.CardId;
+            card.CardPoint = CardStandardInfo.Point;
             card.icon = CardStandardInfo.Icon;
             NewCard.GetComponent<Renderer>().material.SetTexture("_Front", card.icon);
             card.Init();
@@ -28,12 +29,12 @@ namespace Command
         }
         public static async Task<Card> CreatCardAsync(int id)
         {
-
-            CardInstanceControl.IsCreatCard = true;
             CardInstanceControl.CreatID = id;
+            CardInstanceControl.ShouldCreatCard = true;
             await Task.Run(() => { while (CardInstanceControl.CreatCard == null) { } });
             Card NewCard = CardInstanceControl.CreatCard;
             CardInstanceControl.CreatCard = null;
+            print("异步生成卡牌");
             return NewCard;
         }
         public static async Task DrawCard(bool IsPlayerDraw = true)

@@ -20,7 +20,7 @@ namespace Info
             Init();
             for (int i = 0; i < 18; i++)
             {
-                print((RegionType)i + ":" + ((RegionType)i).ToAmend());
+                //print((RegionType)i + ":" + ((RegionType)i).ToAmend());
                 SingleBattleInfos.Values.ToList().ForEach(row => row.Init());
                 SingleOtherInfos.Values.ToList().ForEach(row => row.Init());
             }

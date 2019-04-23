@@ -1,17 +1,21 @@
+using CardSpace;
+using Command;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Card1000 : MonoBehaviour
+public class Card1000 : Card
 {
-    // Start is called before the first frame update
-    void Start()
+    [TriggerType.Deploy]
+    public Func<Task> Step1 = (async () => { print("test"); await Task.Delay(1000); });
+    [TriggerType.Deploy]
+    public Func<Task> Step2 = (async () =>
     {
-                print("ï¿½Òµï¿½ï¿½ï¿½ï¿½Ö½ï¿½"+GetComponent<MonoBehaviour>());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+        print("µÈ´ýÑ¡ÔñÎ»ÖÃ");
+        await GameCommand.WaitForSelectLocation();
+        await CardCommand.Deploy();
+        await Task.Delay(100);
+    });
 }

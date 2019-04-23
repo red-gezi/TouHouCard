@@ -43,6 +43,7 @@ namespace Control
         }
         public void CreatTempCard()
         {
+            print("创建临时卡片"+ RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0].CardId);
             SingleInfo.TempCard = CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0].CardId);
             SingleInfo.TempCard.IsTemp = true;
             SingleInfo.TempCard.IsCanSee = true;
