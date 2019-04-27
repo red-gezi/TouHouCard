@@ -78,7 +78,8 @@ namespace Command
             GlobalBattleInfo.MyUse.Add(TargetCard);
             //await CardEffectStack.TriggerEffect<TriggerType.Playcard>(TargetCard);
             GlobalBattleInfo.PlayerPlayCard = null;
-            await CardEffectStackControl.TriggerEffect<TriggerType.Deploy>(TargetCard);
+            await TargetCard.Trigger<TriggerType.Deploy>();
+            //await CardEffectStackControl.TriggerEffect<TriggerType.Deploy>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }
         public static async Task DisCard(Card card = null)
@@ -88,7 +89,8 @@ namespace Command
             //RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.Remove(TargetCard);
             TargetCard.Row.Remove(TargetCard);
             GlobalBattleInfo.MyGrave.Add(TargetCard);
-            await CardEffectStackControl.TriggerEffect<TriggerType.Discard>(TargetCard);
+            await TargetCard.Trigger<TriggerType.Discard>();
+            //await CardEffectStackControl.TriggerEffect<TriggerType.Discard>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }
         public static async Task Deploy()

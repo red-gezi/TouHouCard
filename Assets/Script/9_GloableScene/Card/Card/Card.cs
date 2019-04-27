@@ -1,6 +1,10 @@
-﻿using Info;
+﻿using Control;
+using Info;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -78,6 +82,15 @@ namespace CardSpace
             transform.position = new Vector3(transform.position.x, TargetPos.y, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * 5);
             transform.rotation = Quaternion.Lerp(transform.rotation, TargetRot, Time.deltaTime * 10);
+        }
+        public async Task Trigger<T>()
+        {
+            List<Func<Task>> Steps = new List<Func<Task>>();
+            List<PropertyInfo> tasks = GetType().GetProperties().Where(x => x.GetCustomAttributes(true)[0].GetType() == typeof(T)).ToList();
+            tasks.Reverse();
+            tasks.Select(x => x.GetValue(this)).Cast<Func<Task>>().ToList().ForEach(CardEffectStackControl.TaskStack.Push);
+            //Console.WriteLine("加载" + typeof(T));
+            _ = CardEffectStackControl.Run();
         }
     }
 
