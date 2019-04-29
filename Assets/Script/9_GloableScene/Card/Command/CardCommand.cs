@@ -13,10 +13,10 @@ namespace Command
     {
         public static Card CreatCard(int id)
         {
-            print("生成卡片"+id);
+            //print("生成卡片"+id);
             GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
             var CardStandardInfo = CardLibrary.Instance.CardLibraryList[0].CardModelInfos.First(info=>info.CardId==id);
-            print(CardStandardInfo);
+           // print(CardStandardInfo);
             // NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
             NewCard.AddComponent(Type.GetType("Card" + id));
             Card card = NewCard.GetComponent<Card>();
@@ -34,7 +34,7 @@ namespace Command
             await Task.Run(() => { while (CardInstanceControl.CreatCard == null) { } });
             Card NewCard = CardInstanceControl.CreatCard;
             CardInstanceControl.CreatCard = null;
-            print("异步生成卡牌");
+            //print("异步生成卡牌");
             return NewCard;
         }
         public static async Task DrawCard(bool IsPlayerDraw = true)
@@ -42,10 +42,10 @@ namespace Command
             SoundControl.Play();
             //Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
             Card TargetCard = IsPlayerDraw ? GlobalBattleInfo.MyDeck[0] : GlobalBattleInfo.OpDeck[0];
-            print(IsPlayerDraw);
-            print("是否我的回合" + GlobalBattleInfo.IsMyTurn);
-            print("是否玩家1" + GlobalBattleInfo.IsPlayer1);
-            print(@"\\\\\\\\\\\\\");
+            //print(IsPlayerDraw);
+            //print("是否我的回合" + GlobalBattleInfo.IsMyTurn);
+            //print("是否玩家1" + GlobalBattleInfo.IsPlayer1);
+            //print(@"\\\\\\\\\\\\\");
 
             //TargetCard.IsCanSee = GlobalBattleInfo.IsMyTurn ? IsPlayerDraw : !IsPlayerDraw;
             TargetCard.IsCanSee = IsPlayerDraw;
@@ -78,7 +78,7 @@ namespace Command
             GlobalBattleInfo.MyUse.Add(TargetCard);
             //await CardEffectStack.TriggerEffect<TriggerType.Playcard>(TargetCard);
             GlobalBattleInfo.PlayerPlayCard = null;
-            await TargetCard.Trigger<TriggerType.Deploy>();
+            TargetCard.Trigger<TriggerType.Deploy>();
             //await CardEffectStackControl.TriggerEffect<TriggerType.Deploy>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }
@@ -89,7 +89,7 @@ namespace Command
             //RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.Remove(TargetCard);
             TargetCard.Row.Remove(TargetCard);
             GlobalBattleInfo.MyGrave.Add(TargetCard);
-            await TargetCard.Trigger<TriggerType.Discard>();
+            TargetCard.Trigger<TriggerType.Discard>();
             //await CardEffectStackControl.TriggerEffect<TriggerType.Discard>(TargetCard);
             //GlobeBattleInfo.IsCardEffectCompleted = true;
         }

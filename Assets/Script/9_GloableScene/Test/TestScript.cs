@@ -20,7 +20,8 @@ namespace Test
         {
             if (Input.GetMouseButtonDown(4))
             {
-                Card NewCard = CardCommand.CreatCard(0);
+                Card NewCard = CardCommand.CreatCard(1001);
+                NewCard.Trigger<TriggerType.Deploy>();
                 //RowsInfo.GetRegionCardList(RegionName_Battle.My_Water).Add(NewCard);
                 //GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
                 //print(NewCard.name);

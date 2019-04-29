@@ -26,7 +26,7 @@ namespace Control
         {
             foreach (var card in Cards)
             {
-                await card.Trigger<T>();
+                card.Trigger<T>();
             }
         }
         //public static async Task TriggerEffect<T>(Card Target) where T : Attribute

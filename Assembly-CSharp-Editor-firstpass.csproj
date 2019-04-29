@@ -345,6 +345,18 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Substance.Game">
+      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance/Livelink/Editor/Plugins/websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Substance.Editor">
+      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance/Substance Engine/Editor/Substance.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceUnityLib">
+      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance/Substance Source/Editor/SourceUnityLib.dll</HintPath>
+    </Reference>
     <Reference Include="NetworkCommsDotNet">
       <HintPath>D:/Unity/TouHouCard/Assets/Plugins/NetworkCommsDotNet.dll</HintPath>
     </Reference>
@@ -386,18 +398,6 @@
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>D:/Unity/TouHouCard/Library/PackageCache/com.unity.render-pipelines.high-definition@4.9.0-preview/Editor/Core/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance/Livelink/Editor/Plugins/websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Substance.Editor">
-      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance/Substance Engine/Editor/Substance.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Substance.Game">
-      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="SourceUnityLib">
-      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance/Substance Source/Editor/SourceUnityLib.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>E:/Unity Hub/unity/2018.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

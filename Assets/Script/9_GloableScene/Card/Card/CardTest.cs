@@ -32,7 +32,7 @@ namespace CardSpace
         void Update()
         {
             IsMove = IsAutoMove;
-            yaya = GlobalBattleInfo.PlayerPlayCard;
+            //yaya = GlobalBattleInfo.PlayerPlayCard;
 
         }
 

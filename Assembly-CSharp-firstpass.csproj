@@ -309,6 +309,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>E:/Unity Hub/unity/2018.3.4f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Substance.Game">
+      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance.Game.dll</HintPath>
+    </Reference>
     <Reference Include="NetworkCommsDotNet">
       <HintPath>D:/Unity/TouHouCard/Assets/Plugins/NetworkCommsDotNet.dll</HintPath>
     </Reference>
@@ -341,9 +344,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>D:/Unity/TouHouCard/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Substance.Game">
-      <HintPath>D:/Unity/TouHouCard/Assets/Allegorithmic/Plugins/Substance.Game.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>E:/Unity Hub/unity/2018.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

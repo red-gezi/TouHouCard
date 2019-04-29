@@ -24,7 +24,7 @@ namespace CardSpace
         bool IsInit;
         public Property CardProperty;
         public Territory CardTerritory;
-        public Card yaya;
+        //public Card yaya;
         public bool IsPrePrepareToPlay;
         /// <summary>
         /// 限制卡牌被打出
@@ -35,7 +35,7 @@ namespace CardSpace
         public Vector2 Location => RowsInfo.GetLocation(this);
         public Vector3 TargetPos;
         public Quaternion TargetRot;
-       // public Text PointText;// = transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        // public Text PointText;// = transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public void Init()
         {
@@ -83,10 +83,18 @@ namespace CardSpace
             transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * 5);
             transform.rotation = Quaternion.Lerp(transform.rotation, TargetRot, Time.deltaTime * 10);
         }
-        public async Task Trigger<T>()
+        public void Trigger<T>()
         {
+            //Debug.Log(name + "触发" + typeof(T));
             List<Func<Task>> Steps = new List<Func<Task>>();
-            List<PropertyInfo> tasks = GetType().GetProperties().Where(x => x.GetCustomAttributes(true)[0].GetType() == typeof(T)).ToList();
+            //List<PropertyInfo> tasks = GetType().GetProperties().Where(x => x.GetCustomAttributes(true)[0].GetType() == typeof(T)).ToList();
+            //GetType().GetProperties().ForEach(Debug.Log);
+            //GetType().GetProperties().ForEach(x => Debug.Log("有标签的" + x.GetCustomAttributes(true)[0].GetType()));
+            //Debug.Log("结束" );
+            //Debug.Log("类型为" + typeof(T));
+            List<PropertyInfo> tasks = GetType().GetProperties().Where(x => x.GetCustomAttributes(true).Count()>0&& x.GetCustomAttributes(true)[0].GetType() == typeof(T)).ToList();
+            //Debug.Log(name + "数量为" + tasks.Count);
+
             tasks.Reverse();
             tasks.Select(x => x.GetValue(this)).Cast<Func<Task>>().ToList().ForEach(CardEffectStackControl.TaskStack.Push);
             //Console.WriteLine("加载" + typeof(T));

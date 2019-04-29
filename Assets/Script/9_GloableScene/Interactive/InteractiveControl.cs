@@ -60,12 +60,12 @@ namespace Control
                 {
                     if (GlobalBattleInfo.PlayerFocusRegion != null && GlobalBattleInfo.PlayerFocusRegion.CanBeSelected)
                     {
-                        print("选择位置" + GlobalBattleInfo.PlayerFocusRegion.Rank);
+                        //print("选择位置" + GlobalBattleInfo.PlayerFocusRegion.Rank);
                         GlobalBattleInfo.SelectRegion = GlobalBattleInfo.PlayerFocusRegion;
                         GlobalBattleInfo.SelectLocation = GlobalBattleInfo.PlayerFocusRegion.Rank;
                     }
                 }
-                print($"所在行为{GlobalBattleInfo.PlayerFocusCard.Row}，所在坐标为{GlobalBattleInfo.PlayerFocusCard.Location}");
+               // print($"所在行为{GlobalBattleInfo.PlayerFocusCard.Row}，所在坐标为{GlobalBattleInfo.PlayerFocusCard.Location}");
             }
             if (Input.GetMouseButton(0))
             {

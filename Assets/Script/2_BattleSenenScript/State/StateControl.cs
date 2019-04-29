@@ -8,9 +8,10 @@ namespace Control
     {
         void Start()
         {
-            BattleProcess();
+            _ = BattleProcess();
             //PlayerSurrender().Catch();
         }
+      
         public async Task BattleProcess()
         {
             Info.AllPlayerInfo.MyInfo = new NetInfoModel.PlayerInfo("gezi", "yaya", new List<CardDeck> { new CardDeck("gezi", 0, new List<int> { 1000, 1001, 1000, 1001, 1000, 1001, 1000, 1001, 1000, 1001 }) });
