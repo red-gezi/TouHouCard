@@ -23,9 +23,9 @@ namespace Command
         private static void JoinResult(PacketHeader packetHeader, Connection connection, string data)
         {
             Debug.Log("触发");
-            Info.AllPlayerInfo.OpInfo = data.ToObject<NetInfoModel.PlayerInfo>();
-            Debug.Log(Info.AllPlayerInfo.MyInfo.ToJson());
-            Debug.Log(Info.AllPlayerInfo.OpInfo.ToJson());
+            Info.AllPlayerInfo.Player2Info = data.ToObject<NetInfoModel.PlayerInfo>();
+            Debug.Log(Info.AllPlayerInfo.Player1Info.ToJson());
+            Debug.Log(Info.AllPlayerInfo.Player2Info.ToJson());
             UserModeControl.IsJoinRoom = true;
         }
         public static string Register(string name, string password)
@@ -38,12 +38,12 @@ namespace Command
         }
         public static void JoinRoom()
         {
-            Client.SendMessge("Join", Info.AllPlayerInfo.MyInfo);
+            Client.SendMessge("Join", Info.AllPlayerInfo.Player1Info);
         }
         [Obsolete]
         public static async Task<string> JoinRoomAsync()
         {
-            NetInfoModel.PlayerInfo playerInfo = Info.AllPlayerInfo.MyInfo;
+            NetInfoModel.PlayerInfo playerInfo = Info.AllPlayerInfo.Player1Info;
             string Msg = "";
             await Task.Run(() =>
              {

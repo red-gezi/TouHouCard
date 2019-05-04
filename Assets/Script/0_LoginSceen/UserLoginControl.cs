@@ -27,9 +27,9 @@ public class UserLoginControl : MonoBehaviour
     {
         GeneralCommand<string> msg = Command.NetCommand.Login(UserName.text, "123").ToObject<GeneralCommand<string>>();
         print(msg.Datas[1]);
-        Info.AllPlayerInfo.MyInfo = msg.Datas[1].ToObject<PlayerInfo>();
+        Info.AllPlayerInfo.Player1Info = msg.Datas[1].ToObject<PlayerInfo>();
         print(msg.Datas[0] == "1" ? "登录成功" : msg.Datas[1] == "-1" ? "密码错误" : "无此账号");
-        Info.AllPlayerInfo.MyInfo = msg.Datas[1].ToObject<PlayerInfo>();
+        Info.AllPlayerInfo.Player1Info = msg.Datas[1].ToObject<PlayerInfo>();
         SceneManager.LoadSceneAsync(1);
     }
 }

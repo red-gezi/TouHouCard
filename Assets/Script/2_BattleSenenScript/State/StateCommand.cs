@@ -15,21 +15,23 @@ namespace Command
             {
                 //await Task.Delay(500);
                 NoticeControl.BoardNotice("对战开始");
-                CardDeck Deck = AllPlayerInfo.MyInfo.UseDeck;
+                CardDeck Deck = AllPlayerInfo.Player1Info.UseDeck;
 
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
                     //print("我方创造卡片");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    GlobalBattleInfo.MyDeck.Add(NewCard);
+                    RowsInfo.GetDownCardList(RegionTypes.Deck).Add(NewCard);
+                    //GlobalBattleInfo.MyDeck.Add(NewCard);
                     //NewCard.Init();
                 }
-                Deck = AllPlayerInfo.OpInfo.UseDeck;
+                Deck = AllPlayerInfo.Player2Info.UseDeck;
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
                     //print("敌方创造卡片");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    GlobalBattleInfo.OpDeck.Add(NewCard);
+                    RowsInfo.GetUpCardList(RegionTypes.Deck).Add(NewCard);
+                    //GlobalBattleInfo.OpDeck.Add(NewCard);
                 }
                 await Task.Delay(2000);
             });

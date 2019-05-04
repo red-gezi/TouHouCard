@@ -30,7 +30,7 @@ namespace Info
         /// <summary>
         /// 当前玩家是否玩家1
         /// </summary>
-        public static bool IsPlayer1 = false;
+        public static bool IsPlayer1 = true;
         public static bool IsPlayer1Pass;
         public static bool IsPlayer2Pass;
         public static bool IsDiscard;

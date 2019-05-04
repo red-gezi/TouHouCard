@@ -33,9 +33,41 @@ namespace Info
                 GlobalCardList.Add(new List<Card>());
             }
         }
-        public static List<Card> GetCardList(RegionType type)
+        //[System.Obsolete("准备废弃")]
+        //public static List<Card> GetCardList(RegionType type)
+        //{
+        //    return GlobalCardList[(int)type];
+        //}
+        public static List<Card> GetUpCardList(RegionTypes type)
         {
-            return GlobalCardList[(int)type];
+            return GlobalCardList[(int)type + (GlobalBattleInfo.IsPlayer1 ? 9 : 0)];
+        }
+        public static List<Card> GetDownCardList(RegionTypes type)
+        {
+            return GlobalCardList[(int)type + (GlobalBattleInfo.IsPlayer1 ? 0 : 9)];
+        }
+        public static List<Card> GetMyCardList(RegionTypes type)
+        {
+            if (GlobalBattleInfo.IsMyTurn)
+            {
+                return GetDownCardList(type);
+            }
+            else
+            {
+                return GetUpCardList(type);
+            }
+
+        }
+        public static List<Card> GetOpCardList(RegionTypes type)
+        {
+            if (GlobalBattleInfo.IsMyTurn)
+            {
+                return GetUpCardList(type);
+            }
+            else
+            {
+                return GetDownCardList(type);
+            }
         }
 
         public static SingleRowInfo GetRegionCardList(RegionName_Battle region)

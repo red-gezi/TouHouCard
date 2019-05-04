@@ -12,9 +12,9 @@ namespace Info
     public class AllPlayerInfo : SerializedMonoBehaviour
     {
         [ShowInInspector]
-        public static PlayerInfo MyInfo;
+        public static PlayerInfo Player1Info;
         [ShowInInspector]
-        public static PlayerInfo OpInfo;
+        public static PlayerInfo Player2Info;
     }
 }
 
