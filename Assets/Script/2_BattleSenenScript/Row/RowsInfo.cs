@@ -18,12 +18,6 @@ namespace Info
         {
             Instance = this;
             Init();
-            for (int i = 0; i < 18; i++)
-            {
-                //print((RegionType)i + ":" + ((RegionType)i).ToAmend());
-                SingleBattleInfos.Values.ToList().ForEach(row => row.Init());
-                SingleOtherInfos.Values.ToList().ForEach(row => row.Init());
-            }
         }
         public static void Init()
         {
@@ -33,11 +27,6 @@ namespace Info
                 GlobalCardList.Add(new List<Card>());
             }
         }
-        //[System.Obsolete("准备废弃")]
-        //public static List<Card> GetCardList(RegionType type)
-        //{
-        //    return GlobalCardList[(int)type];
-        //}
         public static List<Card> GetUpCardList(RegionTypes type)
         {
             return GlobalCardList[(int)type + (GlobalBattleInfo.IsPlayer1 ? 9 : 0)];
@@ -56,7 +45,6 @@ namespace Info
             {
                 return GetUpCardList(type);
             }
-
         }
         public static List<Card> GetOpCardList(RegionTypes type)
         {

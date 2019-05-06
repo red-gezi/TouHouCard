@@ -65,8 +65,8 @@ namespace Command
         {
             if (CanBeSelected)
             {
-                bool IsMyTerritory = GlobalBattleInfo.MyUse[0].CardTerritory == Territory.My;
-                switch (GlobalBattleInfo.MyUse[0].CardProperty)
+                bool IsMyTerritory = RowsInfo.GetMyCardList(RegionTypes.Uesd)[0].CardTerritory == Territory.My;
+                switch (RowsInfo.GetMyCardList(RegionTypes.Uesd)[0].CardProperty)
                 {
                     case Property.Water:
                         {

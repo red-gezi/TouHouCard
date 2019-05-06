@@ -7,27 +7,13 @@ using UnityEngine;
 public class PointInfo : SerializedMonoBehaviour
 {
     [ShowInInspector]
-    public static int MyWaterPoint => Info.RowsInfo.GetCardList(RegionType.My_Water).Select(card => card.CardPoint).Sum();
+    public static int DownWaterPoint => Info.RowsInfo.GetDownCardList(RegionTypes.Water).Select(card => card.CardPoint).Sum();
     [ShowInInspector]
-
-    public static int MyFirePoint => Info.RowsInfo.GetCardList(RegionType.My_Fire).Select(card => card.CardPoint).Sum();
+    public static int DownFirePoint => Info.RowsInfo.GetDownCardList(RegionTypes.Fire).Select(card => card.CardPoint).Sum();
     [ShowInInspector]
-
-    public static int MyWindPoint => Info.RowsInfo.GetCardList(RegionType.My_Wind).Select(card => card.CardPoint).Sum();
+    public static int DownWindPoint => Info.RowsInfo.GetDownCardList(RegionTypes.Wind).Select(card => card.CardPoint).Sum();
     [ShowInInspector]
-
-    public static int MySoilPoint => Info.RowsInfo.GetCardList(RegionType.My_Soil).Select(card => card.CardPoint).Sum();
+    public static int DownSoilPoint => Info.RowsInfo.GetDownCardList(RegionTypes.Soil).Select(card => card.CardPoint).Sum();
     [ShowInInspector]
-    public static int OpWaterPoint => Info.RowsInfo.GetCardList(RegionType.Op_Water).Select(card => card.CardPoint).Sum();
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public static int UpWaterPoint => Info.RowsInfo.GetUpCardList(RegionTypes.Water).Select(card => card.CardPoint).Sum();
 }

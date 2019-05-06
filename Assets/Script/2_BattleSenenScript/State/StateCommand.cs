@@ -21,8 +21,14 @@ namespace Command
                 {
                     //print("我方创造卡片");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    RowsInfo.GetDownCardList(RegionTypes.Deck).Add(NewCard);
-                    //GlobalBattleInfo.MyDeck.Add(NewCard);
+                    if (GlobalBattleInfo.IsPlayer1)
+                    {
+                        RowsInfo.GetDownCardList(RegionTypes.Deck).Add(NewCard);
+                    }
+                    else
+                    {
+                        RowsInfo.GetUpCardList(RegionTypes.Deck).Add(NewCard);
+                    }
                     //NewCard.Init();
                 }
                 Deck = AllPlayerInfo.Player2Info.UseDeck;
@@ -30,8 +36,14 @@ namespace Command
                 {
                     //print("敌方创造卡片");
                     Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
-                    RowsInfo.GetUpCardList(RegionTypes.Deck).Add(NewCard);
-                    //GlobalBattleInfo.OpDeck.Add(NewCard);
+                    if (GlobalBattleInfo.IsPlayer1)
+                    {
+                        RowsInfo.GetUpCardList(RegionTypes.Deck).Add(NewCard);
+                    }
+                    else
+                    {
+                        RowsInfo.GetDownCardList(RegionTypes.Deck).Add(NewCard);
+                    }
                 }
                 await Task.Delay(2000);
             });
@@ -153,7 +165,6 @@ namespace Command
                         await BattleEnd();
                     }
                 }
-
             });
         }
     }
