@@ -198,6 +198,7 @@
     <Compile Include="Assets\Script\2_BattleSenenScript\EffectStack\TriggerType.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Globe\GameCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Globe\GlobeBattleInfo.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\Point\PointControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Point\PointInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\Row_Command.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\RowControl.cs" />
@@ -232,6 +233,8 @@
     <Compile Include="Assets\Script\9_GloableScene\Player\AllPlayerInfo.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Sound\SoundControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Sound\SoundInfo.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Test\BallControl.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Test\Floow.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Test\TestCreatCard.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Test\TestScript.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\Notice\NoticeControl.cs" />
