@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using CardSpace;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -95,6 +96,12 @@ public class CardLibrarySaveData : ScriptableObject
             [VerticalGroup("Split/Meta")]
             [LabelText("所属势力")]
             public Sectarian sectarian;
+            [VerticalGroup("Split/Meta")]
+            [LabelText("部署区域")]
+            public Property CardProperty=Property.All;
+            [VerticalGroup("Split/Meta")]
+            [LabelText("部署所属")]
+            public Territory CardTerritory= Territory.My;
 
             public CardModelInfo(Texture2D icon, int cardId, string cardName, int point, Sectarian sectarian)
             {

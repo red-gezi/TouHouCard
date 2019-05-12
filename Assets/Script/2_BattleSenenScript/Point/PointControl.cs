@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class PointControl : MonoBehaviour
 {
-    public int ShowPoint = 0;
-    public Text text;
+    public int DownShowPoint = 0;
+    public int UpShowPoint = 0;
+    public Text MyPoint;
+    public Text OpPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +18,27 @@ public class PointControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ShowPoint != Info.PointInfo.DownWaterPoint)
+        if (DownShowPoint != Info.PointInfo.TotalDownPoint)
         {
-            ShowPoint = Info.PointInfo.DownWaterPoint;
+            DownShowPoint = Info.PointInfo.TotalDownPoint;
 
-            text.text = $"<color=yellow>{ShowPoint}</color>";
-            text.transform.localScale = Vector3.one* 1.5f;
+            MyPoint.text = $"<color=yellow>{DownShowPoint}</color>";
+            MyPoint.transform.localScale = Vector3.one* 1.5f;
+            Invoke("Reset", 1);
+        }
+        if (UpShowPoint != Info.PointInfo.TotalUpPoint)
+        {
+            UpShowPoint = Info.PointInfo.TotalUpPoint;
+
+            OpPoint.text = $"<color=yellow>{UpShowPoint}</color>";
+            OpPoint.transform.localScale = Vector3.one * 1.5f;
             Invoke("Reset", 1);
         }
     }
 
     private void Reset()
     {
-        text.transform.localScale = Vector3.one;
+        MyPoint.transform.localScale = Vector3.one;
+        OpPoint.transform.localScale = Vector3.one;
     }
 }

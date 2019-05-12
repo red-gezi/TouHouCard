@@ -26,6 +26,8 @@ namespace Command
             card.CardId = CardStandardInfo.CardId;
             card.CardPoint = CardStandardInfo.Point;
             card.icon = CardStandardInfo.Icon;
+            card.CardProperty = CardStandardInfo.CardProperty;
+            card.CardTerritory = CardStandardInfo.CardTerritory;
             NewCard.GetComponent<Renderer>().material.SetTexture("_Front", card.icon);
             card.Init();
             return card;

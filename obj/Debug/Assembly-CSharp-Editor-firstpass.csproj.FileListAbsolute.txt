@@ -686,3 +686,7 @@ D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-Editor-firstpass.csproj.CoreCompil
 D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-Editor-firstpass.csproj.CopyComplete
 D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-Editor-firstpass.dll
 D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-Editor-firstpass.pdb
+D:\Unity\TouHouCard\Temp\bin\Debug\SourceUnityLib.dll
+D:\Unity\TouHouCard\Temp\bin\Debug\Substance.Editor.dll
+D:\Unity\TouHouCard\Temp\bin\Debug\Substance.Game.dll
+D:\Unity\TouHouCard\Temp\bin\Debug\websocket-sharp.dll

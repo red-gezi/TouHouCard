@@ -49,55 +49,54 @@ namespace Command
         {
             // print("请选择");
             GlobalBattleInfo.IsWaitForSelectLocation = true;
-            SetRegionSelectable(true);
+            RowCommand.SetRegionSelectable(true);
             //根据卡牌属性触发可选择的区域
             await Task.Run(() =>
             {
                 while (Info.GlobalBattleInfo.SelectLocation < 0) { }
             });
             //关闭所有可选择的区域
-            SetRegionSelectable(false);
-
+            RowCommand.SetRegionSelectable(false);
             GlobalBattleInfo.IsWaitForSelectLocation = false;
             // print("选择完毕");
         }
-        public static void SetRegionSelectable(bool CanBeSelected)
-        {
-            if (CanBeSelected)
-            {
-                bool IsMyTerritory = RowsInfo.GetMyCardList(RegionTypes.Uesd)[0].CardTerritory == Territory.My;
-                switch (RowsInfo.GetMyCardList(RegionTypes.Uesd)[0].CardProperty)
-                {
-                    case Property.Water:
-                        {
-                            SetRowShow(IsMyTerritory ? RegionName_Battle.My_Water : RegionName_Battle.Op_Water);
-                        }
-                        break;
-                    case Property.Fire:
-                        break;
-                    case Property.Wind:
-                        if (IsMyTerritory)
-                        {
-                            //GlobalBattleInfo.MyWind.Control.SetSelectable(true);
-                        }
-                        else
-                        {
-                            //GlobalBattleInfo.OpWind.Control.SetSelectable(true);
-                        }
-                        break;
-                    case Property.Soil:
-                        break;
-                    case Property.None:
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                RowsInfo.Instance.SingleBattleInfos.Values.ToList().ForEach(row => row.Control.SetSelectable(false));
-            }
-        }
+        //public static void SetRegionSelectable(bool CanBeSelected)
+        //{
+        //    if (CanBeSelected)
+        //    {
+        //        bool IsMyTerritory = RowsInfo.GetMyCardList(RegionTypes.Uesd)[0].CardTerritory == Territory.My;
+        //        switch (RowsInfo.GetMyCardList(RegionTypes.Uesd)[0].CardProperty)
+        //        {
+        //            case Property.Water:
+        //                {
+        //                    SetRowShow(IsMyTerritory ? RegionName_Battle.My_Water : RegionName_Battle.Op_Water);
+        //                }
+        //                break;
+        //            case Property.Fire:
+        //                break;
+        //            case Property.Wind:
+        //                if (IsMyTerritory)
+        //                {
+        //                    //GlobalBattleInfo.MyWind.Control.SetSelectable(true);
+        //                }
+        //                else
+        //                {
+        //                    //GlobalBattleInfo.OpWind.Control.SetSelectable(true);
+        //                }
+        //                break;
+        //            case Property.Soil:
+        //                break;
+        //            case Property.None:
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        RowsInfo.Instance.SingleBattleInfos.Values.ToList().ForEach(row => row.Control.SetSelectable(false));
+        //    }
+        //}
         private static void SetRowShow(RegionName_Battle row)
         {
             RowsInfo.GetRegionCardList(row).Control.SetSelectable(true);

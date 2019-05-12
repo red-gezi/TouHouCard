@@ -636,3 +636,4 @@ D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-firstpass.dll
 D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp-firstpass.pdb
 D:\Unity\TouHouCard\Temp\bin\Debug\NetworkCommsDotNet.dll
 D:\Unity\TouHouCard\Temp\bin\Debug\Newtonsoft.Json.dll
+D:\Unity\TouHouCard\Temp\bin\Debug\Substance.Game.dll

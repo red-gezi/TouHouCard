@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace CardSpace
 {
-    public enum Property { Water, Fire, Wind, Soil, None }
+    public enum Property { Water, Fire, Wind, Soil, None ,All}
     public enum Territory { My, Op }
     public class Card : MonoBehaviour
     {
@@ -21,11 +21,11 @@ namespace CardSpace
         public bool IsMove;
         public bool IsTemp;
         public bool IsCanSee;
+        public bool IsPrePrepareToPlay;
         bool IsInit;
         public Property CardProperty;
         public Territory CardTerritory;
         //public Card yaya;
-        public bool IsPrePrepareToPlay;
         /// <summary>
         /// 限制卡牌被打出
         /// </summary>

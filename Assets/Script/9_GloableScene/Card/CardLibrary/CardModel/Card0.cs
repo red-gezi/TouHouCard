@@ -1,19 +1,21 @@
-using CardSpace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Card0 : Card
+namespace CardSpace
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Card0 : Card
     {
-        print("Test" + GetComponent<MonoBehaviour>());
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            print("Test" + GetComponent<MonoBehaviour>());
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
+        }
     }
 }
+

@@ -10,7 +10,7 @@ public class CardLibraryCommand
     {
         string OriginPath = Application.dataPath + @"\Script\9_GloableScene\Card\CardLibrary\CardModel\Card0.txt";
         string NewPath = Application.dataPath + $@"\Script\9_GloableScene\Card\CardLibrary\CardModel\Card{id}.cs";
-        string ScriptText = File.ReadAllText(OriginPath).Replace("0", id + "");
+        string ScriptText = File.ReadAllText(OriginPath).Replace("Card0", "Card"+id );
         File.Create(NewPath).Close();
         File.WriteAllText(NewPath, ScriptText);
         AssetDatabase.Refresh();

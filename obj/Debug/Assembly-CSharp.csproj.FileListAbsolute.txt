@@ -634,3 +634,4 @@ D:\Unity\TouHouCard\Temp\bin\Debug\Sirenix.Serialization.Config.xml
 D:\Unity\TouHouCard\Temp\bin\Debug\Sirenix.Utilities.xml
 D:\Unity\TouHouCard\Temp\bin\Debug\Sirenix.Utilities.Editor.xml
 D:\Unity\TouHouCard\obj\Debug\Assembly-CSharp.csproj.CopyComplete
+D:\Unity\TouHouCard\Temp\bin\Debug\Substance.Game.dll
