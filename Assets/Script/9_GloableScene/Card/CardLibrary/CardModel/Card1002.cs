@@ -13,7 +13,6 @@ public class Card1002 : Card
     [TriggerType.Deploy]
     public Func<Task> Step2 => (async () =>
     {
-        print("�ȴ�ѡ��λ��");
         await GameCommand.WaitForSelectLocation();
         await CardCommand.Deploy();
         await Task.Delay(100);

@@ -92,9 +92,9 @@ namespace CardSpace
             //GetType().GetProperties().ForEach(x => Debug.Log("有标签的" + x.GetCustomAttributes(true)[0].GetType()));
             //Debug.Log("结束" );
             //Debug.Log("类型为" + typeof(T));
-            List<PropertyInfo> tasks = GetType().GetProperties().Where(x => x.GetCustomAttributes(true).Count()>0&& x.GetCustomAttributes(true)[0].GetType() == typeof(T)).ToList();
+            List<PropertyInfo> tasks = GetType().GetProperties().Where(x => 
+                x.GetCustomAttributes(true).Count()>0&& x.GetCustomAttributes(true)[0].GetType() == typeof(T)).ToList();
             //Debug.Log(name + "数量为" + tasks.Count);
-
             tasks.Reverse();
             tasks.Select(x => x.GetValue(this)).Cast<Func<Task>>().ToList().ForEach(CardEffectStackControl.TaskStack.Push);
             //Console.WriteLine("加载" + typeof(T));

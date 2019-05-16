@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Assets",
+    "\\Assets\\Script",
+    "\\Assets\\Script\\0_LoginSceen",
+    "\\Assets\\Script\\1_MenuScene",
+    "\\Assets\\Script\\2_BattleSenenScript",
+    "\\Assets\\Script\\9_GloableScene",
+    "\\Assets\\Texture"
   ],
   "PreviewInSolutionExplorer": false
 }

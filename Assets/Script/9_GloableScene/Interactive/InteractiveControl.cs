@@ -12,11 +12,16 @@ namespace Control
     public class InteractiveControl : MonoBehaviour
     {
         Ray ray;
+        float PassPressTime;
         void Update()
         {
             GetFocusTarget();
             MouseEvent();
+            KeyBoardEvent();
         }
+
+       
+
         private void GetFocusTarget()
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -42,6 +47,31 @@ namespace Control
                     }
                     GlobalBattleInfo.PlayerFocusRegion = null;
                 }
+            }
+        }
+        private  void KeyBoardEvent()
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                PassPressTime += Time.deltaTime;
+                if (PassPressTime>3)
+                {
+                    if (Info.GlobalBattleInfo.IsPlayer1)
+                    {
+                        Info.GlobalBattleInfo.IsPlayer1Pass = true;
+                        print("pass");
+                    }
+                    else
+                    {
+                        Info.GlobalBattleInfo.IsPlayer2Pass = true;
+                        print("pass");
+                    }
+                    PassPressTime = 0;
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                PassPressTime =0;
             }
         }
         private void MouseEvent()
