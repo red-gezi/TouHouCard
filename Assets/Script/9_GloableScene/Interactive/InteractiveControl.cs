@@ -12,7 +12,7 @@ namespace Control
     public class InteractiveControl : MonoBehaviour
     {
         Ray ray;
-        float PassPressTime;
+       public float PassPressTime;
         void Update()
         {
             GetFocusTarget();
@@ -54,18 +54,9 @@ namespace Control
             if (Input.GetKey(KeyCode.Space))
             {
                 PassPressTime += Time.deltaTime;
-                if (PassPressTime>3)
+                if (PassPressTime>2)
                 {
-                    if (Info.GlobalBattleInfo.IsPlayer1)
-                    {
-                        Info.GlobalBattleInfo.IsPlayer1Pass = true;
-                        print("pass");
-                    }
-                    else
-                    {
-                        Info.GlobalBattleInfo.IsPlayer2Pass = true;
-                        print("pass");
-                    }
+                    PassCommand.SetCurrentPass();
                     PassPressTime = 0;
                 }
             }

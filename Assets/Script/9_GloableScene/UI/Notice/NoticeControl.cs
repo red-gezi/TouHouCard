@@ -21,7 +21,7 @@ namespace Control
                 NoticeBoard.transform.GetChild(0).GetComponent<Text>().text = Text;
                 NoticeBoard.SetActive(true);
                 IsNotify = false;
-                Invoke("CloseNotice", 1);
+                Invoke("CloseNotice", 2);
             }
         }
         private void CloseNotice() => NoticeBoard.SetActive(false);

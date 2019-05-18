@@ -10,7 +10,14 @@ namespace Command
         /// <returns></returns>
         public static async Task TempOperationAsync()
         {
-            await CardCommand.DisCard(Info.RowsInfo.GetMyCardList(RegionTypes.Hand)[0]);
+            if (Info.GlobalBattleInfo.IsPlayer1Pass|| Info.GlobalBattleInfo.IsPlayer2Pass)
+            {
+                Command.PassCommand.SetCurrentPass();
+            }
+            else
+            {
+                await CardCommand.DisCard(Info.RowsInfo.GetMyCardList(RegionTypes.Hand)[0]);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Command
 {
-    public class StateCommand : MonoBehaviour
+    public class StateCommand
     {
         static int num = 0;
         public static async Task BattleStart()
@@ -53,7 +53,8 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                await Task.Delay(500);
+                NoticeControl.BoardNotice($"对战终止\n{GlobalBattleInfo.ShowScore.MyScore}:{GlobalBattleInfo.ShowScore.OpScore}");
+                await Task.Delay(5000);
             });
         }
         public static async Task TurnStart()
@@ -63,7 +64,7 @@ namespace Command
                 NoticeControl.BoardNotice((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合开始");
                 GlobalBattleInfo.IsCardEffectCompleted = false;
                 GameCommand.PlayCardLimit(!GlobalBattleInfo.IsMyTurn);
-                await Task.Delay(500);
+                await Task.Delay(1500);
             });
         }
         public static async Task TurnEnd()
@@ -82,7 +83,8 @@ namespace Command
             {
                 GlobalBattleInfo.IsPlayer1Pass = false;
                 GlobalBattleInfo.IsPlayer2Pass = false;
-                NoticeControl.BoardNotice("小局开始");
+                PassCommand.ReSetPassState();
+                NoticeControl.BoardNotice($"第{num + 1}小局开始");
                 switch (num)
                 {
                     case (0):
@@ -100,15 +102,26 @@ namespace Command
                     default:
                         break;
                 }
-                await Task.Delay(500);
+                await Task.Delay(2500);
             });
         }
         public static async Task RoundEnd(int num)
         {
             await Task.Run(async () =>
             {
-                NoticeControl.BoardNotice("小局结束");
-                await Task.Delay(500);
+                NoticeControl.BoardNotice($"第{num + 1}小局结束\n{PointInfo.TotalDownPoint}:{PointInfo.TotalUpPoint}\n{((PointInfo.TotalDownPoint > PointInfo.TotalUpPoint) ? "Win" : "Lose")}");
+                int result = 0;
+                if (PointInfo.TotalPlayer1Point > PointInfo.TotalPlayer2Point)
+                {
+                    result = 1;
+                }
+                else if (PointInfo.TotalPlayer1Point < PointInfo.TotalPlayer2Point)
+                {
+                    result = 2;
+                }
+                GlobalBattleInfo.PlayerScore.P1Score += result == 0 || result == 1 ? 1 : 0;
+                GlobalBattleInfo.PlayerScore.P2Score += result == 0 || result == 2 ? 1 : 0;
+                await Task.Delay(3500);
             });
         }
 
@@ -141,19 +154,32 @@ namespace Command
                 }
             });
         }
-        public static bool IsAllPass()
+        public static void SetPassState(bool IsPlayer1, bool IsActive)
         {
-            if (num < 3)
+            if (IsPlayer1)
             {
-                num++;
-                return false;
+                Debug.Log("我方pass啦" + IsActive);
+                Info.UiInfo.Instance.MyPass.SetActive(IsActive);
             }
             else
             {
-                num = 0;
-                return true;
+                Debug.Log("敌方pass啦" + IsActive);
+                Info.UiInfo.Instance.OpPass.SetActive(IsActive);
             }
         }
+        //public static bool IsAllPass()
+        //{
+        //    if (num < 3)
+        //    {
+        //        num++;
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        num = 0;
+        //        return true;
+        //    }
+        //}
         public static async Task Surrender()
         {
             await Task.Run(async () =>

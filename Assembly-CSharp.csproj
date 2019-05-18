@@ -235,6 +235,8 @@
     <Compile Include="Assets\Script\9_GloableScene\Test\TestCreatCard.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Test\TestScript.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\Notice\NoticeControl.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\UI\Pass\PassCommand.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\UI\UiInfo.cs" />
     <Compile Include="Assets\Script\Dialogue\DialgueInfo.cs" />
     <Compile Include="Assets\Script\Dialogue\DialogueControl.cs" />
     <Compile Include="Assets\Script\Dialogue\Live2d.cs" />

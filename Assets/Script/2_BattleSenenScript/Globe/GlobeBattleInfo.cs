@@ -30,10 +30,13 @@ namespace Info
         /// 当前玩家是否玩家1
         /// </summary>
         public static bool IsPlayer1 = true;
-        public static bool IsPlayer1Pass;
-        public static bool IsPlayer2Pass;
         public static bool IsDiscard;
         public static bool IsCardEffectCompleted;
+        public static (int P1Score, int P2Score) PlayerScore;
+        public static (int MyScore, int OpScore) ShowScore => IsPlayer1?(PlayerScore.P1Score, PlayerScore.P2Score): (PlayerScore.P2Score, PlayerScore.P1Score);
+        public static bool IsPlayer1Pass;
+        public static bool IsPlayer2Pass;
+        
         /// <summary>
         /// 当前操作者是否pass
         /// </summary>
