@@ -37,26 +37,7 @@ namespace Command
         {
             RowsInfo.GetRegionCardList(RegionName_Other.My_Hand).ThisRowCard.ForEach(card => card.IsLimit = IsLimit);
         }
-        public static async Task WaitForSelectRegion()
-        {
-            GlobalBattleInfo.IsWaitForSelectRegion = true;
-            await Task.Run(() =>
-            {
-                while (Info.GlobalBattleInfo.SelectRegion == null) { }
-            });
-            GlobalBattleInfo.IsWaitForSelectRegion = false;
-        }
-        public static async Task WaitForSelectLocation()
-        {
-            GlobalBattleInfo.IsWaitForSelectLocation = true;
-            RowCommand.SetRegionSelectable(true);
-            await Task.Run(() =>
-            {
-                while (Info.GlobalBattleInfo.SelectLocation < 0) { }
-            });
-            RowCommand.SetRegionSelectable(false);
-            GlobalBattleInfo.IsWaitForSelectLocation = false;
-        }
+       
     }
 }
 

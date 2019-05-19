@@ -14,7 +14,7 @@ public class Card1001 : Card
     public Func<Task> Step2 => (async () =>
     {
         print("µÈ´ýÑ¡ÔñÎ»ÖÃ");
-        await GameCommand.WaitForSelectLocation();
+        await StateCommand.WaitForSelectLocation();
         await CardCommand.Deploy();
         await Task.Delay(100);
     });

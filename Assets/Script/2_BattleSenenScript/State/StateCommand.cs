@@ -8,7 +8,7 @@ namespace Command
 {
     public class StateCommand
     {
-        static int num = 0;
+        //static int num = 0;
         public static async Task BattleStart()
         {
             await Task.Run(async () =>
@@ -153,6 +153,26 @@ namespace Command
                     }
                 }
             });
+        }
+        public static async Task WaitForSelectRegion()
+        {
+            GlobalBattleInfo.IsWaitForSelectRegion = true;
+            await Task.Run(() =>
+            {
+                while (Info.GlobalBattleInfo.SelectRegion == null) { }
+            });
+            GlobalBattleInfo.IsWaitForSelectRegion = false;
+        }
+        public static async Task WaitForSelectLocation()
+        {
+            GlobalBattleInfo.IsWaitForSelectLocation = true;
+            RowCommand.SetRegionSelectable(true);
+            await Task.Run(() =>
+            {
+                while (Info.GlobalBattleInfo.SelectLocation < 0) { }
+            });
+            RowCommand.SetRegionSelectable(false);
+            GlobalBattleInfo.IsWaitForSelectLocation = false;
         }
         public static void SetPassState(bool IsPlayer1, bool IsActive)
         {

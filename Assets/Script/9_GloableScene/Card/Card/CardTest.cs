@@ -16,7 +16,7 @@ namespace CardSpace
         public Func<Task> Step2 = (async () =>
         {
             print("等待选择位置");
-            await GameCommand.WaitForSelectLocation();
+            await StateCommand.WaitForSelectLocation();
             await CardCommand.Deploy();
             await Task.Delay(100);
         });

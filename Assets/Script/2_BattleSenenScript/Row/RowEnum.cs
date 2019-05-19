@@ -98,21 +98,21 @@ public enum RegionType
 }
 static class RegionTypeExtened
 {
-    public static RegionType ToAmend(this RegionType type)
-    {
-        int RegionNum = (int)type;
-        if (Info.GlobalBattleInfo.IsRevertRows)
-        {
-            //if (RegionNum >= 9)
-            //{
-            //    RegionNum -= 9;
-            //}
-            //else
-            //{
-            //    RegionNum += 9;
-            //}
-            RegionNum = RegionNum >= 9 ? RegionNum - 9 : RegionNum + 9;
-        }
-        return (RegionType)RegionNum;
-    }
+    //public static RegionType ToAmend(this RegionType type)
+    //{
+    //    int RegionNum = (int)type;
+    //    if (Info.GlobalBattleInfo.IsRevertRows)
+    //    {
+    //        //if (RegionNum >= 9)
+    //        //{
+    //        //    RegionNum -= 9;
+    //        //}
+    //        //else
+    //        //{
+    //        //    RegionNum += 9;
+    //        //}
+    //        RegionNum = RegionNum >= 9 ? RegionNum - 9 : RegionNum + 9;
+    //    }
+    //    return (RegionType)RegionNum;
+    //}
 }
