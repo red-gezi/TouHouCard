@@ -1,6 +1,8 @@
 ﻿using CardSpace;
 using Control;
 using Info;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -89,6 +91,7 @@ namespace Command
                 {
                     case (0):
                         {
+                            Info.GlobalBattleInfo.ChangeableCardNum += 3;
                             for (int i = 0; i < 10; i++)
                             {
                                 await CardCommand.DrawCard();
@@ -99,10 +102,31 @@ namespace Command
                             }
                             break;
                         }
+                    case (1):
+                        {
+                            Info.GlobalBattleInfo.ChangeableCardNum += 1;
+                            await CardCommand.DrawCard();
+                            await CardCommand.DrawCard(false);
+                            break;
+                        }
+                    case (2):
+                        {
+                            Info.GlobalBattleInfo.ChangeableCardNum += 1;
+                            await CardCommand.DrawCard();
+                            await CardCommand.DrawCard(false);
+                            break;
+                        }
                     default:
                         break;
                 }
                 await Task.Delay(2500);
+                while (Info.GlobalBattleInfo.ChangeableCardNum != 0 || Info.GlobalBattleInfo.IsChangeCardOver)
+                {
+                    Debug.Log("显示我方卡组");
+
+                    await WaitForSelectBoardCard(Info.RowsInfo.GetDownCardList(RegionTypes.Hand)); ;
+                    Debug.Log(Info.GlobalBattleInfo.SelectBoardCardId[0]);
+                }
             });
         }
         public static async Task RoundEnd(int num)
@@ -173,6 +197,33 @@ namespace Command
             });
             RowCommand.SetRegionSelectable(false);
             GlobalBattleInfo.IsWaitForSelectLocation = false;
+        }
+        public static async Task WaitForSelectBoardCard<T>(List<T> CardIds, int num = 1)
+        {
+
+            GlobalBattleInfo.SelectBoardCardId = new List<int>();
+            GlobalBattleInfo.IsWaitForSelectBoardCard = true;
+            CardBoardControl.SetCardBoardShow(true);
+            Debug.Log("运行到此处");
+            Debug.Log(CardBoardControl.Instance);
+            if (typeof(T) == typeof(Card))
+            {
+                CardBoardControl.Instance.LoadCardList(CardIds.Cast<Card>().ToList());
+            }
+            else
+            {
+                CardBoardControl.Instance.LoadCardList(CardIds.Cast<int>().ToList());
+            }
+            Debug.Log("运行到此处2");
+
+            await Task.Run(() =>
+            {
+                while (GlobalBattleInfo.SelectBoardCardId.Count < Mathf.Min(CardIds.Count, num) && !GlobalBattleInfo.IsFinishSelectBoardCard) { }
+            });
+            Debug.Log("运行到此处3");
+
+            CardBoardControl.SetCardBoardShow(false);
+            GlobalBattleInfo.IsWaitForSelectBoardCard = false;
         }
         public static void SetPassState(bool IsPlayer1, bool IsActive)
         {

@@ -7,6 +7,7 @@ namespace Control
 {
     public class StateControl : MonoBehaviour
     {
+        
         bool IsLastPlay1Pass = false;
         bool IsLastPlay2Pass = false;
         void Start()
@@ -18,7 +19,7 @@ namespace Control
         {
             CheckPassState();
         }
-
+        
         private void CheckPassState()
         {
             //当pass状态发生改变时

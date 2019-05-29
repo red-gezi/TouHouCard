@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -30,19 +31,19 @@ public class Test1 : MonoBehaviour
     [Button("load")]
     private void load()
     {
-        for (int i = 1; i < 10; i++)
+        Task.Run(async () =>
         {
-            gameObject.AddComponent(Type.GetType($"Card{i}"));
-            //gameObject.AddComponent(Type.GetType("Card1"));
-        }
+            CardBoardControl.Instance.LoadCardList(new List<int> { 1002, 1002 });
+            await Task.Delay(2000);
+        }).Wait();
     }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            CardLibrarySaveData saveData = Resources.Load<CardLibrarySaveData>("SaveData");
-            print(JsonUtility.ToJson(saveData));
+
+
         }
     }
 }

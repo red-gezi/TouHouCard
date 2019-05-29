@@ -1,6 +1,7 @@
 ﻿using CardSpace;
 using Command;
 using Info;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,33 +10,21 @@ using static NetInfoModel;
 
 namespace Control
 {
+    [Obsolete]
     public class CardInstanceControl : MonoBehaviour
     {
+        [Obsolete]
         public static bool ShouldCreatCard;
+        [Obsolete]
         public static Card CreatCard;
+        [Obsolete]
         public static int CreatID;
 
         void Update()
         {
             Creatcard();
-            //Creat();
         }
-        //public static async Task<Card> CardCreatAsync(int ID)
-        //{
-        //    IsCreatCard = true;
-        //    CreatID = ID;
-        //    await Task.Run(() =>
-        //     {
-        //         while (CreatCard == null)
-        //         {
-
-        //         }
-        //     });
-        //    Card NewCard = CreatCard;
-        //    NewCard.transform.parent = GameObject.Find("Card").transform;
-        //    CreatCard = null;
-        //    return NewCard;
-        //}
+        [Obsolete]
         private static void Creatcard()
         {
             if (ShouldCreatCard)
@@ -45,24 +34,6 @@ namespace Control
                 ShouldCreatCard = false;
             }
         }
-        //private static void Creat()
-        //{
-        //    if (IsCreatCard)
-        //    {
-        //        CardDeck Deck = AllPlayerInfo.MyInfo.UseDeck;
-        //        for (int i = 0; i < Deck.CardIds .Count; i++)
-        //        {
-        //            Card NewCard = CardCommand.CreatCard(Deck.CardIds[i]);
-        //            RowsInfo.GetRegionCardList(RegionName_Other.My_Deck).ThisRowCard.Add(NewCard);
-        //        }
-        //        IsCreatCard = false;
-        //    }
-        //}
-
-        //public static void StartCreat()
-        //{
-        //    IsCreatCard = true;
-        //}
     }
 }
 

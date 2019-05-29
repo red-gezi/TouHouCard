@@ -12,13 +12,15 @@ namespace Command
     public class CardCommand : MonoBehaviour
     {
         static int num = 0;
+        [Obsolete("废弃啦")]
         public static Card CreatCard(int id)
         {
             //print("生成卡片"+id);
             GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
             NewCard.name = num+"";
             num++;
-            var CardStandardInfo = CardLibrary.Instance.CardLibraryList[0].CardModelInfos.First(info => info.CardId == id);
+            //var CardStandardInfo = CardLibrary.Instance.CardLibraryList[0].CardModelInfos.First(info => info.CardId == id);
+            var CardStandardInfo = CardLibrary.GetCardStandardInfo(id);
             // print(CardStandardInfo);
             // NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
             NewCard.AddComponent(Type.GetType("Card" + id));
@@ -45,14 +47,7 @@ namespace Command
         public static async Task DrawCard(bool IsPlayerDraw = true)
         {
             SoundControl.Play();
-            //Card TargetCard = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck)[0];
             Card TargetCard = IsPlayerDraw ? RowsInfo.GetMyCardList(RegionTypes.Deck)[0] : RowsInfo.GetOpCardList(RegionTypes.Deck)[0];
-            //print(IsPlayerDraw);
-            //print("是否我的回合" + GlobalBattleInfo.IsMyTurn);
-            //print("是否玩家1" + GlobalBattleInfo.IsPlayer1);
-            //print(@"\\\\\\\\\\\\\");
-
-            //TargetCard.IsCanSee = GlobalBattleInfo.IsMyTurn ? IsPlayerDraw : !IsPlayerDraw;
             TargetCard.IsCanSee = IsPlayerDraw;
             if (IsPlayerDraw)
             {

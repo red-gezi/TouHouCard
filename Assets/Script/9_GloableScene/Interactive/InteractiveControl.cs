@@ -12,7 +12,7 @@ namespace Control
     public class InteractiveControl : MonoBehaviour
     {
         Ray ray;
-       public float PassPressTime;
+        public float PassPressTime;
         void Update()
         {
             GetFocusTarget();
@@ -20,7 +20,7 @@ namespace Control
             KeyBoardEvent();
         }
 
-       
+
 
         private void GetFocusTarget()
         {
@@ -49,12 +49,12 @@ namespace Control
                 }
             }
         }
-        private  void KeyBoardEvent()
+        private void KeyBoardEvent()
         {
             if (Input.GetKey(KeyCode.Space))
             {
                 PassPressTime += Time.deltaTime;
-                if (PassPressTime>2)
+                if (PassPressTime > 2)
                 {
                     PassCommand.SetCurrentPass();
                     PassPressTime = 0;
@@ -62,7 +62,7 @@ namespace Control
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                PassPressTime =0;
+                PassPressTime = 0;
             }
         }
         private void MouseEvent()
@@ -86,7 +86,7 @@ namespace Control
                         GlobalBattleInfo.SelectLocation = GlobalBattleInfo.PlayerFocusRegion.Rank;
                     }
                 }
-               // print($"所在行为{GlobalBattleInfo.PlayerFocusCard.Row}，所在坐标为{GlobalBattleInfo.PlayerFocusCard.Location}");
+                // print($"所在行为{GlobalBattleInfo.PlayerFocusCard.Row}，所在坐标为{GlobalBattleInfo.PlayerFocusCard.Location}");
             }
             if (Input.GetMouseButton(0))
             {

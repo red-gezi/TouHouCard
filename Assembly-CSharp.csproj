@@ -204,6 +204,7 @@
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateControl.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\Thread\ThreadAgent.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Camera\CameraControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Card\Card.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Card\CardTest.cs" />
@@ -234,6 +235,8 @@
     <Compile Include="Assets\Script\9_GloableScene\Test\Floow.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Test\TestCreatCard.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Test\TestScript.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\UI\BoardCardInfo.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\UI\CardBoardControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\Notice\NoticeControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\Pass\PassCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\UiInfo.cs" />
