@@ -13,12 +13,16 @@ namespace Info
         //网络同步信息
         public static int TargetCardID;
         public static Card TargetCard;
-        public static bool IsChangeCardOver;
+        public static Card CreatedCard;
+        public static List<int> TargetCardIDList;
+        public static List<Card> TargetCardList;
+        public static bool IsSelectCardOver;
 
         //操作标志位
         public static bool IsCreatCard;
-        public static bool IsCreatBoardCard;
-        public static bool IsDestoryard;
+        public static bool IsCreatBoardCardActual;
+        public static bool IsCreatBoardCardVitual;
+        public static bool IsDestoryCard;
         public static bool IsDestoryBoardCard;
         public static bool IsDiscard;
         public static bool IsCardEffectCompleted;
@@ -37,7 +41,7 @@ namespace Info
         public static int SelectLocation = -1;
         //版相关字段
         public static bool IsWaitForSelectBoardCard;
-        public static List<int> SelectBoardCardId;
+        public static List<int> SelectBoardCardIds;
         public static bool IsFinishSelectBoardCard;
         public static int ChangeableCardNum = 3;
         public static bool IsMyTurn = true;

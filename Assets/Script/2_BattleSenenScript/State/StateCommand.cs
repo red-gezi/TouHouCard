@@ -120,12 +120,12 @@ namespace Command
                         break;
                 }
                 await Task.Delay(2500);
-                while (Info.GlobalBattleInfo.ChangeableCardNum != 0 || Info.GlobalBattleInfo.IsChangeCardOver)
+                while (Info.GlobalBattleInfo.ChangeableCardNum != 0 && !Info.GlobalBattleInfo.IsSelectCardOver)
                 {
                     Debug.Log("显示我方卡组");
 
                     await WaitForSelectBoardCard(Info.RowsInfo.GetDownCardList(RegionTypes.Hand)); ;
-                    Debug.Log(Info.GlobalBattleInfo.SelectBoardCardId[0]);
+                    Debug.Log(Info.GlobalBattleInfo.SelectBoardCardIds[0]);
                 }
             });
         }
@@ -201,26 +201,28 @@ namespace Command
         public static async Task WaitForSelectBoardCard<T>(List<T> CardIds, int num = 1)
         {
 
-            GlobalBattleInfo.SelectBoardCardId = new List<int>();
+            GlobalBattleInfo.SelectBoardCardIds = new List<int>();
             GlobalBattleInfo.IsWaitForSelectBoardCard = true;
             CardBoardControl.SetCardBoardShow(true);
             Debug.Log("运行到此处");
-            Debug.Log(CardBoardControl.Instance);
             if (typeof(T) == typeof(Card))
             {
-                CardBoardControl.Instance.LoadCardList(CardIds.Cast<Card>().ToList());
+                CardBoardCommand.LoadCardList(CardIds.Cast<Card>().ToList());
+                // CardBoardControl.Instance.LoadCardList(CardIds.Cast<Card>().ToList());
             }
             else
             {
-                CardBoardControl.Instance.LoadCardList(CardIds.Cast<int>().ToList());
+                CardBoardCommand.LoadCardList(CardIds.Cast<int>().ToList());
+                //CardBoardControl.Instance.LoadCardList(CardIds.Cast<int>().ToList());
             }
             Debug.Log("运行到此处2");
 
             await Task.Run(() =>
             {
-                while (GlobalBattleInfo.SelectBoardCardId.Count < Mathf.Min(CardIds.Count, num) && !GlobalBattleInfo.IsFinishSelectBoardCard) { }
+                while (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num) && !GlobalBattleInfo.IsFinishSelectBoardCard) { }
+
             });
-            Debug.Log("运行到此处3");
+            Debug.Log("运行到此处3" + (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num)) + " " + !GlobalBattleInfo.IsFinishSelectBoardCard);
 
             CardBoardControl.SetCardBoardShow(false);
             GlobalBattleInfo.IsWaitForSelectBoardCard = false;

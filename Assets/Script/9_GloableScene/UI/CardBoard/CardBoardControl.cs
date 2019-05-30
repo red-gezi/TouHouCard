@@ -1,7 +1,6 @@
 ﻿using CardSpace;
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +24,7 @@ public class CardBoardControl : MonoBehaviour
         //LoadCardList(CInfo.UseDeck.CardIds);
         //LoadCardList(new List<int> { 1001, 1002 });
     }
+    [Obsolete()]
     public void LoadCardList(List<int> CardsIds)
     {
         ShowCardLIst.ForEach(Destroy);
@@ -41,6 +41,7 @@ public class CardBoardControl : MonoBehaviour
         }
         Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardsIds.Count * 325 + 200, 800);
     }
+    [Obsolete()]
     public void LoadCardList(List<Card> CardsIds)
     {
         ShowCardLIst.ForEach(Destroy);
@@ -56,14 +57,6 @@ public class CardBoardControl : MonoBehaviour
         }
         Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardsIds.Count * 325 + 200, 800);
     }
-    public void Replace(int num, Card card)
-    {
-        for (int i = 0; i < num; i++)
-        {
-            ShowCardLIst.ForEach(Destroy);
-        }
-        Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(num * 325 + 200, 800);
-    }
     // Update is called once per frame
     void Update()
     {
@@ -76,5 +69,9 @@ public class CardBoardControl : MonoBehaviour
     public static void SetCardBoardShow(bool IsActive)
     {
         IsCardBoardShow = IsActive;
+    }
+    public static void SelectCardOver()
+    {
+        Info.GlobalBattleInfo.IsSelectCardOver = true;
     }
 }
