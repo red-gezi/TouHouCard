@@ -9,9 +9,9 @@ public class CardBoardControl : MonoBehaviour
     public static CardBoardControl Instance;
     public static bool IsCardBoardShow;
     bool LastIsCardBoardShow;
-    public GameObject CardBoard;
-    public Transform Constant;
-    public GameObject Card;
+    //public GameObject CardBoard;
+    //public Transform Constant;
+    //public GameObject Card;
     public int num;
     static List<int> cardIds => Info.AllPlayerInfo.Player1Info.UseDeck.CardIds;
 
@@ -24,54 +24,54 @@ public class CardBoardControl : MonoBehaviour
         //LoadCardList(CInfo.UseDeck.CardIds);
         //LoadCardList(new List<int> { 1001, 1002 });
     }
-    [Obsolete()]
-    public void LoadCardList(List<int> CardsIds)
-    {
-        ShowCardLIst.ForEach(Destroy);
-        for (int i = 0; i < CardsIds.Count; i++)
-        {
+    //[Obsolete()]
+    //public void LoadCardList(List<int> CardsIds)
+    //{
+    //    ShowCardLIst.ForEach(Destroy);
+    //    for (int i = 0; i < CardsIds.Count; i++)
+    //    {
 
-            var CardStandardInfo = CardLibrary.GetCardStandardInfo(CardsIds[i]);
-            GameObject NewCard = Instantiate(Card);
-            NewCard.GetComponent<BoardCardInfo>().Rank = i;
-            NewCard.transform.SetParent(Constant);
-            Texture2D texture = CardStandardInfo.Icon;
-            NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-            ShowCardLIst.Add(NewCard);
-        }
-        Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardsIds.Count * 325 + 200, 800);
-    }
-    [Obsolete()]
-    public void LoadCardList(List<Card> CardsIds)
-    {
-        ShowCardLIst.ForEach(Destroy);
-        for (int i = 0; i < CardsIds.Count; i++)
-        {
-            var CardStandardInfo = CardLibrary.GetCardStandardInfo(CardsIds[i].CardId );
-            GameObject NewCard = Instantiate(Card);
-            NewCard.GetComponent<BoardCardInfo>().Rank = i;
-            NewCard.transform.SetParent(Constant);
-            Texture2D texture = CardStandardInfo.Icon;
-            NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-            ShowCardLIst.Add(NewCard);
-        }
-        Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardsIds.Count * 325 + 200, 800);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (LastIsCardBoardShow != IsCardBoardShow)
-        {
-            CardBoard.SetActive(IsCardBoardShow);
-            LastIsCardBoardShow = IsCardBoardShow;
-        }
-    }
-    public static void SetCardBoardShow(bool IsActive)
-    {
-        IsCardBoardShow = IsActive;
-    }
-    public static void SelectCardOver()
-    {
-        Info.GlobalBattleInfo.IsSelectCardOver = true;
-    }
+    //        var CardStandardInfo = CardLibrary.GetCardStandardInfo(CardsIds[i]);
+    //        GameObject NewCard = Instantiate(Card);
+    //        NewCard.GetComponent<BoardCardInfo>().Rank = i;
+    //        NewCard.transform.SetParent(Constant);
+    //        Texture2D texture = CardStandardInfo.Icon;
+    //        NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+    //        ShowCardLIst.Add(NewCard);
+    //    }
+    //    Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardsIds.Count * 325 + 200, 800);
+    //}
+    //[Obsolete()]
+    //public void LoadCardList(List<Card> CardsIds)
+    //{
+    //    ShowCardLIst.ForEach(Destroy);
+    //    for (int i = 0; i < CardsIds.Count; i++)
+    //    {
+    //        var CardStandardInfo = CardLibrary.GetCardStandardInfo(CardsIds[i].CardId );
+    //        GameObject NewCard = Instantiate(Card);
+    //        NewCard.GetComponent<BoardCardInfo>().Rank = i;
+    //        NewCard.transform.SetParent(Constant);
+    //        Texture2D texture = CardStandardInfo.Icon;
+    //        NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+    //        ShowCardLIst.Add(NewCard);
+    //    }
+    //    Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardsIds.Count * 325 + 200, 800);
+    //}
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    if (LastIsCardBoardShow != IsCardBoardShow)
+    //    {
+    //        CardBoard.SetActive(IsCardBoardShow);
+    //        LastIsCardBoardShow = IsCardBoardShow;
+    //    }
+    //}
+    //public static void SetCardBoardShow(bool IsActive)
+    //{
+    //    IsCardBoardShow = IsActive;
+    //}
+    //public static void SelectCardOver()
+    //{
+    //    Info.GlobalBattleInfo.IsSelectCardOver = true;
+    //}
 }

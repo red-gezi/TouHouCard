@@ -6,10 +6,8 @@ ScriptedImporter:
     2100002: New_Graph_1
     2800000: New_Graph - diffuse
     2800002: New_Graph - normal
-    2800004: New_Graph - specular
     2800006: New_Graph_1 - diffuse
     2800008: New_Graph_1 - normal
-    2800010: New_Graph_1 - specular
     11400000: sbsar
     11400002: graph0
     11400004: graph1
@@ -26,8 +24,8 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://New_Graph\" label=\"\" >\n </sbspreset>\n"
-    shaderName: HDRP/Autodesk Interactive/AutodeskInteractive
-    outputNames: diffuse,normal,specular
+    shaderName: Standard
+    outputNames: diffuse,normal
     texturePackingList:
     - outputName: diffuse
       alphaSource: diffuse
@@ -63,19 +61,16 @@ ScriptedImporter:
       textureHeight: 512
       textureFormat: 0
       bGenerateOnLoad: 1
-    material: {fileID: 2100000, guid: 3a21bf23da0180548baa6e4ef7d1d816, type: 3}
-    generatedTextures:
-    - {fileID: 2800000, guid: 3a21bf23da0180548baa6e4ef7d1d816, type: 3}
-    - {fileID: 2800002, guid: 3a21bf23da0180548baa6e4ef7d1d816, type: 3}
-    - {fileID: 2800004, guid: 3a21bf23da0180548baa6e4ef7d1d816, type: 3}
+    material: {instanceID: 0}
+    generatedTextures: []
   - graphLabel: New_Graph_1
     prototypeName: New_Graph
     graphDescIndex: 0
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://New_Graph\" label=\"\" >\n </sbspreset>\n"
-    shaderName: HDRP/Autodesk Interactive/AutodeskInteractive
-    outputNames: diffuse,normal,specular
+    shaderName: Standard
+    outputNames: diffuse,normal
     texturePackingList:
     - outputName: diffuse
       alphaSource: diffuse

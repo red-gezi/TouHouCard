@@ -6,7 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-
+[Obsolete()]
 public class Test1 : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class Test1 : MonoBehaviour
     {
         Task.Run(async () =>
         {
-            CardBoardControl.Instance.LoadCardList(new List<int> { 1002, 1002 });
+            //CardBoardControl.Instance.LoadCardList(new List<int> { 1002, 1002 });
             await Task.Delay(2000);
         }).Wait();
     }

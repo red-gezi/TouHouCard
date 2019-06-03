@@ -7,12 +7,23 @@ namespace Info
     {
         public GameObject MyPass;
         public GameObject OpPass;
-        public static UiInfo Instance;
-        private void Awake()
+        public Transform ConstantInstance;
+        public GameObject CardBoardInstance;
+        public enum CardBoardMode
         {
-            Instance = this;
+            Select,//多次选择模式
+            ChangeCard,//单次抽卡模式
+            Auto//无法操作模式
         }
-        
+        public GameObject CardInstanceModel;
+        public static List<GameObject> ShowCardLIstOnBoard = new List<GameObject>();
+        public static Transform Constant => Instance.ConstantInstance;
+        public static GameObject CardModel => Instance.CardInstanceModel;
+        public static GameObject CardBoard => Instance.CardBoardInstance;
+        public static UiInfo Instance;
+
+        private void Awake() => Instance = this;
+
     }
 }
 

@@ -1,6 +1,5 @@
 ﻿using CardSpace;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +17,18 @@ namespace Info
             //InvokeInMainThread(Info.GlobalBattleInfo.IsCreatCard, DestoryCard);
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardActual, CreatBoardCardActual);
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardVitual, CreatBoardCardVitual);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.IsCardBoardShow, CardBoardShow);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.IsCardBoardHide, CardBoardHide);
         }
+        private void CardBoardShow()
+        {
+            UiInfo.CardBoard.SetActive(true);
+        }
+        private void CardBoardHide()
+        {
+            UiInfo.CardBoard.SetActive(false);
+        }
+
         private void InvokeInMainThread(ref bool TriggerSign, Action RunFunction)
         {
             if (TriggerSign)
@@ -52,37 +62,37 @@ namespace Info
         private static void CreatBoardCardActual()
         {
             print(Info.GlobalBattleInfo.IsCreatBoardCardActual);
-            Info.CardBoardInfo.ShowBoardCardLIst.ForEach(Destroy);
+            Info.UiInfo.ShowCardLIstOnBoard.ForEach(Destroy);
             List<Card> Cards = Info.GlobalBattleInfo.TargetCardList;
             print(Cards.Count);
 
             for (int i = 0; i < Cards.Count; i++)
             {
                 var CardStandardInfo = CardLibrary.GetCardStandardInfo(Cards[i].CardId);
-                GameObject NewCard = Instantiate(Info.CardBoardInfo.CardModel);
+                GameObject NewCard = Instantiate(Info.UiInfo.CardModel);
                 NewCard.GetComponent<BoardCardInfo>().Rank = i;
-                NewCard.transform.SetParent(Info.CardBoardInfo.Constant);
+                NewCard.transform.SetParent(Info.UiInfo.Constant);
                 Texture2D texture = CardStandardInfo.Icon;
                 NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-                Info.CardBoardInfo.ShowBoardCardLIst.Add(NewCard);
+                Info.UiInfo.ShowCardLIstOnBoard.Add(NewCard);
             }
-            Info.CardBoardInfo.Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 325 + 200, 800);
+            Info.UiInfo.Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 325 + 200, 800);
         }
         private static void CreatBoardCardVitual()
         {
-            Info.CardBoardInfo.ShowBoardCardLIst.ForEach(Destroy);
+            UiInfo.ShowCardLIstOnBoard.ForEach(Destroy);
             List<int> CardIds = Info.GlobalBattleInfo.TargetCardIDList;
             for (int i = 0; i < CardIds.Count; i++)
             {
                 var CardStandardInfo = CardLibrary.GetCardStandardInfo(CardIds[i]);
-                GameObject NewCard = Instantiate(Info.CardBoardInfo.CardModel);
+                GameObject NewCard = Instantiate(Info.UiInfo.CardModel);
                 NewCard.GetComponent<BoardCardInfo>().Rank = i;
-                NewCard.transform.SetParent(Info.CardBoardInfo.Constant);
+                NewCard.transform.SetParent(Info.UiInfo.Constant);
                 Texture2D texture = CardStandardInfo.Icon;
                 NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-                Info.CardBoardInfo.ShowBoardCardLIst.Add(NewCard);
+                Info.UiInfo.ShowCardLIstOnBoard.Add(NewCard);
             }
-            Info.CardBoardInfo.Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardIds.Count * 325 + 200, 800);
+            Info.UiInfo.Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardIds.Count * 325 + 200, 800);
         }
 
     }

@@ -17,6 +17,8 @@ namespace Info
         public static List<int> TargetCardIDList;
         public static List<Card> TargetCardList;
         public static bool IsSelectCardOver;
+        public static bool IsCardBoardShow;
+        public static bool IsCardBoardHide;
 
         //操作标志位
         public static bool IsCreatCard;
@@ -26,6 +28,8 @@ namespace Info
         public static bool IsDestoryBoardCard;
         public static bool IsDiscard;
         public static bool IsCardEffectCompleted;
+        public static Info.UiInfo.CardBoardMode CardBoardMode;
+
 
         public static Vector3 DragToPoint;
         public static Card PlayerFocusCard;

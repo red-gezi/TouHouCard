@@ -122,8 +122,6 @@ namespace Command
                 await Task.Delay(2500);
                 while (Info.GlobalBattleInfo.ChangeableCardNum != 0 && !Info.GlobalBattleInfo.IsSelectCardOver)
                 {
-                    Debug.Log("显示我方卡组");
-
                     await WaitForSelectBoardCard(Info.RowsInfo.GetDownCardList(RegionTypes.Hand)); ;
                     Debug.Log(Info.GlobalBattleInfo.SelectBoardCardIds[0]);
                 }
@@ -203,8 +201,8 @@ namespace Command
 
             GlobalBattleInfo.SelectBoardCardIds = new List<int>();
             GlobalBattleInfo.IsWaitForSelectBoardCard = true;
-            CardBoardControl.SetCardBoardShow(true);
-            Debug.Log("运行到此处");
+            Uicommand.SetCardBoardShow();
+            Debug.Log("打开面板");
             if (typeof(T) == typeof(Card))
             {
                 CardBoardCommand.LoadCardList(CardIds.Cast<Card>().ToList());
@@ -224,7 +222,7 @@ namespace Command
             });
             Debug.Log("运行到此处3" + (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num)) + " " + !GlobalBattleInfo.IsFinishSelectBoardCard);
 
-            CardBoardControl.SetCardBoardShow(false);
+            Uicommand.SetCardBoardHide();
             GlobalBattleInfo.IsWaitForSelectBoardCard = false;
         }
         public static void SetPassState(bool IsPlayer1, bool IsActive)
