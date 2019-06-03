@@ -12,35 +12,46 @@ namespace Command
     public class CardCommand : MonoBehaviour
     {
         static int num = 0;
-        [Obsolete("废弃啦")]
-        public static Card CreatCard(int id)
+        //[Obsolete("废弃啦")]
+        //public static Card CreatCard(int id)
+        //{
+        //    //print("生成卡片"+id);
+        //    GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
+        //    NewCard.name = num + "";
+        //    num++;
+        //    //var CardStandardInfo = CardLibrary.Instance.CardLibraryList[0].CardModelInfos.First(info => info.CardId == id);
+        //    var CardStandardInfo = CardLibrary.GetCardStandardInfo(id);
+        //    // print(CardStandardInfo);
+        //    // NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
+        //    NewCard.AddComponent(Type.GetType("Card" + id));
+        //    Card card = NewCard.GetComponent<Card>();
+        //    card.CardId = CardStandardInfo.CardId;
+        //    card.CardPoint = CardStandardInfo.Point;
+        //    card.icon = CardStandardInfo.Icon;
+        //    card.CardProperty = CardStandardInfo.CardProperty;
+        //    card.CardTerritory = CardStandardInfo.CardTerritory;
+        //    NewCard.GetComponent<Renderer>().material.SetTexture("_Front", card.icon);
+        //    card.Init();
+        //    return card;
+        //}
+        //public static async Task<Card> CreatCardAsync(int id)
+        //{
+        //    CardInstanceControl.CreatID = id;
+        //    CardInstanceControl.ShouldCreatCard = true;
+        //    await Task.Run(() => { while (CardInstanceControl.CreatCard == null) { } });
+        //    Card NewCard = CardInstanceControl.CreatCard;
+        //    CardInstanceControl.CreatCard = null;
+        //    //print("异步生成卡牌");
+        //    return NewCard;
+        //}
+        public static async Task<Card> CreatCard(int id)
         {
-            //print("生成卡片"+id);
-            GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
-            NewCard.name = num+"";
-            num++;
-            //var CardStandardInfo = CardLibrary.Instance.CardLibraryList[0].CardModelInfos.First(info => info.CardId == id);
-            var CardStandardInfo = CardLibrary.GetCardStandardInfo(id);
-            // print(CardStandardInfo);
-            // NewCard.AddComponent(CardLibrary.Instance.CardLibraryList[id].GetType());
-            NewCard.AddComponent(Type.GetType("Card" + id));
-            Card card = NewCard.GetComponent<Card>();
-            card.CardId = CardStandardInfo.CardId;
-            card.CardPoint = CardStandardInfo.Point;
-            card.icon = CardStandardInfo.Icon;
-            card.CardProperty = CardStandardInfo.CardProperty;
-            card.CardTerritory = CardStandardInfo.CardTerritory;
-            NewCard.GetComponent<Renderer>().material.SetTexture("_Front", card.icon);
-            card.Init();
-            return card;
-        }
-        public static async Task<Card> CreatCardAsync(int id)
-        {
-            CardInstanceControl.CreatID = id;
-            CardInstanceControl.ShouldCreatCard = true;
-            await Task.Run(() => { while (CardInstanceControl.CreatCard == null) { } });
-            Card NewCard = CardInstanceControl.CreatCard;
-            CardInstanceControl.CreatCard = null;
+            Info.GlobalBattleInfo.TargetCardID = id;
+            Info.GlobalBattleInfo.IsCreatCard = true;
+
+            await Task.Run(() => { while (Info.GlobalBattleInfo.CreatedCard == null) { } });
+            Card NewCard = Info.GlobalBattleInfo.CreatedCard;
+            Info.GlobalBattleInfo.CreatedCard = null;
             //print("异步生成卡牌");
             return NewCard;
         }

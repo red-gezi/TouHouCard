@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace Control
 {
+    [System.Obsolete("报废啦！")]
     public class NoticeControl : MonoBehaviour
     {
         public GameObject NoticeBoard;
         static bool IsNotify;
         static string Text;
-        public static void BoardNotice(string text)
+        public static void BoardNotice(string Title)
         {
-            Text = text;
-            IsNotify = true;
+            Info.UiInfo.NoticeBoardTitle = Title;
+            //Text = text;
+            Info.GlobalBattleInfo.IsNotifyShow = true;
+            //IsNotify = true;
         }
         void Update()
         {

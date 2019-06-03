@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+[Obsolete("报废啦！")]
 public class CardBoardControl : MonoBehaviour
 {
     public static CardBoardControl Instance;

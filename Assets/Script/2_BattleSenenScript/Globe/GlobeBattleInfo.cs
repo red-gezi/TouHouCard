@@ -29,6 +29,8 @@ namespace Info
         public static bool IsDiscard;
         public static bool IsCardEffectCompleted;
         public static Info.UiInfo.CardBoardMode CardBoardMode;
+        public static bool IsNotifyShow;
+        public static bool IsNotifyHide;
 
 
         public static Vector3 DragToPoint;

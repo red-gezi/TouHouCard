@@ -16,13 +16,17 @@ namespace Command
             await Task.Run(async () =>
             {
                 //await Task.Delay(500);
-                NoticeControl.BoardNotice("对战开始");
+                UiCommand.SetNoticeBoardTitle("对战开始");
+                UiCommand.NoticeBoardShow();
+                await Task.Delay(2000);
+                UiCommand.NoticeBoardHide();
+
                 CardDeck Deck = AllPlayerInfo.Player1Info.UseDeck;
 
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
                     //print("我方创造卡片");
-                    Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
+                    Card NewCard = await CardCommand.CreatCard(Deck.CardIds[i]);
                     if (GlobalBattleInfo.IsPlayer1)
                     {
                         RowsInfo.GetDownCardList(RegionTypes.Deck).Add(NewCard);
@@ -37,7 +41,7 @@ namespace Command
                 for (int i = 0; i < Deck.CardIds.Count; i++)
                 {
                     //print("敌方创造卡片");
-                    Card NewCard = await CardCommand.CreatCardAsync(Deck.CardIds[i]);
+                    Card NewCard = await CardCommand.CreatCard(Deck.CardIds[i]);
                     if (GlobalBattleInfo.IsPlayer1)
                     {
                         RowsInfo.GetUpCardList(RegionTypes.Deck).Add(NewCard);
@@ -55,7 +59,10 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                NoticeControl.BoardNotice($"对战终止\n{GlobalBattleInfo.ShowScore.MyScore}:{GlobalBattleInfo.ShowScore.OpScore}");
+                UiCommand.SetNoticeBoardTitle($"对战终止\n{GlobalBattleInfo.ShowScore.MyScore}:{GlobalBattleInfo.ShowScore.OpScore}");
+                UiCommand.NoticeBoardShow();
+                await Task.Delay(2000);
+                UiCommand.NoticeBoardHide();
                 await Task.Delay(5000);
             });
         }
@@ -63,7 +70,10 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                NoticeControl.BoardNotice((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合开始");
+                UiCommand.SetNoticeBoardTitle((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合开始");
+                UiCommand.NoticeBoardShow();
+                await Task.Delay(2000);
+                UiCommand.NoticeBoardHide();
                 GlobalBattleInfo.IsCardEffectCompleted = false;
                 GameCommand.PlayCardLimit(!GlobalBattleInfo.IsMyTurn);
                 await Task.Delay(1500);
@@ -73,7 +83,10 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                NoticeControl.BoardNotice((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合结束");
+                UiCommand.SetNoticeBoardTitle((GlobalBattleInfo.IsMyTurn ? "我方" : "敌方") + "回合结束");
+                UiCommand.NoticeBoardShow();
+                await Task.Delay(2000);
+                UiCommand.NoticeBoardHide();
                 GameCommand.PlayCardLimit(true);
                 await Task.Delay(2000);
                 GlobalBattleInfo.IsMyTurn = !GlobalBattleInfo.IsMyTurn;
@@ -86,7 +99,10 @@ namespace Command
                 GlobalBattleInfo.IsPlayer1Pass = false;
                 GlobalBattleInfo.IsPlayer2Pass = false;
                 PassCommand.ReSetPassState();
-                NoticeControl.BoardNotice($"第{num + 1}小局开始");
+                UiCommand.SetNoticeBoardTitle($"第{num + 1}小局开始");
+                UiCommand.NoticeBoardShow();
+                await Task.Delay(2000);
+                UiCommand.NoticeBoardHide();
                 switch (num)
                 {
                     case (0):
@@ -131,7 +147,10 @@ namespace Command
         {
             await Task.Run(async () =>
             {
-                NoticeControl.BoardNotice($"第{num + 1}小局结束\n{PointInfo.TotalDownPoint}:{PointInfo.TotalUpPoint}\n{((PointInfo.TotalDownPoint > PointInfo.TotalUpPoint) ? "Win" : "Lose")}");
+                UiCommand.SetNoticeBoardTitle($"第{num + 1}小局结束\n{PointInfo.TotalDownPoint}:{PointInfo.TotalUpPoint}\n{((PointInfo.TotalDownPoint > PointInfo.TotalUpPoint) ? "Win" : "Lose")}");
+                UiCommand.NoticeBoardShow();
+                await Task.Delay(2000);
+                UiCommand.NoticeBoardHide();
                 int result = 0;
                 if (PointInfo.TotalPlayer1Point > PointInfo.TotalPlayer2Point)
                 {
@@ -201,7 +220,7 @@ namespace Command
 
             GlobalBattleInfo.SelectBoardCardIds = new List<int>();
             GlobalBattleInfo.IsWaitForSelectBoardCard = true;
-            Uicommand.SetCardBoardShow();
+            UiCommand.SetCardBoardShow();
             Debug.Log("打开面板");
             if (typeof(T) == typeof(Card))
             {
@@ -222,7 +241,7 @@ namespace Command
             });
             Debug.Log("运行到此处3" + (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num)) + " " + !GlobalBattleInfo.IsFinishSelectBoardCard);
 
-            Uicommand.SetCardBoardHide();
+            UiCommand.SetCardBoardHide();
             GlobalBattleInfo.IsWaitForSelectBoardCard = false;
         }
         public static void SetPassState(bool IsPlayer1, bool IsActive)

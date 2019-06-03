@@ -13,12 +13,23 @@ namespace Info
         static bool num2;
         private void Update()
         {
-            //InvokeInMainThread(Info.GlobalBattleInfo.IsCreatCard, CreatCard);
-            //InvokeInMainThread(Info.GlobalBattleInfo.IsCreatCard, DestoryCard);
-            InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardActual, CreatBoardCardActual);
-            InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardVitual, CreatBoardCardVitual);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatCard, CreatCard);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.IsNotifyShow, NotifyShow);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.IsNotifyHide, NotifyHide);
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCardBoardShow, CardBoardShow);
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCardBoardHide, CardBoardHide);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardActual, CreatBoardCardActual);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardVitual, CreatBoardCardVitual);
+
+        }
+        private void NotifyShow()
+        {
+            Info.UiInfo.NoticeBoard.transform.GetChild(0).GetComponent<Text>().text = Info.UiInfo.NoticeBoardTitle;
+            Info.UiInfo.NoticeBoard.SetActive(true);
+        }
+        private void NotifyHide()
+        {
+            Info.UiInfo.NoticeBoard.SetActive(false);
         }
         private void CardBoardShow()
         {
@@ -35,7 +46,6 @@ namespace Info
             {
                 RunFunction();
                 TriggerSign = false;
-                print("TriggerSign为" + TriggerSign);
             }
         }
         private static void CreatCard()
@@ -61,11 +71,8 @@ namespace Info
         }
         private static void CreatBoardCardActual()
         {
-            print(Info.GlobalBattleInfo.IsCreatBoardCardActual);
             Info.UiInfo.ShowCardLIstOnBoard.ForEach(Destroy);
             List<Card> Cards = Info.GlobalBattleInfo.TargetCardList;
-            print(Cards.Count);
-
             for (int i = 0; i < Cards.Count; i++)
             {
                 var CardStandardInfo = CardLibrary.GetCardStandardInfo(Cards[i].CardId);
@@ -94,6 +101,5 @@ namespace Info
             }
             Info.UiInfo.Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(CardIds.Count * 325 + 200, 800);
         }
-
     }
 }

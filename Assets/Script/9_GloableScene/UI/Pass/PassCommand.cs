@@ -9,18 +9,6 @@ namespace Command
         static GameObject OpPass => Info.UiInfo.Instance.OpPass;
         public static void SetCurrentPass()
         {
-            //print(MyPass);
-            //if (Info.GlobalBattleInfo.IsMyTurn)
-            //{
-            //    print("下方pass");
-            //    MyPass.SetActive(true);
-            //}
-            //else
-            //{
-            //    print("上方pass");
-
-            //    OpPass.SetActive(true);
-            //}
             if (Info.GlobalBattleInfo.IsPlayer1 ^ Info.GlobalBattleInfo.IsMyTurn)
             {
                 print("玩家1pass");

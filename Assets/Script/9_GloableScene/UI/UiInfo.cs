@@ -5,6 +5,9 @@ namespace Info
 {
     public class UiInfo : MonoBehaviour
     {
+        public GameObject NoticeBoard_model;
+        public static GameObject NoticeBoard => Instance.NoticeBoard_model;
+        public static string NoticeBoardTitle;
         public GameObject MyPass;
         public GameObject OpPass;
         public Transform ConstantInstance;
