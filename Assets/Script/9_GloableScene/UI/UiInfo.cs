@@ -12,12 +12,7 @@ namespace Info
         public GameObject OpPass;
         public Transform ConstantInstance;
         public GameObject CardBoardInstance;
-        public enum CardBoardMode
-        {
-            Select,//多次选择模式
-            ChangeCard,//单次抽卡模式
-            Auto//无法操作模式
-        }
+       
         public GameObject CardInstanceModel;
         public static List<GameObject> ShowCardLIstOnBoard = new List<GameObject>();
         public static Transform Constant => Instance.ConstantInstance;

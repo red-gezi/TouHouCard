@@ -3,6 +3,7 @@ using Command;
 using Info;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 namespace Test
 {
@@ -20,8 +21,10 @@ namespace Test
         {
             if (Input.GetMouseButtonDown(4))
             {
-                Card NewCard = CardCommand.CreatCard(1001);
-                NewCard.Trigger<TriggerType.Deploy>();
+                print("yaya" + Command.AiCommand.GetRandom(0, 10));
+                GlobalBattleInfo.TargetCard = RowsInfo.GetDownCardList(RegionTypes.Hand)[0];
+                Command.CardCommand.WashCard();
+
                 //RowsInfo.GetRegionCardList(RegionName_Battle.My_Water).Add(NewCard);
                 //GameObject NewCard = Instantiate(CardLibrary.Instance.Card_Model);
                 //print(NewCard.name);

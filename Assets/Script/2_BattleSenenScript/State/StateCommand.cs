@@ -98,7 +98,7 @@ namespace Command
             {
                 GlobalBattleInfo.IsPlayer1Pass = false;
                 GlobalBattleInfo.IsPlayer2Pass = false;
-                PassCommand.ReSetPassState();
+                UiCommand.ReSetPassState();
                 UiCommand.SetNoticeBoardTitle($"第{num + 1}小局开始");
                 UiCommand.NoticeBoardShow();
                 await Task.Delay(2000);
@@ -136,11 +136,14 @@ namespace Command
                         break;
                 }
                 await Task.Delay(2500);
-                while (Info.GlobalBattleInfo.ChangeableCardNum != 0 && !Info.GlobalBattleInfo.IsSelectCardOver)
-                {
-                    await WaitForSelectBoardCard(Info.RowsInfo.GetDownCardList(RegionTypes.Hand)); ;
-                    Debug.Log(Info.GlobalBattleInfo.SelectBoardCardIds[0]);
-                }
+                await WaitForSelectBoardCard(Info.RowsInfo.GetDownCardList(RegionTypes.Hand), GameEnum.CardBoardMode.ChangeCard); ;
+
+                //while (Info.GlobalBattleInfo.ChangeableCardNum != 0 && !Info.GlobalBattleInfo.IsSelectCardOver)
+                //{
+                //    await WaitForSelectBoardCard(Info.RowsInfo.GetDownCardList(RegionTypes.Hand), GameEnum.CardBoardMode.ChangeCard); ;
+                //    Debug.Log("选择了卡牌" + Info.GlobalBattleInfo.SelectBoardCardIds[0]);
+                //    Debug.Log("抽卡次数为" + Info.GlobalBattleInfo.ChangeableCardNum);
+                //}
             });
         }
         public static async Task RoundEnd(int num)
@@ -165,7 +168,6 @@ namespace Command
                 await Task.Delay(3500);
             });
         }
-
         public static async Task WaitForPlayerOperation()
         {
             await Task.Run(async () =>
@@ -215,32 +217,52 @@ namespace Command
             RowCommand.SetRegionSelectable(false);
             GlobalBattleInfo.IsWaitForSelectLocation = false;
         }
-        public static async Task WaitForSelectBoardCard<T>(List<T> CardIds, int num = 1)
+        public static async Task WaitForSelectBoardCard<T>(List<T> CardIds, GameEnum.CardBoardMode Mode = GameEnum.CardBoardMode.Select, int num = 1)
         {
 
             GlobalBattleInfo.SelectBoardCardIds = new List<int>();
             GlobalBattleInfo.IsWaitForSelectBoardCard = true;
             UiCommand.SetCardBoardShow();
-            Debug.Log("打开面板");
+            //Debug.Log("打开面板");
             if (typeof(T) == typeof(Card))
             {
                 CardBoardCommand.LoadCardList(CardIds.Cast<Card>().ToList());
-                // CardBoardControl.Instance.LoadCardList(CardIds.Cast<Card>().ToList());
             }
             else
             {
                 CardBoardCommand.LoadCardList(CardIds.Cast<int>().ToList());
-                //CardBoardControl.Instance.LoadCardList(CardIds.Cast<int>().ToList());
             }
-            Debug.Log("运行到此处2");
+            Debug.Log("启动");
 
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                while (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num) && !GlobalBattleInfo.IsFinishSelectBoardCard) { }
+                switch (Mode)
+                {
+                    case GameEnum.CardBoardMode.Select:
+                        while (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num) && !GlobalBattleInfo.IsFinishSelectBoardCard) { }
+                        break;
+                    case GameEnum.CardBoardMode.ChangeCard:
+                        while (Info.GlobalBattleInfo.ChangeableCardNum != 0 && !Info.GlobalBattleInfo.IsSelectCardOver)
+                        {
+                            if (Info.GlobalBattleInfo.SelectBoardCardIds.Count > 0)
+                            {
+                                await CardCommand.ExchangeCard();
+                                Info.GlobalBattleInfo.ChangeableCardNum--;
+                                Info.GlobalBattleInfo.SelectBoardCardIds.Clear();
+                                //Debug.Log("选择了卡牌" + Info.GlobalBattleInfo.SelectBoardCardIds[0]);
+                                //Debug.Log("剩余抽卡次数为" + Info.GlobalBattleInfo.ChangeableCardNum);
+                            }
+                        }
+                        break;
+                    case GameEnum.CardBoardMode.ShowOnly:
+                        break;
+                    default:
+                        break;
+                }
+
 
             });
-            Debug.Log("运行到此处3" + (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num)) + " " + !GlobalBattleInfo.IsFinishSelectBoardCard);
-
+            Debug.Log("关闭");
             UiCommand.SetCardBoardHide();
             GlobalBattleInfo.IsWaitForSelectBoardCard = false;
         }

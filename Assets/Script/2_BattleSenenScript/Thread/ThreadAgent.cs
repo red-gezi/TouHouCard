@@ -10,7 +10,11 @@ namespace Info
     public class ThreadAgent : MonoBehaviour
     {
         static int num;
-        static bool num2;
+        private void Awake()
+        {
+
+           
+        }
         private void Update()
         {
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatCard, CreatCard);
@@ -20,8 +24,12 @@ namespace Info
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCardBoardHide, CardBoardHide);
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardActual, CreatBoardCardActual);
             InvokeInMainThread(ref Info.GlobalBattleInfo.IsCreatBoardCardVitual, CreatBoardCardVitual);
+            InvokeInMainThread(ref Info.GlobalBattleInfo.CardBoardReload, CardBoardReload);
 
         }
+
+        
+
         private void NotifyShow()
         {
             Info.UiInfo.NoticeBoard.transform.GetChild(0).GetComponent<Text>().text = Info.UiInfo.NoticeBoardTitle;
@@ -39,7 +47,10 @@ namespace Info
         {
             UiInfo.CardBoard.SetActive(false);
         }
-
+        private void CardBoardReload()
+        {
+            Info.GlobalBattleInfo.IsCreatBoardCardActual = true;
+        }
         private void InvokeInMainThread(ref bool TriggerSign, Action RunFunction)
         {
             if (TriggerSign)

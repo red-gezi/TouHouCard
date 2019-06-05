@@ -7,13 +7,13 @@ public class CardBoardCommand
 {
     public static void LoadCardList(List<int> CardsIds)
     {
-        Debug.Log("执行虚牌组载入");
+       // Debug.Log("执行虚牌组载入");
         Info.GlobalBattleInfo.TargetCardIDList = CardsIds;
         Info.GlobalBattleInfo.IsCreatBoardCardVitual = true;
     }
     public static void LoadCardList(List<Card> CardsIds)
     {
-        Debug.Log("执行实牌组载入");
+        //Debug.Log("执行实牌组载入");
         Info.GlobalBattleInfo.TargetCardList = CardsIds;
         Info.GlobalBattleInfo.IsCreatBoardCardActual = true;
 

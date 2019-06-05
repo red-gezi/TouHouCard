@@ -1,4 +1,5 @@
 ﻿
+using CardSpace;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,10 @@ public static class Extern
     public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
     {
         enumerable.ToList().ForEach(action);
+    }
+    public static void Order(this List<Card> CardList )
+    {
+        CardList.Order();
     }
 }
 

@@ -4,6 +4,7 @@ using Info;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 namespace Control
 {
@@ -29,22 +30,23 @@ namespace Control
         {
             if (SingleInfo.TempCard == null && SingleInfo.CanBeSelected && GlobalBattleInfo.PlayerFocusRegion == SingleInfo)
             {
-                CreatTempCard();
+                _=CreatTempCard();
             }
             if (SingleInfo.TempCard != null && SingleInfo.Rank != SingleInfo.ThisRowCard.IndexOf(SingleInfo.TempCard))
             {
                 ChangeTempCard();
             }
-            if (SingleInfo.TempCard != null  && (!SingleInfo.CanBeSelected||GlobalBattleInfo.PlayerFocusRegion != SingleInfo))
+            if (SingleInfo.TempCard != null && (!SingleInfo.CanBeSelected || GlobalBattleInfo.PlayerFocusRegion != SingleInfo))
             {
                 DestoryTempCard();
             }
 
         }
-        public void CreatTempCard()
+        public async Task CreatTempCard()
         {
             //print("创建临时卡片"+ RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0].CardId);
-            SingleInfo.TempCard = CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0].CardId);
+
+            SingleInfo.TempCard = await CardCommand.CreatCard(RowsInfo.GetRegionCardList(RegionName_Other.My_Uesd).ThisRowCard[0].CardId);
             SingleInfo.TempCard.IsTemp = true;
             SingleInfo.TempCard.IsCanSee = true;
             SingleInfo.ThisRowCard.Insert(SingleInfo.Rank, SingleInfo.TempCard);

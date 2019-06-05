@@ -218,11 +218,11 @@
     <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\CardModel\Card1002.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\CardLibrary\Test1.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Command\CardCommand.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\Card\Control\CardInstanceControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Library\CardInfo.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Card\Library\CardLibrary.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Dialogue\Dialogue.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Dialogue\DialogueCommand.cs" />
+    <Compile Include="Assets\Script\9_GloableScene\Enum\GameEnum.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Interactive\InteractiveControl.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Network\NetClient.cs" />
     <Compile Include="Assets\Script\9_GloableScene\Network\NetCommand.cs" />
@@ -237,9 +237,6 @@
     <Compile Include="Assets\Script\9_GloableScene\Test\TestScript.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\CardBoard\BoardCardInfo.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\CardBoard\CardBoardCommand.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\UI\CardBoard\CardBoardControl.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\UI\Notice\NoticeControl.cs" />
-    <Compile Include="Assets\Script\9_GloableScene\UI\Pass\PassCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\UiCommand.cs" />
     <Compile Include="Assets\Script\9_GloableScene\UI\UiInfo.cs" />
     <Compile Include="Assets\Script\Dialogue\DialgueInfo.cs" />

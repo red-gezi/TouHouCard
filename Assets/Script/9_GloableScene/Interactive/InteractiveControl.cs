@@ -56,7 +56,7 @@ namespace Control
                 PassPressTime += Time.deltaTime;
                 if (PassPressTime > 2)
                 {
-                    PassCommand.SetCurrentPass();
+                    UiCommand.SetCurrentPass();
                     PassPressTime = 0;
                 }
             }

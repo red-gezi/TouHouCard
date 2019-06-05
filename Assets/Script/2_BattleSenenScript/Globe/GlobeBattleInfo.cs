@@ -19,6 +19,10 @@ namespace Info
         public static bool IsSelectCardOver;
         public static bool IsCardBoardShow;
         public static bool IsCardBoardHide;
+        public static bool CardBoardReload;
+
+        public static Card SingleSelectCardOnBoard=>TargetCardList[SelectBoardCardIds[0]];
+
 
         //操作标志位
         public static bool IsCreatCard;
@@ -28,7 +32,7 @@ namespace Info
         public static bool IsDestoryBoardCard;
         public static bool IsDiscard;
         public static bool IsCardEffectCompleted;
-        public static Info.UiInfo.CardBoardMode CardBoardMode;
+        public static GameEnum.CardBoardMode CardBoardMode;
         public static bool IsNotifyShow;
         public static bool IsNotifyHide;
 
@@ -49,7 +53,7 @@ namespace Info
         public static bool IsWaitForSelectBoardCard;
         public static List<int> SelectBoardCardIds;
         public static bool IsFinishSelectBoardCard;
-        public static int ChangeableCardNum = 3;
+        public static int ChangeableCardNum = 0;
         public static bool IsMyTurn = true;
         public static bool IsPVE = true;
         public static bool IsRevertRows => IsMyTurn ^ IsPlayer1;

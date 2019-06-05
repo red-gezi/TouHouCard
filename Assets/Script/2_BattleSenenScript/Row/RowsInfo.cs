@@ -14,13 +14,10 @@ namespace Info
 
         public Dictionary<RegionName_Battle, SingleRowInfo> SingleBattleInfos = new Dictionary<RegionName_Battle, SingleRowInfo>();
         public Dictionary<RegionName_Other, SingleRowInfo> SingleOtherInfos = new Dictionary<RegionName_Other, SingleRowInfo>();
-        void Awake()
+        void Awake() => Init();
+        public  void Init()
         {
             Instance = this;
-            Init();
-        }
-        public static void Init()
-        {
             GlobalCardList.Clear();
             for (int i = 0; i < 18; i++)
             {
