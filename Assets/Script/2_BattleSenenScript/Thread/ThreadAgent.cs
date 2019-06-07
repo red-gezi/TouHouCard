@@ -35,6 +35,7 @@ namespace Info
             Info.UiInfo.NoticeBoard.transform.GetChild(0).GetComponent<Text>().text = Info.UiInfo.NoticeBoardTitle;
             Info.UiInfo.NoticeBoard.SetActive(true);
         }
+        
         private void NotifyHide()
         {
             Info.UiInfo.NoticeBoard.SetActive(false);
@@ -42,6 +43,7 @@ namespace Info
         private void CardBoardShow()
         {
             UiInfo.CardBoard.SetActive(true);
+            Info.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.UiInfo.CardBoardTitle;
         }
         private void CardBoardHide()
         {
@@ -82,6 +84,7 @@ namespace Info
         }
         private static void CreatBoardCardActual()
         {
+            Info.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.UiInfo.CardBoardTitle;
             Info.UiInfo.ShowCardLIstOnBoard.ForEach(Destroy);
             List<Card> Cards = Info.GlobalBattleInfo.TargetCardList;
             for (int i = 0; i < Cards.Count; i++)
@@ -91,13 +94,14 @@ namespace Info
                 NewCard.GetComponent<BoardCardInfo>().Rank = i;
                 NewCard.transform.SetParent(Info.UiInfo.Constant);
                 Texture2D texture = CardStandardInfo.Icon;
-                NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+                NewCard.GetComponent<Image>().sprite =Command.UiCommand.GetBoardCardImage(Cards[i].CardId);
                 Info.UiInfo.ShowCardLIstOnBoard.Add(NewCard);
             }
             Info.UiInfo.Constant.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 325 + 200, 800);
         }
         private static void CreatBoardCardVitual()
         {
+            Info.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.UiInfo.CardBoardTitle;
             UiInfo.ShowCardLIstOnBoard.ForEach(Destroy);
             List<int> CardIds = Info.GlobalBattleInfo.TargetCardIDList;
             for (int i = 0; i < CardIds.Count; i++)

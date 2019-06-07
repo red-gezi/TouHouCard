@@ -9,7 +9,7 @@ namespace Info
     public class RowsInfo : SerializedMonoBehaviour
     {
         [ShowInInspector]
-        static List<List<Card>> GlobalCardList = new List<List<Card>>();
+        public static List<List<Card>> GlobalCardList = new List<List<Card>>();
         public static RowsInfo Instance;
 
         public Dictionary<RegionName_Battle, SingleRowInfo> SingleBattleInfos = new Dictionary<RegionName_Battle, SingleRowInfo>();
@@ -24,6 +24,7 @@ namespace Info
                 GlobalCardList.Add(new List<Card>());
             }
         }
+
         public static List<Card> GetUpCardList(RegionTypes type)
         {
             return GlobalCardList[(int)type + (GlobalBattleInfo.IsPlayer1 ? 9 : 0)];

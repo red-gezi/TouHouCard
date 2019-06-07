@@ -35,7 +35,8 @@ namespace Info
         public static GameEnum.CardBoardMode CardBoardMode;
         public static bool IsNotifyShow;
         public static bool IsNotifyHide;
-
+        public static List<int> Player1BlackCardList;
+        public static List<int> Player2BlackCardList;
 
         public static Vector3 DragToPoint;
         public static Card PlayerFocusCard;
@@ -53,7 +54,7 @@ namespace Info
         public static bool IsWaitForSelectBoardCard;
         public static List<int> SelectBoardCardIds;
         public static bool IsFinishSelectBoardCard;
-        public static int ChangeableCardNum = 0;
+        public static int ExChangeableCardNum = 0;
         public static bool IsMyTurn = true;
         public static bool IsPVE = true;
         public static bool IsRevertRows => IsMyTurn ^ IsPlayer1;

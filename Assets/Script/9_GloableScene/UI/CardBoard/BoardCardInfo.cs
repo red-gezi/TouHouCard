@@ -26,7 +26,7 @@ public class BoardCardInfo : MonoBehaviour
         else
         {
             Info.GlobalBattleInfo.SelectBoardCardIds.Add(Rank);
-            print("加入了一张牌");
+            //print("加入了一张牌");
         }
     }
 }

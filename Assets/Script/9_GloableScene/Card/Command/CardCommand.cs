@@ -24,12 +24,12 @@ namespace Command
         }
         public static async Task ExchangeCard(bool IsPlayerWash = true)
         {
-            await DrawCard();
             await WashCard();
-            await OrderCard();
-            UiCommand.CardBoardReload();
+            await DrawCard();
+            CardBoardCommand.LoadCardList(RowsInfo.GetMyCardList(RegionTypes.Hand));
+            //UiCommand.CardBoardReload();
         }
-        public static async Task DrawCard(bool IsPlayerDraw = true)
+        public static async Task DrawCard(bool IsPlayerDraw = true,bool ActiveBlackList=false)
         {
             SoundControl.Play();
             Card TargetCard = IsPlayerDraw ? RowsInfo.GetMyCardList(RegionTypes.Deck)[0] : RowsInfo.GetOpCardList(RegionTypes.Deck)[0];
@@ -47,8 +47,8 @@ namespace Command
                
 
             }
-
-            //await Task.Delay(50);
+            await OrderCard();
+            await Task.Delay(100);
         }
         //洗回牌库
         public static async Task WashCard(bool IsPlayerWash = true)
@@ -60,35 +60,39 @@ namespace Command
                 GlobalBattleInfo.SelectLocation = CardRank;
                 GlobalBattleInfo.SelectRegion = RowsInfo.GetRegionCardList(RegionName_Other.My_Deck);
                 GlobalBattleInfo.TargetCard = GlobalBattleInfo.SingleSelectCardOnBoard;
-                CardBoardCommand.LoadCardList(RowsInfo.GetMyCardList(RegionTypes.Hand));
-                print("开始洗掉我方的牌");
+                GlobalBattleInfo.TargetCard.IsCanSee = false;
                 await MoveCard();
             }
             else
             {
-                int MaxCardRank = Info.RowsInfo.GetDownCardList(RegionTypes.Hand).Count;
-                int CardRank = AiCommand.GetRandom(0, MaxCardRank);
-                GlobalBattleInfo.SelectLocation = CardRank;
-                GlobalBattleInfo.SelectRegion = RowsInfo.GetRegionCardList(RegionName_Other.My_Hand);
-                CardBoardCommand.LoadCardList(RowsInfo.GetOpCardList(RegionTypes.Hand));
-                await MoveCard();
+                //int MaxCardRank = Info.RowsInfo.GetDownCardList(RegionTypes.Hand).Count;
+                //int CardRank = AiCommand.GetRandom(0, MaxCardRank);
+                //GlobalBattleInfo.SelectLocation = CardRank;
+                //GlobalBattleInfo.SelectRegion = RowsInfo.GetRegionCardList(RegionName_Other.My_Hand);
+               
+                //await MoveCard();
 
-                await Task.Delay(500);
+                
 
             }
+            await Task.Delay(500);
         }
         public static async Task OrderCard(bool IsPlayerWash = true)
         {
-            RowsInfo.GetMyCardList(RegionTypes.Hand).Order();
-            RowsInfo.GetOpCardList(RegionTypes.Hand).Order();
+             RowsInfo.GlobalCardList[1] = RowsInfo.GlobalCardList[1].OrderBy(card => card.CardPoint).ToList();
+             RowsInfo.GlobalCardList[3] = RowsInfo.GlobalCardList[3].OrderBy(card => card.CardPoint).ToList();
+             RowsInfo.GlobalCardList[10] = RowsInfo.GlobalCardList[10].OrderBy(card => card.CardPoint).ToList();
+             RowsInfo.GlobalCardList[12] = RowsInfo.GlobalCardList[12].OrderBy(card => card.CardPoint).ToList();
+
         }
         public static async Task MoveCard()
         {
-            print("洗牌");
+
 
             Card TargetCard = GlobalBattleInfo.TargetCard;
             List<Card> OriginRow = RowsInfo.GetRow(TargetCard);
             List<Card> TargetRow = GlobalBattleInfo.SelectRegion.ThisRowCard;
+            print("移动卡牌从"+ OriginRow.Count+"到"+ TargetRow.Count);
             OriginRow.Remove(TargetCard);
             TargetRow.Insert(GlobalBattleInfo.SelectLocation, TargetCard);
             //GlobalBattleInfo.SelectLocation

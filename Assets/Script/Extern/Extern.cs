@@ -13,9 +13,6 @@ public static class Extern
     {
         enumerable.ToList().ForEach(action);
     }
-    public static void Order(this List<Card> CardList )
-    {
-        CardList.Order();
-    }
+   
 }
 

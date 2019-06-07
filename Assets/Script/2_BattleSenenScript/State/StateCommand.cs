@@ -107,7 +107,8 @@ namespace Command
                 {
                     case (0):
                         {
-                            Info.GlobalBattleInfo.ChangeableCardNum += 3;
+                            Info.GlobalBattleInfo.ExChangeableCardNum += 3;
+                            Info.UiInfo.CardBoardTitle = "剩余抽卡次数为" + Info.GlobalBattleInfo.ExChangeableCardNum;
                             for (int i = 0; i < 10; i++)
                             {
                                 await CardCommand.DrawCard();
@@ -120,14 +121,16 @@ namespace Command
                         }
                     case (1):
                         {
-                            Info.GlobalBattleInfo.ChangeableCardNum += 1;
+                            Info.GlobalBattleInfo.ExChangeableCardNum += 1;
+                            Info.UiInfo.CardBoardTitle = "剩余抽卡次数为" + Info.GlobalBattleInfo.ExChangeableCardNum;
                             await CardCommand.DrawCard();
                             await CardCommand.DrawCard(false);
                             break;
                         }
                     case (2):
                         {
-                            Info.GlobalBattleInfo.ChangeableCardNum += 1;
+                            Info.GlobalBattleInfo.ExChangeableCardNum += 1;
+                            Info.UiInfo.CardBoardTitle = "剩余抽卡次数为" + Info.GlobalBattleInfo.ExChangeableCardNum;
                             await CardCommand.DrawCard();
                             await CardCommand.DrawCard(false);
                             break;
@@ -242,13 +245,14 @@ namespace Command
                         while (GlobalBattleInfo.SelectBoardCardIds.Count < Mathf.Min(CardIds.Count, num) && !GlobalBattleInfo.IsFinishSelectBoardCard) { }
                         break;
                     case GameEnum.CardBoardMode.ChangeCard:
-                        while (Info.GlobalBattleInfo.ChangeableCardNum != 0 && !Info.GlobalBattleInfo.IsSelectCardOver)
+                        while (Info.GlobalBattleInfo.ExChangeableCardNum != 0 && !Info.GlobalBattleInfo.IsSelectCardOver)
                         {
                             if (Info.GlobalBattleInfo.SelectBoardCardIds.Count > 0)
                             {
                                 await CardCommand.ExchangeCard();
-                                Info.GlobalBattleInfo.ChangeableCardNum--;
+                                Info.GlobalBattleInfo.ExChangeableCardNum--;
                                 Info.GlobalBattleInfo.SelectBoardCardIds.Clear();
+                                UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.GlobalBattleInfo.ExChangeableCardNum);
                                 //Debug.Log("选择了卡牌" + Info.GlobalBattleInfo.SelectBoardCardIds[0]);
                                 //Debug.Log("剩余抽卡次数为" + Info.GlobalBattleInfo.ChangeableCardNum);
                             }
