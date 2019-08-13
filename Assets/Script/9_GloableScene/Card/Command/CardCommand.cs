@@ -53,6 +53,7 @@ namespace Command
         //洗回牌库
         public static async Task WashCard(bool IsPlayerWash = true)
         {
+            print("洗牌");
             if (IsPlayerWash)
             {
                 int MaxCardRank = Info.RowsInfo.GetMyCardList(RegionTypes.Deck).Count;
@@ -90,6 +91,7 @@ namespace Command
 
 
             Card TargetCard = GlobalBattleInfo.TargetCard;
+            GlobalBattleInfo.TargetCard = null;
             List<Card> OriginRow = RowsInfo.GetRow(TargetCard);
             List<Card> TargetRow = GlobalBattleInfo.SelectRegion.ThisRowCard;
             print("移动卡牌从"+ OriginRow.Count+"到"+ TargetRow.Count);

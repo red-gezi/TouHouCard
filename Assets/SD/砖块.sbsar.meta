@@ -61,7 +61,7 @@ ScriptedImporter:
       textureHeight: 512
       textureFormat: 0
       bGenerateOnLoad: 1
-    material: {instanceID: 0}
+    material: {fileID: 2100000, guid: 3a21bf23da0180548baa6e4ef7d1d816, type: 3}
     generatedTextures: []
   - graphLabel: New_Graph_1
     prototypeName: New_Graph
@@ -106,5 +106,5 @@ ScriptedImporter:
       textureHeight: 512
       textureFormat: 0
       bGenerateOnLoad: 1
-    material: {instanceID: 0}
+    material: {fileID: 2100002, guid: 3a21bf23da0180548baa6e4ef7d1d816, type: 3}
     generatedTextures: []

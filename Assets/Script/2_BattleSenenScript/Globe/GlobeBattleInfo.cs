@@ -54,7 +54,7 @@ namespace Info
         public static bool IsWaitForSelectBoardCard;
         public static List<int> SelectBoardCardIds;
         public static bool IsFinishSelectBoardCard;
-        public static int ExChangeableCardNum = 0;
+        public static int ExChangeableCardNum = -2;
         public static bool IsMyTurn = true;
         public static bool IsPVE = true;
         public static bool IsRevertRows => IsMyTurn ^ IsPlayer1;

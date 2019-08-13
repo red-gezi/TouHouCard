@@ -26,7 +26,10 @@ public class Test1 : MonoBehaviour
             File.WriteAllText(NewPath, ScriptText);
 
         }
+
+#if UNITY_EDITOR
         AssetDatabase.Refresh();
+#endif
     }
     [Button("load")]
     private void load()

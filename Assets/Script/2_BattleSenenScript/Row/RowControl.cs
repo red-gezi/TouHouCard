@@ -66,7 +66,7 @@ namespace Control
         public void SetSelectable(bool Seleceable)
         {
             SingleInfo.CanBeSelected = Seleceable;
-            transform.GetComponent<Renderer>().material.SetColor("_Color", SingleInfo.CanBeSelected ? SingleInfo.color : Color.black);
+            transform.GetComponent<Renderer>().material.SetColor("_GlossColor", SingleInfo.CanBeSelected ? SingleInfo.color : Color.black);
         }
         void RefreshHandCard(List<Card> ThisCardList)
         {
